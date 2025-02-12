@@ -1,127 +1,88 @@
-<!-- src/components/MenuContent.svelte -->
 <script lang="ts">
     import { slide } from 'svelte/transition';
 
-    // Local state for toggling the sections
-    let showAbout: boolean = false;
-    let showWorks: boolean = false;
-    let showConnect: boolean = false;
+    type MenuItem = {
+        id: string;
+        label: string;
+        isAbsolute?: boolean;
+        content: {
+            href?: string;
+            label: string;
+            external?: boolean;
+        }[];
+    };
 
-    const toggleSection = (section: string) => {
-        if (section === 'about') {
-            showAbout = !showAbout;
-            showWorks = false;
-            showConnect = false;
-        } else if (section === 'works') {
-            showWorks = !showWorks;
-            showAbout = false;
-            showConnect = false;
-        } else if (section === 'connect') {
-            showConnect = !showConnect;
-            showAbout = false;
-            showWorks = false;
+    const menuItems: MenuItem[] = [
+        {
+            id: 'about',
+            label: 'About',
+            content: [
+                { label: 'Resumé' }
+            ]
+        },
+        {
+            id: 'works',
+            label: 'Works',
+            content: [
+                { href: 'https://perakasem.crd.co', label: 'Photography', external: true },
+                { href: 'https://perakasem.crd.co', label: 'Playground', external: true },
+                { href: 'https://quatre.vercel.app', label: 'Quatre', external: true }
+            ]
+        },
+        {
+            id: 'connect',
+            label: 'Connect',
+            isAbsolute: true,
+            content: [
+                { href: 'https://instagram.com/perakasem', label: 'Instagram', external: true },
+                { href: 'https://github.com/perakasem', label: 'Github', external: true },
+                { href: 'https://linkedin.com/in/perakasem', label: 'LinkedIn', external: true },
+                { href: 'mailto:pkasemsripitak@gmail.com', label: 'Email' }
+            ]
         }
+    ];
+
+    let activeSection: string | null = null;
+
+    const toggleSection = (id: string) => {
+        activeSection = activeSection === id ? null : id;
     };
 </script>
 
-<!-- Menu Content Markup -->
 <div>
     <div>Pera Kasemsripitak</div>
 
-    <!-- About Section -->
-    <div class="relative">
-        <a
+    {#each menuItems as item}
+        <div class="relative">
+            <a
                 href={'#'}
-                on:click|preventDefault={() => toggleSection('about')}
-                class="block text-left cursor-pointer {showAbout ? 'underline' : ''}"
-        >
-            About
-        </a>
-        {#if showAbout}
-            <div transition:slide class="pl-6">
-                <div>Resumé</div>
-            </div>
-        {/if}
-    </div>
-
-    <!-- Works Section -->
-    <div class="relative">
-        <a
-                href={'#'}
-                on:click|preventDefault={() => toggleSection('works')}
-                class="block text-left cursor-pointer {showWorks ? 'underline' : ''}"
-        >
-            Works
-        </a>
-        {#if showWorks}
-            <div transition:slide class="pl-6">
-                <div>
-                    <a
-                            href="https://perakasem.crd.co"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="self-start"
-                    >
-                        Photography
-                    </a>
-                </div>
-            </div>
-        {/if}
-    </div>
-
-    <!-- Connect Section -->
-    <div class="relative">
-        <a
-                href={'#'}
-                on:click|preventDefault={() => toggleSection('connect')}
-                class="block text-left cursor-pointer {showConnect ? 'underline' : ''}"
-        >
-            Connect
-        </a>
-        {#if showConnect}
-            <div class="absolute">
-                <div transition:slide class="pl-6">
-                    <div>
-                        <a
-                                href="https://instagram.com/perakasem"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="self-start"
-                        >
-                            Instagram
-                        </a>
-                    </div>
-                    <div>
-                        <a
-                                href="https://github.com/perakasem"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="self-start"
-                        >
-                            Github
-                        </a>
-                    </div>
-                    <div>
-                        <a
-                                href="https://linkedin.com/in/perakasem"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="self-start"
-                        >
-                            LinkedIn
-                        </a>
-                    </div>
-                    <div>
-                        <a href="mailto:pkasemsripitak@gmail.com" class="self-start">
-                            Email
-                        </a>
+                on:click|preventDefault={() => toggleSection(item.id)}
+                class="block text-left cursor-pointer {activeSection === item.id ? 'underline' : ''}"
+            >
+                {item.label}
+            </a>
+            {#if activeSection === item.id}
+                <div class={item.isAbsolute ? 'absolute' : ''}>
+                    <div transition:slide class="pl-6">
+                        {#each item.content as content}
+                            <div>
+                                {#if content.href}
+                                    <a
+                                        href={content.href}
+                                        target={content.external ? "_blank" : undefined}
+                                        rel={content.external ? "noopener noreferrer" : undefined}
+                                        class="self-start"
+                                    >
+                                    {content.label}
+                                    </a>
+                                {:else}
+                                    {content.label}
+                                {/if}
+                            </div>
+                        {/each}
                     </div>
                 </div>
-            </div>
-        {/if}
-    </div>
+            {/if}
+        </div>
+    {/each}
 </div>
-
-<style>
-    /* Optional: Add any menu-specific styling here */
-</style>
