@@ -15,10 +15,18 @@ body {
 .sans-typo {
     color: #DEDCDB;
     font-family: "Instrument Sans", sans-serif;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-style: normal;
     line-height: normal;
     white-space: nowrap;
+}
+
+.sans-warning {
+    color: #DEDCDB;
+    font-family: "Instrument Sans", sans-serif;
+    font-size: 1.2rem;
+    font-style: normal;
+    line-height: normal;
 }
 
 .sans-title {
@@ -54,8 +62,4 @@ body {
     }
 }
 
-@media (max-width: 370px) {
-    .sans-typo {
-        font-size: 1.4rem;
-    }
-}
+
