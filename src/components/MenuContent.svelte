@@ -31,7 +31,7 @@
     <!-- About Section -->
     <div class="relative">
         <a
-                href="#"
+                href={'#'}
                 on:click|preventDefault={() => toggleSection('about')}
                 class="block text-left cursor-pointer {showAbout ? 'underline' : ''}"
         >
@@ -47,7 +47,7 @@
     <!-- Works Section -->
     <div class="relative">
         <a
-                href="#"
+                href={'#'}
                 on:click|preventDefault={() => toggleSection('works')}
                 class="block text-left cursor-pointer {showWorks ? 'underline' : ''}"
         >
@@ -72,7 +72,7 @@
     <!-- Connect Section -->
     <div class="relative">
         <a
-                href="#"
+                href={'#'}
                 on:click|preventDefault={() => toggleSection('connect')}
                 class="block text-left cursor-pointer {showConnect ? 'underline' : ''}"
         >
