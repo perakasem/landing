@@ -79,15 +79,14 @@
         </div>
     {/if}
 
-    <div class="flex min-h-screen h-screen sans-typo bg-dark overflow-hidden"
-         in:fade={{ duration: 500 }}>
-        {#key $page.url.pathname}
-            <div class="w-2/3 h-screen {scrollable ? 'overflow-y-auto' : 'overflow-hidden'}">
-                <div class="relative w-full h-full">
+    <div class="flex min-h-screen h-screen sans-typo bg-dark overflow-hidden">
+        <div class="w-2/3 h-screen {scrollable ? 'overflow-y-auto' : 'overflow-hidden'}">
+            {#key $page.url.pathname}
+                <div class="relative w-full h-full" in:fade={{ duration: 500 }}>
                     <slot />
                 </div>
-            </div>
-        {/key}
+            {/key}
+        </div>
         <div class="w-1/3 overflow-hidden">
             {#if $sideImage}
                 <img
