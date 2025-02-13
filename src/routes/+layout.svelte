@@ -75,7 +75,7 @@
              out:fade={{ duration: 300 }}
              class="fixed inset-0 bg-dark serif-warning flex items-center justify-center z-50 p-20"
         >
-            <p>Please adjust your window to provide ample space for the best viewing experience.</p>
+            <p>Please adjust your window or rotate your mobile device to provide ample space for the best viewing experience.</p>
         </div>
     {/if}
 
