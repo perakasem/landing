@@ -12,6 +12,40 @@ body {
 .bg-dark {
     background-color: #191919;
 }
+
+.serif-typo {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1.4rem;
+    font-style: normal;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.serif-typo-body {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1rem;
+    font-style: normal;
+    line-height: normal;
+}
+
+.serif-typo-body-small {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 0.9rem;
+    font-style: normal;
+    line-height: normal;
+}
+
+.serif-typo-subtitle {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1.8rem;
+    font-style: normal;
+    line-height: normal;
+}
+
 .sans-typo {
     color: #DEDCDB;
     font-family: "Instrument Sans", sans-serif;
@@ -19,6 +53,55 @@ body {
     font-style: normal;
     line-height: normal;
     white-space: nowrap;
+}
+.sans-typo-title {
+    color: #DEDCDB;
+    font-family: "Instrument Sans", sans-serif;
+    font-size: 1.8rem;
+    font-style: normal;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.sans-typo-title-small {
+    color: #DEDCDB;
+    font-family: "Instrument Sans", sans-serif;
+    font-size: 1.6rem;
+    font-style: normal;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.sans-typo-detail {
+    color: #DEDCDB;
+    font-family: "Instrument Sans", sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.attribution-typo {
+    color: #DEDCDB;
+    font-family: "JetBrains Mono", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 200;
+    opacity: 75%;
+    font-style: normal;
+    line-height: normal;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.attribution-typo-dark {
+    color: #191919;
+    font-family: "JetBrains Mono", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 200;
+    font-style: normal;
+    line-height: normal;
+    white-space: nowrap;
+    text-align: center;
 }
 
 .sans-warning {
@@ -52,6 +135,15 @@ body {
     width: 100%;
     height: 8%;
     background-color: #DEDCDB;
+}
+
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+* ::-webkit-scrollbar {
+    display: none;
 }
 
 @media (max-width: 640px) {

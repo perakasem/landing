@@ -1,12 +1,15 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
+    import { onMount, onDestroy } from 'svelte';
     import MenuContent from '../components/MenuContent.svelte';
     import { sideImage } from '$lib/stores/sideImageStore';
+    import { attributionClass } from "$lib/stores/attributionStore.js";
 
     const mobileBreakpoint = 640;
     const images = ['/default-image.JPG', '/bg3.JPG', '/bg4.JPG'];
     let isMobile = false;
     let currentImageIndex = 0;
+    let timerId: ReturnType<typeof setTimeout>;
+    attributionClass.set('attribution-typo');
 
     function updateViewport() {
         isMobile = window.innerWidth < mobileBreakpoint;
@@ -18,17 +21,24 @@
     }
 
     function scheduleNextRotation() {
-        setTimeout(() => {
+        timerId = setTimeout(() => {
             rotateImage();
             scheduleNextRotation();
-        }, Math.E ** (7 * Math.random()));
+        }, Math.E ** (8 * Math.random()));
     }
 
     onMount(() => {
         updateViewport();
-        scheduleNextRotation();
+        sideImage.set(images[currentImageIndex]);
+        timerId = setTimeout(() => {
+            scheduleNextRotation();
+        }, 1000);
         window.addEventListener('resize', updateViewport);
         return () => window.removeEventListener('resize', updateViewport);
+    });
+
+    onDestroy(() => {
+        clearTimeout(timerId); // Cancel the scheduled rotation when navigating away
     });
 </script>
 
@@ -42,7 +52,7 @@
         </div>
         <div class="aspect-square"></div>
         <div class="aspect-square"></div>
-        <div class="col-span-3 pt-10">
+        <div class="col-span-3 pt-10 h-[200px] overflow-y-visible">
             <MenuContent />
         </div>
     {:else}

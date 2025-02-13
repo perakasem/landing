@@ -1,5 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
+    import { sideImage } from "$lib/stores/sideImageStore.js";
+    import { attributionClass } from '$lib/stores/attributionStore';
 
     const mobileBreakpoint = 640;
     let isMobile = false;
@@ -8,7 +10,10 @@
         isMobile = window.innerWidth < mobileBreakpoint;
     }
 
+    attributionClass.set('attribution-typo-dark');
+
     onMount(() => {
+        sideImage.set('bio.JPG');
         updateViewport();
         window.addEventListener('resize', updateViewport);
         return () => window.removeEventListener('resize', updateViewport);
@@ -26,6 +31,7 @@
         <div class="aspect-square"></div>
         <div class="aspect-square"></div>
         <div class="col-span-3 pt-10">
+            Test
         </div>
     {:else}
         <div class="relative aspect-square">
@@ -37,7 +43,9 @@
         <div class="aspect-square"></div>
         <div class="aspect-square"></div>
         <div class="aspect-square"></div>
-        <div class="aspect-square">
+        <div class="aspect-square flex-row gap-0 p-0 m-0">
+            <p class="p-0">I'm Pera</p>
+            <a href="/">Back</a>
         </div>
     {/if}
 </div>

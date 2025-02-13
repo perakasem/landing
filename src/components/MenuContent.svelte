@@ -17,8 +17,8 @@
             id: 'bio',
             label: 'About',
             content: [
-                { href: '/bio', label: 'Bio', external: false },
-                { href: '/resume', label: 'Resumé', external: false },
+                { href: '/construction', label: 'Bio', external: false },
+                { href: '/construction', label: 'Resumé', external: false },
             ]
         },
         {
@@ -26,8 +26,8 @@
             label: 'Works',
             content: [
                 { href: 'https://perakasem.crd.co', label: 'Photography', external: true },
-                { href: 'https://perakasem.crd.co', label: 'Playground', external: true },
-                { href: 'https://quatre.vercel.app', label: 'Quatre', external: true }
+                { href: '/construction', label: 'For the Record', external: false },
+                { href: '/construction', label: 'Quatre', external: false }
             ]
         },
         {
@@ -57,7 +57,7 @@
             <a
                 href={'#'}
                 on:click|preventDefault={() => toggleSection(item.id)}
-                class="block text-left cursor-pointer {activeSection === item.id ? 'underline' : ''}"
+                class="block text-left hover:underline cursor-pointer {activeSection === item.id ? 'underline' : ''}"
             >
                 {item.label}
             </a>
