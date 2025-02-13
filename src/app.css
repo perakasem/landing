@@ -128,6 +128,16 @@ body {
     text-align: center;
 }
 
+.serif-warning {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1.2rem;
+    font-style: normal;
+    line-height: normal;
+    text-wrap: balance;
+    text-align: center;
+}
+
 .sans-title {
     color: #DEDCDB;
     font-family: "Instrument Sans", sans-serif;
