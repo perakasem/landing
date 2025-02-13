@@ -10,6 +10,6 @@
     });
 </script>
 
-<div class="fixed left-0 top-0 w-0.5 bg-zinc-600 dark:bg-zinc-400 transition-height duration-100"
+<div class="fixed left-0 top-0 w-0.5 bg-offwhite transition-height duration-100"
      style="height: {progress}%">
 </div>
