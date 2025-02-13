@@ -73,7 +73,7 @@
     {#if windowTooSmall}
         <div in:fade={{ duration: 300 }}
              out:fade={{ duration: 300 }}
-             class="fixed inset-0 bg-dark sans-warning flex items-center justify-center z-50 p-20"
+             class="fixed inset-0 bg-dark serif-warning flex items-center justify-center z-50 p-20"
         >
             <p>Please adjust your window to provide ample space for the best viewing experience.</p>
         </div>
