@@ -27,6 +27,8 @@ body {
     font-size: 1.2rem;
     font-style: normal;
     line-height: normal;
+    text-wrap: balance;
+    text-align: center;
 }
 
 .sans-title {

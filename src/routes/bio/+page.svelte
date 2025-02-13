@@ -1,32 +1,15 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import MenuContent from '../components/MenuContent.svelte';
-    import { sideImage } from '$lib/stores/sideImageStore';
 
     const mobileBreakpoint = 640;
-    const images = ['/default-image.JPG', '/bg3.JPG', '/bg4.JPG'];
     let isMobile = false;
-    let currentImageIndex = 0;
 
     function updateViewport() {
         isMobile = window.innerWidth < mobileBreakpoint;
     }
 
-    function rotateImage() {
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-        sideImage.set(images[currentImageIndex]);
-    }
-
-    function scheduleNextRotation() {
-        setTimeout(() => {
-            rotateImage();
-            scheduleNextRotation();
-        }, Math.E ** (7 * Math.random()));
-    }
-
     onMount(() => {
         updateViewport();
-        scheduleNextRotation();
         window.addEventListener('resize', updateViewport);
         return () => window.removeEventListener('resize', updateViewport);
     });
@@ -43,7 +26,6 @@
         <div class="aspect-square"></div>
         <div class="aspect-square"></div>
         <div class="col-span-3 pt-10">
-            <MenuContent />
         </div>
     {:else}
         <div class="relative aspect-square">
@@ -55,28 +37,7 @@
         <div class="aspect-square"></div>
         <div class="aspect-square"></div>
         <div class="aspect-square"></div>
-        <div class="aspect-square h-[200px] overflow-y-visible">
-            <MenuContent />
+        <div class="aspect-square">
         </div>
     {/if}
 </div>
-
-<div class="max-sm:hidden w-2/3 fixed bottom-0 sans-title overflow-hidden">
-    <div class="marquee">
-        <span>PERA KASEMSRIPITAK&nbsp;</span>
-    </div>
-</div>
-
-<style>
-    .marquee {
-        white-space: nowrap;
-        display: inline-block;
-        animation: marquee 60s linear infinite;
-    }
-
-    @keyframes marquee {
-        from { transform: translateX(0); }
-        to { transform: translateX(-50%); }
-    }
-</style>
-

@@ -14,10 +14,11 @@
 
     const menuItems: MenuItem[] = [
         {
-            id: 'about',
+            id: 'bio',
             label: 'About',
             content: [
-                { label: 'Resumé' }
+                { href: '/bio', label: 'Bio', external: false },
+                { href: '/resume', label: 'Resumé', external: false },
             ]
         },
         {
@@ -32,7 +33,6 @@
         {
             id: 'connect',
             label: 'Connect',
-            isAbsolute: true,
             content: [
                 { href: 'https://instagram.com/perakasem', label: 'Instagram', external: true },
                 { href: 'https://github.com/perakasem', label: 'Github', external: true },
@@ -62,25 +62,23 @@
                 {item.label}
             </a>
             {#if activeSection === item.id}
-                <div class={item.isAbsolute ? 'absolute' : ''}>
-                    <div transition:slide class="pl-6">
-                        {#each item.content as content}
-                            <div>
-                                {#if content.href}
-                                    <a
-                                        href={content.href}
-                                        target={content.external ? "_blank" : undefined}
-                                        rel={content.external ? "noopener noreferrer" : undefined}
-                                        class="self-start"
-                                    >
-                                    {content.label}
-                                    </a>
-                                {:else}
-                                    {content.label}
-                                {/if}
-                            </div>
-                        {/each}
-                    </div>
+                <div transition:slide class="pl-6">
+                    {#each item.content as content}
+                        <div>
+                            {#if content.href}
+                                <a
+                                    href={content.href}
+                                    target={content.external ? "_blank" : undefined}
+                                    rel={content.external ? "noopener noreferrer" : undefined}
+                                    class="self-start"
+                                >
+                                {content.label}
+                                </a>
+                            {:else}
+                                {content.label}
+                            {/if}
+                        </div>
+                    {/each}
                 </div>
             {/if}
         </div>
