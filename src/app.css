@@ -13,6 +13,10 @@ body {
     background-color: #191919;
 }
 
+.bg-light {
+    background-color: #DEDCDB;
+}
+
 .bg-dark:before {
     content: "";
     background-color: transparent;
@@ -34,6 +38,7 @@ body {
     font-style: normal;
     line-height: normal;
     white-space: nowrap;
+    letter-spacing: 0.02rem;
 }
 
 .serif-typo-body {
@@ -42,6 +47,15 @@ body {
     font-size: 1rem;
     font-style: normal;
     line-height: normal;
+}
+
+.serif-typo-paragraph {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1rem;
+    font-style: normal;
+    line-height: 1.5rem;
+    letter-spacing: 0.01rem;
 }
 
 .serif-typo-body-small {

@@ -74,7 +74,10 @@
                     </p>
                 </li>
             </ol>
-            <a href="/" class="sans-typo-detail hover:underline">Home</a>
+            <div class="flex justify-between">
+                <a href="/" class="sans-typo-detail hover:underline">Home</a>
+                <a href="/terms" class="sans-typo-detail hover:underline">Terms of Use</a>
+            </div>
         </div>
     </div>
     {:else}

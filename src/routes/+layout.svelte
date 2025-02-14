@@ -53,7 +53,7 @@
     function checkWindowSize() {
         windowTooSmall = window.innerHeight < 600 ||
             window.innerWidth < 320 ||
-            (window.innerWidth / window.innerHeight > 1.8);
+            (window.innerWidth / window.innerHeight > 2.2);
     }
 
     onMount(() => {

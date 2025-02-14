@@ -47,7 +47,7 @@
         </div>
         <!-- Terms of Service content for mobile -->
         <div class="pt-12 mb-40 mt-20">
-            <h1 class="sans-typo-title-small text-xl mb-1 text-wrap">Terms of Service</h1>
+            <h1 class="sans-typo-title-small text-xl mb-1 text-wrap">Terms of Use</h1>
             <p class="sans-typo-detail text-sm mb-8 text-wrap">Effective on February 13, 2025</p>
             <ol class="list-decimal pl-4 serif-typo-body-small">
                 <li class="mb-4">
@@ -92,7 +92,10 @@
                     </p>
                 </li>
             </ol>
-            <a href="/" class="sans-typo-detail hover:underline">Home</a>
+            <div class="flex justify-between">
+                <a href="/" class="sans-typo-detail hover:underline">Home</a>
+                <a href="/privacy" class="sans-typo-detail hover:underline">Privacy Policy</a>
+            </div>
         </div>
     </div>
 {:else}

@@ -17,8 +17,9 @@
             id: 'bio',
             label: 'About',
             content: [
-                { href: '/construction', label: 'Bio', external: false },
+                { href: '/bio', label: 'Bio', external: false },
                 { href: '/construction', label: 'Resumé', external: false },
+                { href: '/construction', label: 'Now', external: false }
             ]
         },
         {
@@ -26,7 +27,8 @@
             label: 'Works',
             content: [
                 { href: 'https://perakasem.crd.co', label: 'Photography', external: true },
-                { href: '/construction', label: 'For the Record', external: false },
+                { href: '/construction', label: 'The Pond', external: false },
+                { href: '/construction', label: 'Portfolio', external: false },
                 { href: '/construction', label: 'Quatre', external: false }
             ]
         },
