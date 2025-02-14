@@ -56,13 +56,12 @@
 
     {#each menuItems as item}
         <div class="relative">
-            <a
-                href={'#'}
+            <button
                 on:click|preventDefault={() => toggleSection(item.id)}
                 class="block text-left hover:underline cursor-pointer {activeSection === item.id ? 'underline' : ''}"
             >
                 {item.label}
-            </a>
+            </button>
             {#if activeSection === item.id}
                 <div transition:slide class="pl-6">
                     {#each item.content as content}
