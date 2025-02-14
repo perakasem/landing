@@ -145,8 +145,7 @@
             <p class="py-2 serif-typo-body-small text-wrap">
                 I designed and developed this website from scratch as an exploration into web design and development. It is always
                 evolving, and with many experimental features, I would greatly appreciate any technical and content issue
-                reports. If you like what you see, I am also open to designing and building custom portfolio websites.
-                Please <a href="mailto:pkasemsripitak@gmail.com" class="underline decoration-wavy hover:text-stone-100">reach out</a>
+                reports. Please <a href="mailto:pkasemsripitak@gmail.com" class="underline decoration-wavy hover:text-stone-100">reach out</a>
                 to me for any inquiries or suggestions.
             </p>
             <div class="flex pt-8">
@@ -315,8 +314,7 @@
                 <p class="py-2 serif-typo-paragraph text-wrap">
                     I designed and developed this website from scratch as an exploration into web design and development. It is always
                     evolving, and with many experimental features, I would greatly appreciate any technical and content issue
-                    reports. If you like what you see, I am also open to designing and building custom portfolio websites.
-                    Please <a href="mailto:pkasemsripitak@gmail.com" class="underline decoration-wavy hover:text-stone-100">reach out</a>
+                    reports. Please <a href="mailto:pkasemsripitak@gmail.com" class="underline decoration-wavy hover:text-stone-100">reach out</a>
                     to me for any inquiries or suggestions.
                 </p>
                 <div class="flex pt-8">
