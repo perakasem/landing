@@ -49,26 +49,26 @@
             <p class="sans-typo-detail text-sm mb-8 text-wrap">Effective on February 12, 2025</p>
             <ol class="list-decimal pl-4 serif-typo-body-small">
                 <li class="mb-4">
-                    <p class="mb-2">Information Collection</p>
+                    <p class="mb-2"><strong>Information Collection</strong></p>
                     <p>This Site does not collect, store, or process any personal data.</p>
                 </li>
                 <li class="mb-4">
-                    <p class="mb-2">Cookies & Tracking</p>
+                    <p class="mb-2"><strong>Cookies & Tracking</strong></p>
                     <p>This Site does not use cookies, analytics, or tracking technologies.</p>
                 </li>
                 <li class="mb-4">
-                    <p class="mb-2">External Links</p>
+                    <p class="mb-2"><strong>External Links</strong></p>
                     <p>
                         If you follow links to third-party websites, their privacy policies apply,
                         and I am not responsible for their content or practices.
                     </p>
                 </li>
                 <li class="mb-4">
-                    <p class="mb-2">Changes to This Policy</p>
+                    <p class="mb-2"><strong>Changes to This Policy</strong></p>
                     <p>This Privacy Policy may be updated at any time. The latest version will always be available on this page.</p>
                 </li>
                 <li class="mb-4">
-                    <p class="mb-2">Contact</p>
+                    <p class="mb-2"><strong>Contact</strong></p>
                     <p>For any inquiries, please reach out to me
                         <a href="mailto:pkasemsriptak+site@gmail.com" class="underline">via email</a>.
                     </p>
@@ -97,26 +97,26 @@
                 <p class="sans-typo-detail">Effective on February 12, 2025</p>
                 <ol class="list-decimal p-8 serif-typo-body text-wrap">
                     <li class="mb-4">
-                        <p class="mb-2">Information Collection</p>
+                        <p class="mb-2"><strong>Information Collection</strong></p>
                         <p>This Site does not collect, store, or process any personal data.</p>
                     </li>
                     <li class="mb-4">
-                        <p class="mb-2">Cookies & Tracking</p>
+                        <p class="mb-2"><strong>Cookies & Tracking</strong></p>
                         <p>This Site does not use cookies, analytics, or tracking technologies.</p>
                     </li>
                     <li class="mb-4">
-                        <p class="mb-2">External Links</p>
+                        <p class="mb-2"><strong>External Links</strong></p>
                         <p>
                             If you follow links to third-party websites, their privacy policies apply,
                             and I am not responsible for their content or practices.
                         </p>
                     </li>
                     <li class="mb-4">
-                        <p class="mb-2">Changes to This Policy</p>
+                        <p class="mb-2"><strong>Changes to This Policy</strong></p>
                         <p>This Privacy Policy may be updated at any time. The latest version will always be available on this page.</p>
                     </li>
                     <li class="mb-4">
-                        <p class="mb-2">Contact</p>
+                        <p class="mb-2"><strong>Contact</strong></p>
                         <p>For any inquiries, please reach out to me
                             <a href="mailto:pkasemsriptak+site@gmail.com" class="underline">via email</a>.
                         </p>
