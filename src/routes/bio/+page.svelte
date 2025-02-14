@@ -23,7 +23,6 @@
         updateViewport();
         window.addEventListener('resize', updateViewport);
         return () => window.removeEventListener('resize', updateViewport);
-
     });
 
     export const load = () => {
@@ -72,35 +71,67 @@
                 bio begins.
             </p>
             <p class="py-2 serif-typo-body-small text-wrap">
-                <span class="">The degree.</span> I always ask why people do what they do—a strong vision
-                speaks for itself, and is always insightful. Here's my own why and how.
-                Having been a 'stem guy' my whole school life, it was only natural to follow this path.
-                I saw computer science (programming, before my world became engulfed in mathematical proofs) as a
-                wonderful tool for optimizing and advancing processes
-                in fields from agriculture to aerospace, and that can provide powerful analytics for solving pressing climate
-                issues. It still is, but while the goal stands, the tool itself is facing drastic changes.
-                In particular, progress towards artificial general intelligence brings about great uncertainty, and I,
-                alongside many others, have developed a rather warranted fear of where its effects might take me.
-                On top of such looming developments, taking a glimpse into the driving force of the industry revealed that
-                the optimizations in practice appear vastly detached to the charm of problem solving that originally
-                drew me in. With the ultimate goal of innovating solutions in mind, I am keen to adapt my field of study
-                to align with the latest leaps in technology and workflow.
+                The degree. I always ask why people do what they do—their vision often reveals
+                deeper truths about their path. My own journey started from being a 'stem guy' my whole school life,
+                and from there, it was only natural to follow this path.
+                I saw computer science as a powerful tool that could optimize and advance processes
+                in fields from agriculture to aerospace engineering, and provide analytics for combating pressing climate
+                issues. But as I began my studies, my world quickly became engulfed in mathematical proofs—an enlightening
+                and challenging endeavor. While I still believe in implementing technology for positive change, the landscape is shifting dramatically.
+                The rapid march towards artificial general intelligence has cast a shadow of uncertainty
+                over the field, stirring warranted concerns about its trajectory—and ultimately, mine.
+                Moreover, peering into the driving force of the industry revealed a disconnect: many of today's optimization goals
+                feel far removed from the charm and power of problem solving that initially drew me in.
+                Yet I am here to adapt, unbound by the title of a computer scientist. With the constant goal of
+                innovating meaningful solutions in mind, my field of study and approach will evolve alongside these
+                technological leaps.
             </p>
             <p class="py-2 serif-typo-body-small text-wrap">
-                Life. Introductions often fail to do justice to what truly matters, and often take on the form of
-                hobbies enumerated in passing. At my stage of professional growth, it's never been more important
-                to delve into what you cherish. I am consumed by the arts when time allows. For the past five years,
+                Life. Introductions often fail to do justice to what truly matters, reducing true meaning to mere
+                hobbies enumerated in passing. At this stage of my journey, I've learned to treasured what truly moves me.
+                For the past five years,
                 <a href="https://perakasem.crd.co" target=_blank
-                   rel="noopener noreferrer" class="underline decoration-wavy hover:text-stone-100">Photography</a>—of
-                nature, distant stars, and life—has occupied my every moment, my camera becoming
-                an extension of my eye. Photography has led me into the deepest of jungles and through the echelons
-                of society, opening my eyes to the wonderful and the ugly. Behind the scenes, music keeps me going and
-                feeling alive. Shout out to Thelonious Monk and Doechii. Man, I miss sitting behind the drum kit.
-                What has brought people together the most, though, has been my food. What started as a gathering between 
+                   rel="noopener noreferrer" class="underline decoration-wavy hover:text-stone-100"
+                >Photography</a>
+                —capturing
+                <button class="underline decoration-wavy hover:text-stone-100"
+                        on:click|preventDefault={() => {
+                           sideImage.set('bird.jpg');
+                           attributionClass.set('attribution-typo-dark');
+                       }}
+                >
+                    nature
+                </button>
+                ,
+                <button
+                        class="underline decoration-wavy hover:text-stone-100"
+                        on:click|preventDefault={() => {
+                           sideImage.set('california.jpg');
+                           attributionClass.set('attribution-typo');
+                       }}
+                >
+                    distant stars
+                </button>
+                , and
+                <button
+                        class="underline decoration-wavy hover:text-stone-100"
+                        on:click|preventDefault={() => {
+                           sideImage.set('life.jpg');
+                           attributionClass.set('attribution-typo');
+                       }}
+                >
+                    life itself
+                </button>
+                —has occupied my every moment, my camera becoming
+                an extension of my eye. My camera has guided me into the deepest of jungles and through the echelons
+                of society, revealing both beauty and harsh realities that have shaped my values. Behind the scenes, music keeps me going and
+                feeling alive—shoutout to Thelonious Monk and Doechii. While I wish I could play as much as I consume,
+                my own drumming has become a cherished but rare indulgence. Yet, what has brought people together the
+                most has been my kitchen. What started as a gathering between
                 four friends has transformed into increasingly refined dinner parties and supper clubs. We called it
                 <a href="/construction" class="underline decoration-wavy hover:text-stone-100">Quatre</a>.
                 Now, I'm refining my culinary skills and chasing "type sh*t"—I'll let the project speak for itself.
-                I also design things here and there, be it for my other projects and even this website itself. It
+                I also design things here and there, be it for my other projects or this website itself. It
                 would take forever to go on about everything, so to wrap it up, I'm always down to sail, hike, or
                 hit the slopes.
             </p>
@@ -184,7 +215,7 @@
         <div class="pt-40 flex flex-col items-center mb-40">
             <div class="max-w-140 flex flex-col">
                 <p class="serif-typo text-wrap mb-4">
-                    <span class="">I'm Pera</span>, a Computer Science and Mathematics student at the University of Toronto. Originally
+                    I'm Pera, a Computer Science and Mathematics student at the University of Toronto. Originally
                     from Bangkok, I'm passionate about leveraging technology to tackle worldly challenges.
                     When I'm away from the screen, you will find me exploring the
                     arts—<a href="https://perakasem.crd.co" target=_blank
@@ -210,35 +241,67 @@
                     bio begins.
                 </p>
                 <p class="py-2 serif-typo-paragraph text-wrap">
-                    <span class="">The degree.</span> I always ask why people do what they do—a strong vision
-                    speaks for itself, and is always insightful. Here's my own why and how.
-                    Having been a 'stem guy' my whole school life, it was only natural to follow this path.
-                    I saw computer science (programming, before my world became engulfed in mathematical proofs) as a
-                    wonderful tool for optimizing and advancing processes
-                    in fields from agriculture to aerospace, and that can provide powerful analytics for solving pressing climate
-                    issues. It still is, but while the goal stands, the tool itself is facing drastic changes.
-                    In particular, progress towards artificial general intelligence brings about great uncertainty, and I,
-                    alongside many others, have developed a rather warranted fear of where its effects might take me.
-                    On top of such looming developments, taking a glimpse into the driving force of the industry revealed that
-                    the optimizations in practice appear vastly detached to the charm of problem solving that originally
-                    drew me in. With the ultimate goal of innovating solutions in mind, I am keen to adapt my field of study
-                    to align with the latest leaps in technology and workflow.
+                    The degree. I always ask why people do what they do—their vision often reveals
+                    deeper truths about their path. My own journey started from being a 'stem guy' my whole school life,
+                    and from there, it was only natural to follow this path.
+                    I saw computer science as a powerful tool that could optimize and advance processes
+                    in fields from agriculture to aerospace engineering, and provide analytics for combating pressing climate
+                    issues. But as I began my studies, my world quickly became engulfed in mathematical proofs—an enlightening
+                    and challenging endeavor. While I still believe in implementing technology for positive change, the landscape is shifting dramatically.
+                    The rapid march towards artificial general intelligence has cast a shadow of uncertainty
+                    over the field, stirring warranted concerns about its trajectory—and ultimately, mine.
+                    Moreover, peering into the driving force of the industry revealed a disconnect: many of today's optimization goals
+                    feel far removed from the charm and power of problem solving that initially drew me in.
+                    Yet I am here to adapt, unbound by the title of a computer scientist. With the constant goal of
+                    innovating meaningful solutions in mind, my field of study and approach will evolve alongside these
+                    technological leaps.
                 </p>
                 <p class="py-2 serif-typo-paragraph text-wrap">
-                    Life. Introductions often fail to do justice to what truly matters, and often take on the form of
-                    hobbies enumerated in passing. At my stage of professional growth, it's never been more important
-                    to delve into what you cherish. I am consumed by the arts when time allows. For the past five years,
+                    Life. Introductions often fail to do justice to what truly matters, reducing true meaning to mere
+                    hobbies enumerated in passing. At this stage of my journey, I've learned to treasured what truly moves me.
+                    For the past five years,
                     <a href="https://perakasem.crd.co" target=_blank
-                       rel="noopener noreferrer" class="underline decoration-wavy hover:text-stone-100">Photography</a>—of
-                    nature, distant stars, and life—has occupied my every moment, my camera becoming
-                    an extension of my eye. Photography has led me into the deepest of jungles and through the echelons
-                    of society, opening my eyes to the wonderful and the ugly. Behind the scenes, music keeps me going and
-                    feeling alive. Shout out to Thelonious Monk and Doechii. Man, I miss sitting behind the drum kit.
-                    What has brought people together the most, though, has been my food. What started as a gathering between 
+                       rel="noopener noreferrer" class="underline decoration-wavy hover:text-stone-100"
+                    >Photography</a>
+                    —capturing
+                    <button class="underline decoration-wavy hover:text-stone-100"
+                            on:click|preventDefault={() => {
+                           sideImage.set('bird.jpg');
+                           attributionClass.set('attribution-typo-dark');
+                       }}
+                    >
+                        nature
+                    </button>
+                    ,
+                    <button
+                            class="underline decoration-wavy hover:text-stone-100"
+                            on:click|preventDefault={() => {
+                           sideImage.set('california.jpg');
+                           attributionClass.set('attribution-typo');
+                       }}
+                    >
+                        distant stars
+                    </button>
+                    , and
+                    <button
+                            class="underline decoration-wavy hover:text-stone-100"
+                            on:click|preventDefault={() => {
+                           sideImage.set('life.jpg');
+                           attributionClass.set('attribution-typo');
+                       }}
+                    >
+                        life itself
+                    </button>
+                    —has occupied my every moment, my camera becoming
+                    an extension of my eye. My camera has guided me into the deepest of jungles and through the echelons
+                    of society, revealing both beauty and harsh realities that have shaped my values. Behind the scenes, music keeps me going and
+                    feeling alive—shoutout to Thelonious Monk and Doechii. While I wish I could play as much as I consume,
+                    my own drumming has become a cherished but rare indulgence. Yet, what has brought people together the
+                    most has been my kitchen. What started as a gathering between
                     four friends has transformed into increasingly refined dinner parties and supper clubs. We called it
                     <a href="/construction" class="underline decoration-wavy hover:text-stone-100">Quatre</a>.
                     Now, I'm refining my culinary skills and chasing "type sh*t"—I'll let the project speak for itself.
-                    I also design things here and there, be it for my other projects and even this website itself. It
+                    I also design things here and there, be it for my other projects or this website itself. It
                     would take forever to go on about everything, so to wrap it up, I'm always down to sail, hike, or
                     hit the slopes.
                 </p>
