@@ -93,11 +93,11 @@
                 <a href="https://perakasem.crd.co" target=_blank
                    rel="noopener noreferrer" class="underline decoration-wavy hover:text-stone-100">Photography</a>—of
                 nature, distant stars, and life—has occupied my every moment, my camera becoming
-                and extension of my eye. Photography has led me into the deepest of jungles and through the echelons
+                an extension of my eye. Photography has led me into the deepest of jungles and through the echelons
                 of society, opening my eyes to the wonderful and the ugly. Behind the scenes, music keeps me going and
                 feeling alive. Shout out to Thelonious Monk and Doechii. Man, I miss sitting behind the drum kit.
-                What has brought people together the most, though, has been my food. I've been throwing increasingly
-                refined dinner parties in what started as a gathering between four friends. We called it
+                What has brought people together the most, though, has been my food. What started as a gathering between 
+                four friends has transformed into increasingly refined dinner parties and supper clubs. We called it
                 <a href="/construction" class="underline decoration-wavy hover:text-stone-100">Quatre</a>.
                 Now, I'm refining my culinary skills and chasing "type sh*t"—I'll let the project speak for itself.
                 I also design things here and there, be it for my other projects and even this website itself. It
@@ -231,11 +231,11 @@
                     <a href="https://perakasem.crd.co" target=_blank
                        rel="noopener noreferrer" class="underline decoration-wavy hover:text-stone-100">Photography</a>—of
                     nature, distant stars, and life—has occupied my every moment, my camera becoming
-                    and extension of my eye. Photography has led me into the deepest of jungles and through the echelons
+                    an extension of my eye. Photography has led me into the deepest of jungles and through the echelons
                     of society, opening my eyes to the wonderful and the ugly. Behind the scenes, music keeps me going and
                     feeling alive. Shout out to Thelonious Monk and Doechii. Man, I miss sitting behind the drum kit.
-                    What has brought people together the most, though, has been my food. I've been throwing increasingly
-                    refined dinner parties in what started as a gathering between four friends. We called it
+                    What has brought people together the most, though, has been my food. What started as a gathering between 
+                    four friends has transformed into increasingly refined dinner parties and supper clubs. We called it
                     <a href="/construction" class="underline decoration-wavy hover:text-stone-100">Quatre</a>.
                     Now, I'm refining my culinary skills and chasing "type sh*t"—I'll let the project speak for itself.
                     I also design things here and there, be it for my other projects and even this website itself. It
