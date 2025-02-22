@@ -27,7 +27,7 @@
             label: 'Works',
             content: [
                 { href: 'https://perakasem.crd.co', label: 'Photography', external: true },
-                { href: '/construction', label: 'The Pond', external: false },
+                { href: '/pond', label: 'The Pond', external: false },
                 { href: '/construction', label: 'Portfolio', external: false },
                 { href: '/construction', label: 'Quatre', external: false }
             ]

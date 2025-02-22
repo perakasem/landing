@@ -10,4 +10,12 @@ declare global {
 	}
 }
 
+/// <reference types="mdsvex/globals" />
+
+declare module '*.md' {
+	const render: () => { html: string };
+	export const metadata: Record<string, unknown>;
+	export default render;
+}
+
 export {};

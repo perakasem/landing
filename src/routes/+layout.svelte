@@ -1,16 +1,14 @@
 <script lang="ts">
     import '../app.css';
     import '../tailwind.css';
-    import { fade, crossfade, fly, slide, scale, draw } from 'svelte/transition';
-    import { sideImage } from '$lib/stores/sideImageStore';
-    import { attributionClass } from '$lib/stores/attributionStore';
+    import { page } from '$app/state';
+    import { fade } from 'svelte/transition';
     import { onMount } from 'svelte';
-    import { page } from '$app/stores';
     import LoadingScreen from '../components/LoadingScreen.svelte';
 
-    let windowTooSmall = false;
-    let loading = true;
-    let loadingProgress = 0;
+    let windowTooSmall = $state(false);
+    let loading = $state(true);
+    let loadingProgress = $state(0);
     let assetsToLoad: string[] = [];
 
     // Track all images that need to be loaded
@@ -63,8 +61,14 @@
         return () => window.removeEventListener('resize', checkWindowSize);
     })
 
-    export let data: { scrollable?: boolean };
-    const scrollable = data?.scrollable ?? false;
+    const props = $props();
+    const children = props.children;
+
+    $effect(() => {
+        if (page.error) {
+            loading = false;
+        }
+    });
 </script>
 
 {#if loading}
@@ -79,34 +83,7 @@
         </div>
     {/if}
 
-    <div class="flex min-h-screen h-screen sans-typo bg-dark overflow-hidden">
-        <div class="w-2/3 h-screen {scrollable ? 'overflow-y-auto' : 'overflow-hidden'}">
-            {#key $page.url.pathname}
-                <div class="relative w-full h-full" in:fade={{ duration: 500 }}>
-                    <slot />
-                </div>
-            {/key}
-        </div>
-        <div class="w-1/3 overflow-hidden">
-            {#if $sideImage}
-                <img
-                        src="{$sideImage}"
-                        alt="background"
-                        class="w-full h-full object-cover"
-                />
-            {/if}
-        </div>
-    </div>
-
-    <div class="fixed inset-y-0 right-0 w-8 pointer-events-none">
-        <div class="w-full h-full backdrop-blur-md"></div>
-    </div>
-
-    <div class="fixed bottom-0 right-2 rotate-90 origin-top-right {$attributionClass}">
-        <p>&copy; 2025 Pera Kasemsripitak. All Rights Reserved. |
-            <a href="/privacy" class="hover:font-semibold transition">Privacy Policy</a> |
-            <a href="/terms" class="hover:font-semibold transition">Terms of Use</a> |
-            <a href="/construction" class="hover:font-semibold transition">Archive</a>
-        </p>
+    <div class="flex bg-dark sans-typo">
+        {@render children()}
     </div>
 {/if}

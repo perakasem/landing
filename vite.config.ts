@@ -5,6 +5,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
 	plugins: [sveltekit(), tailwindcss()],
 	optimizeDeps: {
-		exclude: ['svelte/transition'] // add any other packages as needed
+		include: ['gsap/ScrollTrigger', 'gsap/ScrollSmoother'],
+		exclude: ['svelte/transition', 'mdsvex'] // add any other packages as needed
 	}
 });
