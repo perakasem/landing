@@ -139,7 +139,7 @@
                     </span>
                 </button>
                 <!-- Title header -->
-                <button on:click={() => handleSort("title")} class="w-3/10 text-left header-button" class:sorted={sortBy === 'title'}>
+                <button on:click={() => handleSort("title")} class="w-2/10 text-left header-button" class:sorted={sortBy === 'title'}>
                     Title
                     <span class="arrow archive-entry-mono">
                         {sortBy === "title" ? arrowFor("title") : arrowFor("title")}
@@ -153,7 +153,7 @@
                     </span>
                 </button>
                 <!-- Tags header with inline tag box -->
-                <div class="relative w-3/10">
+                <div class="relative w-4/10">
                     <button bind:this={tagButton} on:click={() => showTagBox = !showTagBox} class="header-button text-left tag-button">
                         Tags
                         <span class="tag-brackets archive-entry-mono" class:always-visible={filterTags.length > 0}>
@@ -168,7 +168,7 @@
                     </button>
                     {#if showTagBox}
                         <div bind:this={tagPopup} class="absolute border mt-2 left-0 p-2 w-3/4 archive-entry-mono bg-dark flex flex-col gap-2 z-10 transition-opacity duration-200">
-                            <div class="flex gap-2">
+                            <div class="flex flex-wrap">
                                 {#each allTags as tag}
                                     <button
                                             on:click={() => toggleTagSelection(tag)}
@@ -200,9 +200,9 @@
                     <a href={`/pond/${post.slug}`} class="w-full text-left">
                         <div class="flex flex-row text-pond-hover">
                             <p class="text-wrap w-1/10 archive-entry-sans italic">{post.chapter}</p>
-                            <p class="text-wrap w-3/10 archive-entry-sans">{post.title}</p>
+                            <p class="text-wrap w-2/10 archive-entry-sans">{post.title}</p>
                             <p class="text-wrap w-2/10 archive-entry-sans">{post.category}</p>
-                            <p class="text-wrap w-3/10 archive-entry-mono">{parseTags(post.tags)}</p>
+                            <p class="text-wrap w-4/10 archive-entry-mono">{parseTags(post.tags)}</p>
                             <p class="text-wrap w-1/10 archive-entry-mono">{convertDateSeparators(post.date)}</p>
                         </div>
                         <hr class="h-px bg-light my-2">

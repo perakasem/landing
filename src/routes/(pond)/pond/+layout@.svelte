@@ -1,24 +1,24 @@
 <script lang="ts">
     import AsteriskBig from "../../../components/AsteriskBig.svelte";
-    import { onMount, onDestroy } from "svelte";
     import AsteriskSmall from "../../../components/AsteriskSmall.svelte";
-    import {afterNavigate} from "$app/navigation";
+    import { onMount, onDestroy } from "svelte";
+    import { afterNavigate } from "$app/navigation";
+    import { fade } from "svelte/transition";
+    import { page } from '$app/state';
 
     const mobileBreakpoint = 640;
-    let isMobile = false;
-    let showAsterisk = true;
     let lastScrollY = 0;
-    let scrollableContainer: HTMLElement;
-
-    let element: any;
-
+    let isMobile = $state(false);
+    let showAsterisk = $state(true);
+    let scrollableContainer: HTMLElement | null = $state(null);
+    let element: HTMLElement | null = $state(null);
     function updateViewport() {
         isMobile = window.innerWidth < mobileBreakpoint;
     }
 
     afterNavigate(() => {
-        element.scrollIntoView();
-    })
+        element!.scrollIntoView();
+    });
 
     function handleScroll(event: Event) {
         const target = event.currentTarget as HTMLElement;
@@ -44,6 +44,9 @@
     onDestroy(() => {
         window.removeEventListener("resize", updateViewport);
     });
+
+    const props = $props();
+    const children = props.children;
 </script>
 
 {#if isMobile}
@@ -57,10 +60,12 @@
             <AsteriskBig />
         </div>
         <!-- Scrollable container -->
-        <div bind:this={scrollableContainer} class="h-screen w-screen overflow-y-auto scroll-smooth" on:scroll={handleScroll}>
-            <div class="relative bg-dark min-h-screen">
-                <slot />
-            </div>
+        <div bind:this={scrollableContainer} class="h-screen w-screen overflow-y-auto scroll-smooth" onscroll={handleScroll}>
+            {#key page.url.pathname}
+                <div class="relative bg-dark min-h-screen tra" in:fade={{ duration: 500 }}>
+                    {@render children()}
+                </div>
+            {/key}
             <footer class="h-80 w-screen bg-dark overflow-hidden relative z-20">
                 <section class="footer-container h-80 w-screen bg-pond text-off-white flex flex-col">
                     <div class="p-8 h-full flex flex-row justify-between">
@@ -70,16 +75,21 @@
                             </div>
                             <div class="flex flex-col mono-typo-nav ml-24">
                                 <a href="/pond" class="mb-2 hover:underline">Current Chapter</a>
-                                <a href="/(pond)/pond/archive" class="mb-2 hover:underline">Archive</a>
-                                <a href="/(pond)/pond/dump" class="mb-2 hover:underline">Dump</a>
+                                <a href="/pond/archive" class="mb-2 hover:underline">Archive</a>
+                                <a href="/construction" class="mb-2 hover:underline">Dump</a>
                             </div>
                         </div>
-                        <div class="mono-typo-nav">
-                            <p>
+                        <div class="mono-typo-nav text-right text-wrap">
+                            <p class="ml-32">
                                 © 2025 Pera Kasemsripitak. All Rights Reserved. |
                                 <a href="/privacy" class="hover:font-bold">Privacy Policy</a> |
                                 <a href="/terms" class="hover:font-bold">Terms of Use</a> |
-                                <a href="/rss.xml" class="hover:font-bold">Subscribe</a>
+                                <a href="/rss.xml" class="hover:font-bold"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                >
+                                    Subscribe
+                                </a>
                             </p>
                         </div>
                     </div>

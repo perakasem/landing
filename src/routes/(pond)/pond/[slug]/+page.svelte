@@ -46,7 +46,7 @@
 
 <div bind:this={element} class="scroll-container">
     <ScrollProgress/>
-    <article class="text-wrap my-42 mx-auto max-w-[750px]">
+    <article class="text-wrap mx-auto max-w-[750px] my-42">
         <div class="relative flex flex-row gap-2">
             <a href="/pond" class="absolute -ml-32 mono-typo-nav hover:underline">
                 &lt; Pond
@@ -62,7 +62,7 @@
                 <p>Loading post content...</p>
             {/if}
         </div>
-        <hr class="h-px bg-light mt-16 mb-4 w-full">
+        <hr class="h-px bg-light mt-32 mb-4 w-full">
         <div class="flex flex-row justify-between">
             <div class="sans-typo-detail flex flex-row gap-2 mb-8">
                 <p class="font-semibold">categories: </p>
@@ -71,8 +71,10 @@
                 {/each}
             </div>
             <div class="flex flex-row h-fit">
-                <p class="archive-entry-mono">↑&nbsp</p>
-                <button on:click={() => element.scrollIntoView()} class="hover:underline mono-typo-nav">Back to Top</button>
+                <p class="archive-entry-mono text-pond-blue">↑&nbsp</p>
+                <button on:click={() => element.scrollIntoView()} class="hover:underline text-pond-blue mono-typo-nav">
+                    Back to Top
+                </button>
             </div>
         </div>
         <div class="flex flex-col gap-2 mono-typo-nav">
@@ -135,9 +137,9 @@
         font-family: "Hedvig Letters Serif", serif;
         font-size: 1.5rem;
         font-style: normal;
-        line-height: 1.7rem;
+        line-height: 1.8rem;
         letter-spacing: 0.01rem;
-        margin-top: 3rem;
+        margin-top: 5rem;
         margin-bottom: 1rem;
     }
     :global(.content h4) {
@@ -145,10 +147,22 @@
         font-family: "Hedvig Letters Serif", serif;
         font-size: 1.3rem;
         font-style: normal;
-        line-height: 1.7rem;
+        line-height: 1.8rem;
         letter-spacing: 0.01rem;
-        margin-top: 1rem;
+        margin-top: 2rem;
         margin-bottom: 1rem;
+    }
+    :global(.content blockquote) {
+        color: #DEDCDB;
+        font-family: "Hedvig Letters Serif", serif;
+        font-size: 1.1rem;
+        line-height: 1.8rem;
+        letter-spacing: 0.01rem;
+        margin-bottom: 1rem;
+        margin-left: 2rem;
+        margin-right: 3rem;
+        padding-left: 1rem;
+        border-left: 3px solid #DEDCDB;
     }
     :global(.content figcaption) {
         color: #DEDCDB;
@@ -157,15 +171,23 @@
         font-style: italic;
         line-height: 1.2rem;
         letter-spacing: 0.01rem;
-        margin-top: 3rem;
-        margin-bottom: 3rem;
+        margin-bottom: 5rem;
+        text-align: center;
     }
     :global(.content img) {
         margin-left: auto;
         margin-right: auto;
         margin-top: 5rem;
-        margin-bottom: 5rem;
+        margin-bottom: 2rem;
         max-width: 600px;
+        max-height: 600px;
+    }
+    :global(.content iframe) {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+        max-width: 750px;
         max-height: 600px;
     }
     :global(.content li) {
@@ -173,9 +195,8 @@
         font-family: "Hedvig Letters Serif", serif;
         font-size: 1.1rem;
         font-style: normal;
-        line-height: 1.6rem;
+        line-height: 1.8rem;
         letter-spacing: 0.01rem;
-        margin-bottom: 0.5rem;
     }
     :global(.content ul) {
         margin-bottom: 1rem;
@@ -217,12 +238,7 @@
         text-decoration: none;
         font-size: 0.7rem;
         font-family: "JetBrains Mono", serif;
-        margin-left: 2px;
-    }
-    :global(.content .footnote-back) {
-        text-decoration: none;
-        font-size: 0.7rem;
-        font-family: "JetBrains Mono", serif;
+        color: #5468FF;
         margin-left: 2px;
     }
     :global(.content table) {

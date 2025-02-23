@@ -150,7 +150,7 @@
             </p>
 
             <p class="py-2 serif-typo-body-small text-wrap">
-                Inspired by Cosmos, Asterisk, Standart, Noma Projects, BougieYelp.
+                Inspired by Cosmos, Asterisk, Standart, Noma Projects, BougieYelp, CliffStudios
             </p>
             <div class="flex pt-8">
                 <svg class="mr-2" width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -317,7 +317,7 @@
                     to me for any inquiries or suggestions.
                 </p>
                 <p class="py-2 serif-typo-paragraph text-wrap">
-                    Inspired by Cosmos, Asterisk, Standart, Noma Projects, BougieYelp.
+                    Inspired by Cosmos, Asterisk, Standart, Noma Projects, BougieYelp, CliffStudios.
                 </p>
                 <div class="flex pt-8">
                     <svg class="mr-2" width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">

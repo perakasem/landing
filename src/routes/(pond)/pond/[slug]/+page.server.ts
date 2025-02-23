@@ -17,24 +17,37 @@ export async function load({ params }) {
         })
     );
 
-    // Sort descending: newest posts first
-    posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    // Filter out posts that are not published.
+    const publishedPosts = posts.filter(post => post.published);
 
-    const currentIndex = posts.findIndex(p => p.slug === params.slug);
+    // Sort descending: newest posts first.
+    publishedPosts.sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+
+    const currentIndex = publishedPosts.findIndex(p => p.slug === params.slug);
     if (currentIndex === -1) {
         throw error(404, `Post not found: ${params.slug}`);
     }
 
-    // Use modulo arithmetic to cycle through posts.
-    const total = posts.length;
-    const previousPost = posts[(currentIndex + 1) % total]; // next newer (cycling to beginning if needed)
-    const nextPost = posts[(currentIndex - 1 + total) % total]; // next older (cycling to end if needed)
+    const total = publishedPosts.length;
+    let previousPost = null;
+    let nextPost = null;
+
+    // If there's more than one post, calculate previous and next.
+    if (total > 1) {
+        previousPost = publishedPosts[(currentIndex + 1) % total];
+        nextPost = publishedPosts[(currentIndex - 1 + total) % total];
+
+        // If previous or next post is the same as the current post, set it to null.
+        if (previousPost.slug === params.slug) previousPost = null;
+        if (nextPost.slug === params.slug) nextPost = null;
+    }
 
     return {
-        meta: posts[currentIndex],
+        meta: publishedPosts[currentIndex],
         slug: params.slug,
         previousPost,
         nextPost
     };
 }
-
