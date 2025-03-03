@@ -6,11 +6,11 @@ category: "paper"
 date: "2025-03-03"
 tags: ["technology", "food"]
 chapter: "'25"
-excerpt: "TASTE IT THROUGH YOUR PHONE is about to get real."
+excerpt: "Tasting through your phone is about to get real"
 published: True
 ---
 
-> Via [the American Association for the Advancement of Science](https://www.science.org/doi/10.1126/sciadv.adr4797)
+Via [the American Association for the Advancement of Science](https://www.science.org/doi/10.1126/sciadv.adr4797)
 
 I have no doubt that anyone who has ever watched cooking videos or seen social media food has wanted to
 taste through the screen. The day we can do that may finally be here.
