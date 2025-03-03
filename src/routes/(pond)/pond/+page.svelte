@@ -50,7 +50,7 @@
 {#if isMobile}
     <div class="flex flex-col h-full overflow-y-auto">
         <div class="pt-12 mb-40 mt-20">
-            <div class="p-8 flex flex-col bg-dark w-full">
+            <div class="p-8 flex flex-col w-full">
                 <div>
                     <h1 class="sans-typo">
                         {config.title}
