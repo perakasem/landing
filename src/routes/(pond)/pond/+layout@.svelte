@@ -58,17 +58,17 @@
 </script>
 
 {#if isMobile}
-    <div bind:this={element} class="flex flex-col h-full">
+    <div bind:this={element} class="flex flex-col h-dvh">
         <div class="m-8 absolute aspect-square w-12 z-30 transition-opacity duration-200" class:opacity-0={scrolled}>
             <AsteriskSmall/>
         </div>
         <div bind:this={scrollableContainer} class="h-screen w-screen overflow-y-auto scroll-smooth" onscroll={handleScrollMobile}>
             {#key page.url.pathname}
-                <div class="relative bg-dark min-h-screen tra" in:fade={{ duration: 500 }}>
+                <div class="relative bg-dark min-h-screen transition-opacity mb-45 z-20" in:fade={{ duration: 500 }}>
                     {@render children()}
                 </div>
             {/key}
-            <footer class="h-45 w-screen bg-dark overflow-hidden relative z-20">
+            <footer class="h-45 w-screen bg-dark overflow-hidden absolute bottom-0">
                 <section class="footer-container h-full w-screen bg-pond text-off-white flex flex-col justify-between">
                     <div class="px-8 pt-8 mb-4 flex flex-col">
                         <div class="flex flex-row mono-typo-nav">
@@ -110,11 +110,11 @@
         <!-- Scrollable container -->
         <div bind:this={scrollableContainer} class="h-screen w-screen overflow-y-auto scroll-smooth" onscroll={handleScroll}>
             {#key page.url.pathname}
-                <div class="relative bg-dark min-h-screen tra" in:fade={{ duration: 500 }}>
+                <div class="relative bg-dark min-h-screen transition-opacity mb-80 z-10" in:fade={{ duration: 500 }}>
                     {@render children()}
                 </div>
             {/key}
-            <footer class="h-80 w-screen bg-dark overflow-hidden relative z-20">
+            <footer class="h-80 w-screen bg-dark overflow-hidden absolute bottom-0">
                 <section class="footer-container h-80 w-screen bg-pond text-off-white flex flex-col">
                     <div class="p-8 h-full flex flex-row justify-between">
                         <div class="flex flex-row">
