@@ -59,7 +59,7 @@
                         {config.description}
                     </p>
                     <div class="flex flex-row flex-wrap mono-typo-nav gap-3 my-8">
-                        <a href="#entries" class="border rounded-2xl px-3 py-1 text-center"
+                        <a href="#entries" class="font-bold border-2 rounded-2xl px-3 py-1 text-center text-pond-blue"
                            on:click|preventDefault={scrollIntoView}
                         >
                             Entries &gt

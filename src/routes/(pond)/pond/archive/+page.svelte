@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount, onDestroy } from "svelte";
     import { convertDateSeparators, parseTags } from "$lib/utils";
+    import {afterNavigate} from "$app/navigation";
 
     export let data: { posts: {
             chapter: string;
@@ -14,10 +15,15 @@
     const mobileBreakpoint = 1000;
     let isMobile = false;
     let isHovered = false;
+    let element = null;
 
     function updateViewport() {
         isMobile = window.innerWidth < mobileBreakpoint;
     }
+
+    afterNavigate(() => {
+        element!.scrollIntoView();
+    });
 
     onMount(() => {
         updateViewport();
@@ -114,8 +120,7 @@
 </script>
 
 {#if isMobile}
-
-    <div class="flex flex-col h-full">
+    <div bind:this={element} class="flex flex-col h-full">
         <div class="my-32 mx-8 flex flex-col">
             <div class="flex flex-row mb-4">
                 <a href="/pond" class="serif-typo-title hover:animate-pulse">Archive</a>
@@ -162,7 +167,7 @@
         </div>
     </div>
 {:else}
-    <div class="flex flex-col h-full">
+    <div bind:this={element} class="flex flex-col h-full">
         <div class="my-32 mx-32 flex flex-col">
             <div class="flex flex-row mb-4">
                 <a href="/pond" class="serif-typo-page-title text-xl hover:animate-pulse">Archive</a>
