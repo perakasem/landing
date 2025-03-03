@@ -10,8 +10,10 @@
     let lastScrollY = 0;
     let isMobile = $state(false);
     let showAsterisk = $state(true);
+    let scrolled = $state(false);
     let scrollableContainer: HTMLElement | null = $state(null);
     let element: HTMLElement | null = $state(null);
+
     function updateViewport() {
         isMobile = window.innerWidth < mobileBreakpoint;
     }
@@ -35,6 +37,12 @@
         }
         lastScrollY = currentScrollY;
     }
+    function handleScrollMobile(event: Event) {
+        const target = event.currentTarget as HTMLElement | null;
+        if (!target) return;
+
+        scrolled = target.scrollTop > 60;
+    }
 
     onMount(() => {
         updateViewport();
@@ -50,8 +58,48 @@
 </script>
 
 {#if isMobile}
-    <div class="absolute aspect-square w-12 transition-opacity duration-200">
-        <AsteriskSmall/>
+    <div bind:this={element} class="flex flex-col h-full">
+        <div class="m-8 absolute aspect-square w-12 z-30 transition-opacity duration-200" class:opacity-0={scrolled}>
+            <AsteriskSmall/>
+        </div>
+        <div bind:this={scrollableContainer} class="h-screen w-screen overflow-y-auto scroll-smooth" onscroll={handleScrollMobile}>
+            {#key page.url.pathname}
+                <div class="relative bg-dark min-h-screen tra" in:fade={{ duration: 500 }}>
+                    {@render children()}
+                </div>
+            {/key}
+            <footer class="h-45 w-screen bg-dark overflow-hidden relative z-20">
+                <section class="footer-container h-full w-screen bg-pond text-off-white flex flex-col justify-between">
+                    <div class="px-8 pt-8 mb-4 flex flex-col">
+                        <div class="flex flex-row mono-typo-nav">
+                            <div class="absolute aspect-square w-16 transition-opacity duration-200">
+                                <AsteriskSmall />
+                            </div>
+                            <div class="flex flex-row ml-24 w-full">
+                                <div class="flex flex-col w-1/2 gap-2">
+                                    <a href="/pond">Home</a>
+                                    <a href="/pond/archive">Archive</a>
+                                    <a href="/construction">Dump</a>
+                                </div>
+                                <div class="flex flex-col w-1/2 gap-2">
+                                    <a href="/privacy">Privacy</a>
+                                    <a href="/terms">Terms</a>
+                                    <a href="/rss.xml"
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                    >
+                                        Subscribe
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full flex flex-col">
+                        <img src="/3s.png" class="mx-4" alt="pond logo" />
+                    </div>
+                </section>
+            </footer>
+        </div>
     </div>
 {:else}
     <div class="flex flex-col h-full" bind:this={element}>
@@ -93,7 +141,7 @@
                             </p>
                         </div>
                     </div>
-                    <img src="/pond.png" alt="pond logo" />
+                    <img src="/3s.png" alt="pond logo" />
                 </section>
             </footer>
         </div>

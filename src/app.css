@@ -98,6 +98,14 @@ body {
     font-family: "Hedvig Letters Serif", serif;
     font-size: 2rem;
     font-style: normal;
+    line-height: 2.5rem;
+    white-space: nowrap;
+}
+
+.serif-typo-h1-mobile {
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1.4rem;
+    font-style: normal;
     line-height: normal;
     white-space: nowrap;
 }
@@ -114,6 +122,16 @@ body {
     color: #DEDCDB;
     font-family: "Inconsolata", sans-serif;
     font-size: 1.1rem;
+    font-style: normal;
+    line-height: normal;
+    font-variation-settings:
+            "wdth" 100;
+}
+
+.mono-typo-nav-mobile {
+    color: #DEDCDB;
+    font-family: "Inconsolata", sans-serif;
+    font-size: 0.9rem;
     font-style: normal;
     line-height: normal;
     font-variation-settings:
@@ -167,6 +185,14 @@ body {
     line-height: normal;
     white-space: nowrap;
 }
+.sans-typo-title-thin-mobile {
+    font-family: "Instrument Sans", sans-serif;
+    font-size: 1.2rem;
+    font-weight: lighter;
+    font-style: normal;
+    line-height: normal;
+    white-space: nowrap;
+}
 
 .sans-typo-detail {
     color: #DEDCDB;
@@ -185,9 +211,26 @@ body {
     white-space: nowrap;
 }
 
+.archive-entry-sans-mobile {
+    font-family: "Instrument Sans", sans-serif;
+    font-size: 0.8rem;
+    font-style: normal;
+    line-height: normal;
+    white-space: nowrap;
+}
+
 .archive-entry-mono {
     font-family: "JetBrains Mono", sans-serif;
     font-size: 1rem;
+    font-weight: 200;
+    font-style: normal;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.archive-entry-mono-mobile {
+    font-family: "JetBrains Mono", sans-serif;
+    font-size: 0.8rem;
     font-weight: 200;
     font-style: normal;
     line-height: normal;

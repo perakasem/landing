@@ -11,7 +11,7 @@
             slug: string;
         }[] };
 
-    const mobileBreakpoint = 640;
+    const mobileBreakpoint = 1000;
     let isMobile = false;
     let isHovered = false;
 
@@ -114,13 +114,51 @@
 </script>
 
 {#if isMobile}
-    <div class="p-8 flex flex-col h-full overflow-y-auto">
-        <div class="pt-12 mb-40 mt-20">
-            <h1 class="sans-typo-title-small text-xl mb-1 text-wrap">Under Construction</h1>
-            <p class="p-4 serif-typo-body-small text-wrap">
-                Still cooking this page up. It's gotta be perfect, yfm? Type shiiiii. Come back soon!
-            </p>
-            <a href="/static" class="sans-typo-detail hover:underline">Home</a>
+
+    <div class="flex flex-col h-full">
+        <div class="my-32 mx-8 flex flex-col">
+            <div class="flex flex-row mb-4">
+                <a href="/pond" class="serif-typo-title hover:animate-pulse">Archive</a>
+            </div>
+            <!-- Header row with clickable buttons -->
+            <div class="flex flex-row archive-entry-sans-mobile font-semibold items-center">
+                <button on:click={() => handleSort("title")} class="w-1/2 text-left header-button" class:sorted={sortBy === 'title'}>
+                    Title
+                    <span class="arrow archive-entry-mono">
+                        {sortBy === "title" ? arrowFor("title") : arrowFor("title")}
+                    </span>
+                </button>
+                <button on:click={() => handleSort("category")} class="w-3/10 text-left header-button" class:sorted={sortBy === 'category'}>
+                    Article
+                    <span class="arrow archive-entry-mono">
+                        {sortBy === "category" ? arrowFor("category") : arrowFor("category")}
+                    </span>
+                </button>
+                <!-- Date header -->
+                <button on:click={() => handleSort("chapter")} class="w-1/5 right-0 text-left header-button" class:sorted={sortBy === 'chapter'}>
+                    Chapter
+                    <span class="arrow archive-entry-mono">
+                        {sortBy === "chapter" ? arrowFor("chapter") : arrowFor("chapter")}
+                    </span>
+                </button>
+            </div>
+            <hr class="h-px bg-light my-2">
+            <!-- Posts list as a flex column -->
+            <div class="flex flex-col">
+                {#each filteredPosts as post}
+                    <a href={`/pond/${post.slug}`} class="w-full text-left">
+                        <div class="flex flex-row">
+                            <p class="text-wrap w-1/2 archive-entry-sans-mobile pr-2">{post.title}</p>
+                            <p class="text-wrap w-3/10 archive-entry-sans-mobile break-words hyphens-auto pr-2">{post.category}</p>
+                            <p class="text-wrap w-1/10 archive-entry-mono-mobile">{post.chapter}</p>
+                        </div>
+                        <hr class="h-px bg-light my-2">
+                    </a>
+                {/each}
+            </div>
+            <div class="flex justify-between mt-8">
+                <a href="/pond" class="mono-typo-nav border rounded-2xl px-3 py-1 text-center">&lt Current Chapter</a>
+            </div>
         </div>
     </div>
 {:else}
@@ -199,10 +237,10 @@
                 {#each filteredPosts as post}
                     <a href={`/pond/${post.slug}`} class="w-full text-left">
                         <div class="flex flex-row text-pond-hover">
-                            <p class="text-wrap w-1/10 archive-entry-sans italic">{post.chapter}</p>
-                            <p class="text-wrap w-2/10 archive-entry-sans">{post.title}</p>
-                            <p class="text-wrap w-2/10 archive-entry-sans">{post.category}</p>
-                            <p class="text-wrap w-4/10 archive-entry-mono">{parseTags(post.tags)}</p>
+                            <p class="text-wrap w-1/10 archive-entry-sans italic pr-2">{post.chapter}</p>
+                            <p class="text-wrap w-2/10 archive-entry-sans pr-2">{post.title}</p>
+                            <p class="text-wrap w-2/10 archive-entry-sans pr-2">{post.category}</p>
+                            <p class="text-wrap w-4/10 archive-entry-mono pr-2">{parseTags(post.tags)}</p>
                             <p class="text-wrap w-1/10 archive-entry-mono">{convertDateSeparators(post.date)}</p>
                         </div>
                         <hr class="h-px bg-light my-2">

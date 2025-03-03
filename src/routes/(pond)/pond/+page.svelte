@@ -1,14 +1,43 @@
 <script lang="ts">
     import {onMount} from "svelte";
-    import * as config from '$lib/config'
+    import { slide } from "svelte/transition"
+    import * as config from '$lib/pond.config'
+    import {afterNavigate} from "$app/navigation";
 
     export let data;
+    let activeSection: string | null = "rotation";
 
-    const mobileBreakpoint = 640;
+    const toggleSection = (id: string) => {
+        activeSection = activeSection === id ? null : id;
+    };
+
+    const mobileBreakpoint = 700;
     let isMobile = false;
 
     function updateViewport() {
         isMobile = window.innerWidth < mobileBreakpoint;
+    }
+
+    function arrowFor(key: string) {
+        if (activeSection === key) {
+            return "∨";
+        }
+        return ">";
+    }
+
+    function arrowStyleFor(key: string) {
+        if (activeSection === key) {
+            return "sans-typo-detail";
+        }
+        return "mono-type-nav font-normal";
+    }
+
+    function scrollIntoView({ target }: any) {
+        const el = document.querySelector(target.getAttribute('href'));
+        if (!el) return;
+        el.scrollIntoView({
+            behavior: 'smooth'
+        });
     }
 
     onMount(() => {
@@ -19,24 +48,135 @@
 </script>
 
 {#if isMobile}
-    <div class="p-8 flex flex-col h-full overflow-y-auto">
+    <div class="flex flex-col h-full overflow-y-auto">
         <div class="pt-12 mb-40 mt-20">
-            <h1 class="sans-typo-title-small text-xl mb-1 text-wrap">Under Construction</h1>
-            <p class="p-4 serif-typo-body-small text-wrap">
-                Still cooking this page up. It's gotta be perfect, yfm? Type shiiiii. Come back soon!
-            </p>
-            <a href="/static" class="sans-typo-detail hover:underline">Home</a>
+            <div class="p-8 flex flex-col bg-dark w-full">
+                <div>
+                    <h1 class="sans-typo">
+                        {config.title}
+                    </h1>
+                    <p class="serif-typo-body text-wrap my-4">
+                        {config.description}
+                    </p>
+                    <div class="flex flex-row flex-wrap mono-typo-nav gap-3 my-8">
+                        <a href="#entries" class="border rounded-2xl px-3 py-1 text-center"
+                           on:click|preventDefault={scrollIntoView}
+                        >
+                            Entries &gt
+                        </a>
+                        <a href="/pond/archive" class="border rounded-2xl px-3 py-1 text-center">Archive &gt</a>
+                        <a href="/construction" class="border rounded-2xl px-3 py-1 text-center">Dump &gt</a>
+                    </div>
+                    <button
+                            on:click|preventDefault={() => toggleSection("rotation")}
+                            class="mono-typo-nav {activeSection === 'rotation'}"
+                    >
+                        In Rotation <span class={arrowStyleFor("rotation")}>{arrowFor("rotation")}</span>
+                    </button>
+                    {#if activeSection === 'rotation'}
+                        <div transition:slide class="flex flex-col mono-typo-nav max-w-70 text-wrap">
+                            <div class="my-4 pl-4 border-l-2 flex flex-col gap-4">
+                                <a href={config.watchUrl}
+                                   class="text-pond-hover"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    <p class="mb-1">{config.watch}</p>
+                                    <p class="font-bold mb-2">{config.watchSource}</p>
+                                </a>
+                                <a href={config.mediaUrl}
+                                   class="text-pond-hover"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    <p class="mb-1">{config.media}</p>
+                                    <p class="font-bold mb-2">{config.mediaSource}</p>
+                                </a>
+                                <a href={config.readUrl}
+                                   class="text-pond-hover"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    <p class="mb-1">{config.read}</p>
+                                    <p class="font-bold mb-2">{config.readSource}</p>
+                                </a>
+                            </div>
+                        </div>
+                    {/if}
+                </div>
+            </div>
+            <img src={config.artworkSrc} alt="artwork" class="max-h-130 w-full object-cover pt-4">
+            <p class="p-4 mono-typo-nav-mobile text-right w-full">{config.artwork}, {config.artist}</p>
+            <div class="flex flex-col p-8" id="entries">
+                <div class="flex flex-col">
+                    <p class="text-pond-blue sans-typo-title-thin-mobile">
+                        Latest
+                    </p>
+                    {#if data.posts.filter(post => post.form === 'longform' && post.chapter === config.currentChapter).length === 0}
+                        <a href={`/pond/archive`}>
+                            <div class="text-pond-hover flex flex-col">
+                                <h2 class="serif-typo-h1-mobile text-wrap">Nothing to See Here</h2>
+                                <p class="sans-typo-title-thin-mobile text-wrap">View All Posts</p>
+                            </div>
+                        </a>
+                    {/if}
+                    <ul>
+                        {#each data.posts as post}
+                            {#if post.form === 'longform' && post.chapter === config.currentChapter}
+                                <li class="mb-8">
+                                    <a href={`/pond/${post.slug}`}>
+                                        <div class="text-pond-hover flex flex-col">
+                                            <h2 class="serif-typo-h1-mobile text-wrap">{post.title}</h2>
+                                            <p class="sans-typo-title-thin-mobile text-wrap">{post.subtitle}</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            {/if}
+                        {/each}
+                    </ul>
+                    <p class="text-pond-blue sans-typo-title-thin-mobile mt-8">
+                        Shortform
+                    </p>
+                    {#if data.posts.filter(post => post.form === 'shortform' && post.chapter === config.currentChapter).length === 0}
+                        <a href={`/pond/archive`}>
+                            <div class="text-pond-hover flex flex-col">
+                                <h2 class="serif-typo-h1-mobile text-wrap">Nothing to See Here</h2>
+                                <p class="sans-typo-title-thin-mobile text-wrap">View All Posts</p>
+                            </div>
+                        </a>
+                    {/if}
+                    <ul>
+                        {#each data.posts as post}
+                            {#if post.form === 'shortform' && post.chapter === config.currentChapter}
+                                <li class="mb-8">
+                                    <a href={`/pond/${post.slug}`}>
+                                        <div class="text-pond-hover flex flex-col">
+                                            <h2 class="serif-typo-h1-mobile text-wrap">{post.title}</h2>
+                                            <p class="sans-typo-title-thin-mobile text-wrap">{post.subtitle}</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            {/if}
+                        {/each}
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 {:else}
-    <div class="fixed w-1/3 right-0 top-0 h-full bg-no-repeat bg-cover bg-center" style="background-image: url('/artwork.png');"></div>
+    <div class="fixed w-1/3 right-0 top-0 h-full bg-no-repeat bg-cover bg-center" style="background-image: url({config.artworkSrc});"></div>
     <div class="flex flex-col h-full">
-        <div class="my-42 flex w-2/3">
-            <div class="flex flex-col w-3/5 pl-42 pr-16">
+        <div class="my-42 flex w-2/3 justify-center">
+            <div class="flex flex-col flex-shrink-0 w-3/5 max-w-90 ml-16 pr-8">
                 <div class="flex flex-col">
                     <p class="text-pond-blue sans-typo">
                         Latest
                     </p>
+                    {#if data.posts.filter(post => post.form === 'longform' && post.chapter === config.currentChapter).length === 0}
+                        <a href={`/pond/archive`}>
+                            <div class="text-pond-hover flex flex-col">
+                                <h2 class="serif-typo-h1 text-wrap">Nothing to See Here</h2>
+                                <p class="sans-typo-title-thin text-wrap">View All Posts</p>
+                            </div>
+                        </a>
+                    {/if}
                     <ul>
                         {#each data.posts as post}
                             {#if post.form === 'longform' && post.chapter === config.currentChapter}
@@ -54,6 +194,14 @@
                     <p class="text-pond-blue sans-typo mt-16">
                         Shortform
                     </p>
+                    {#if data.posts.filter(post => post.form === 'shortform' && post.chapter === config.currentChapter).length === 0}
+                        <a href={`/pond/archive`}>
+                            <div class="text-pond-hover flex flex-col">
+                                <h2 class="serif-typo-h1 text-wrap">Nothing to See Here</h2>
+                                <p class="sans-typo-title-thin text-wrap">View All Posts</p>
+                            </div>
+                        </a>
+                    {/if}
                     <ul>
                         {#each data.posts as post}
                             {#if post.form === 'shortform' && post.chapter === config.currentChapter}
@@ -70,7 +218,8 @@
                     </ul>
                 </div>
             </div>
-            <div class="flex flex-col w-1/4 top-42 self-start sticky mr-42">
+            <div class="flex-grow flex-shrink min-w-0 max-w-16"></div>
+            <div class="flex flex-shrink-0 flex-col w-1/4 top-42 mr-16 self-start sticky text-wrap">
                 <div class="flex flex-col items-center bg-dark w-full">
                     <div>
                         <h1 class="sans-typo">
@@ -90,37 +239,47 @@
                             <a href="/construction" class="text-pond-hover">Dump &gt</a>
                         </div>
                         <hr class="h-px bg-light my-8 w-full">
-                        <h2 class="mono-typo-nav font-bold mt-10 my-6">In Rotation</h2>
-                        <div class="flex flex-col mono-typo-nav text-wrap">
-                            <a href="https://www.youtube.com/watch?v=Wn2vgQGNI_c&t=0s"
-                               class="mb-2 text-pond-hover"
-                               target="_blank"
-                               rel="noopener noreferrer">
-                                <p class="mb-1">On Information Hazards</p>
-                                <p class="font-bold mb-2">Anders Sandberg</p>
-                            </a>
-                            <a href="https://youtu.be/F0cdbR5ognY?si=L6HZyjQ2UGlSyJI6"
-                               class="mb-2 text-pond-hover"
-                               target="_blank"
-                               rel="noopener noreferrer">
-                                <p class="mb-1">Denial is a River (in Egypt, your husband is gay)</p>
-                                <p class="font-bold mb-2">Doechii</p>
-                            </a>
-                            <a href="https://forum.effectivealtruism.org/posts/3ryvsSZWd5vqgY7bg/how-ai-takeover-might-happen-in-two-years?"
-                               class="mb-2 text-pond-hover"
-                               target="_blank"
-                               rel="noopener noreferrer">
-                                <p class="mb-1">A Looming AI Takeover</p>
-                                <p class="font-bold mb-2">Joshua Clymer</p>
-                            </a>
-                        </div>
-                        <h2 class="mono-typo-nav font-bold mt-10 my-6">Featured Artwork &gt</h2>
-                        <div class="flex flex-col mono-typo-nav text-wrap">
-                            <div class="mb-2">
-                                <p class="mb-1">Foundations of Flavor</p>
-                                <p class="font-bold mb-2">Paula Troxler via Noma</p>
+                        <button
+                                on:click|preventDefault={() => toggleSection("rotation")}
+                                class="mono-typo-nav hover:underline decoration-wavy {activeSection === 'rotation'}"
+                        >
+                            In Rotation <span class={arrowStyleFor("rotation")}>{arrowFor("rotation")}</span>
+                        </button>
+                        {#if activeSection === 'rotation'}
+                            <div transition:slide class="flex flex-col mono-typo-nav max-w-70 text-wrap">
+                                <div class="my-4 pl-4 border-l-2 flex flex-col gap-4">
+                                    <a href={config.watchUrl}
+                                       class="text-pond-hover"
+                                       target="_blank"
+                                       rel="noopener noreferrer">
+                                        <p class="mb-1">{config.watch}</p>
+                                        <p class="font-bold mb-2">{config.watchSource}</p>
+                                    </a>
+                                    <a href={config.mediaUrl}
+                                       class="text-pond-hover"
+                                       target="_blank"
+                                       rel="noopener noreferrer">
+                                        <p class="mb-1">{config.media}</p>
+                                        <p class="font-bold mb-2">{config.mediaSource}</p>
+                                    </a>
+                                    <a href={config.readUrl}
+                                       class="text-pond-hover"
+                                       target="_blank"
+                                       rel="noopener noreferrer">
+                                        <p class="mb-1">{config.read}</p>
+                                        <p class="font-bold mb-2">{config.readSource}</p>
+                                    </a>
+                                </div>
+
+                                <h2 class="mono-typo-nav font-bold mt-10 my-6">Featured Artwork &gt</h2>
+                                <div class="flex flex-col mono-typo-nav text-wrap">
+                                    <div class="mb-2">
+                                        <p class="mb-1">{config.artwork}</p>
+                                        <p class="font-bold mb-2">{config.artist}</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        {/if}
                     </div>
                 </div>
             </div>
