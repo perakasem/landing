@@ -7,7 +7,7 @@ date: "2025-02-28"
 tags: ["thoughts"]
 chapter: "'25"
 excerpt: "Strange Symmetries"
-published: True
+published: False
 ---
 
 yk what's funny, I had the exact same experience, movement for movement, with a guy i'm watching right now. Tiptoeing with both fingers on the beautifully
