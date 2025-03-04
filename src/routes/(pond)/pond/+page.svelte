@@ -65,7 +65,7 @@
                             Entries &gt
                         </a>
                         <a href="/pond/archive" class="border rounded-2xl px-3 py-1 text-center">Archive &gt</a>
-                        <a href="/construction" class="border rounded-2xl px-3 py-1 text-center">Dump &gt</a>
+                        <a href="/pond/dump" class="border rounded-2xl px-3 py-1 text-center">Dump &gt</a>
                     </div>
                     <button
                             on:click|preventDefault={() => toggleSection("rotation")}
@@ -236,7 +236,7 @@
                                     RSS
                                 </a>
                                 <a href="/pond/archive" class="text-pond-hover mr-4">Archive &gt</a>
-                                <a href="/construction" class="text-pond-hover">Dump &gt</a>
+                                <a href="/pond/dump" class="text-pond-hover">Dump &gt</a>
                             </div>
                             <hr class="h-px bg-light my-8 w-full">
                             <button
