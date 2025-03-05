@@ -9,9 +9,9 @@ export const watchUrl = "https://www.youtube.com/watch?v=Wn2vgQGNI_c&t=0s"
 export const watch = 'On Information Hazards'
 export const watchSource = 'Anders Sandberg'
 
-export const mediaUrl = "https://youtu.be/F0cdbR5ognY?si=L6HZyjQ2UGlSyJI6"
-export const media = 'Your Husband is Gay (video)'
-export const mediaSource = 'Doechii'
+export const mediaUrl = "https://youtu.be/zYc1qMe_kpc?si=kCeBpUpihfBcRmSk"
+export const media = 'PAPOTA (Video)'
+export const mediaSource = 'some latinos'
 
 export const readUrl = "https://www.science.org/doi/10.1126/sciadv.adr4797"
 export const read = "Remote Tasting"
