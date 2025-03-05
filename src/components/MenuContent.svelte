@@ -19,7 +19,7 @@
             content: [
                 { href: '/bio', label: 'Bio', external: false },
                 { href: '/construction', label: 'Resumé', external: false },
-                { href: '/construction', label: 'Now', external: false }
+                { href: '/now', label: 'Now', external: false }
             ]
         },
         {
