@@ -1,16 +1,14 @@
 ---
 title: "The Drafts"
-subtitle: "'25'"
+subtitle: "When do you call things 'done'?"
 form: "shortform"
 category: "notes"
 date: "2023-10-29"
 tags: ["thoughts"]
 chapter: "'25"
-excerpt: "When do you call things 'done'?"
+excerpt: "When should a piece be published? Is it incomplete or overdone?"
 published: True
 ---
-
-When should a piece be published? Is it incomplete or overdone?
 
 If I knew the answer, my pile of drafts wouldn't be towering this high.
 

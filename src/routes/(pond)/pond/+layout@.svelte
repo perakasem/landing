@@ -106,32 +106,11 @@
         </div>
     </div>
 {:else}
-    <style>
-        /* Add to your global CSS file */
-        html.dark {
-            background-color: #121212 !important;
-            color: white !important;
-        }
-
-        html.dark .dark-test {
-            background-color: red !important;
-        }
-    </style>
-    <div class="fixed bottom-4 left-4 z-50 p-2 bg-gray-200 text-black rounded">
-        Dark class on HTML: {typeof document !== 'undefined' && document.documentElement.classList.contains('dark') ? 'YES' : 'NO'}
-        <div class="dark-test p-4 m-4 bg-white">
-            This should be red in dark mode
-        </div>
-        <div class="bg-blue-500 p-4 m-4">
-            This should be blue if Tailwind is working
-        </div>
-    </div>
     <div class="flex flex-col h-full" bind:this={element}>
         <!-- Top asterisk: visible when at top (<=60) or scrolling up -->
         <div class="absolute m-8 aspect-square w-16 z-20 transition-opacity duration-300 ease-out" class:opacity-0={!showAsterisk}>
             <AsteriskBig />
         </div>
-        <ThemeToggle />
         <!-- Scrollable container -->
         <div bind:this={scrollableContainer} class="h-screen w-screen overflow-y-auto scroll-smooth" onscroll={handleScroll}>
             {#key page.url.pathname}
