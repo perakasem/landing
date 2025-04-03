@@ -26,7 +26,7 @@
             id: 'works',
             label: 'Works',
             content: [
-                { href: 'https://perakasem.crd.co', label: 'Photography', external: true },
+                { href: 'https://perakasem.crd.co', label: 'Flicks', external: true },
                 { href: '/pond', label: '3rd Space', external: false },
                 { href: '/construction', label: 'Portfolio', external: false },
                 { href: '/construction', label: 'Quatre', external: false }
