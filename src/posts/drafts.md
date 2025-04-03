@@ -7,7 +7,7 @@ date: "2023-10-29"
 tags: ["thoughts"]
 chapter: "'25"
 excerpt: "When should a piece be published? Is it incomplete or overdone?"
-published: True
+published: False
 ---
 
 If I knew the answer, my pile of drafts wouldn't be towering this high.
