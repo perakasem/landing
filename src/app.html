@@ -4,6 +4,26 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=0" />
+		<script>
+			// Initialize dark mode by default
+			(function() {
+				try {
+					const storedTheme = localStorage.getItem('theme');
+					if (storedTheme === 'light') {
+						document.documentElement.classList.remove('dark');
+					} else {
+						// Default to dark mode
+						document.documentElement.classList.add('dark');
+						if (!storedTheme) {
+							localStorage.setItem('theme', 'dark');
+						}
+					}
+				} catch (e) {
+					// If localStorage is unavailable, default to dark
+					document.documentElement.classList.add('dark');
+				}
+			})();
+		</script>
 		%sveltekit.head%
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

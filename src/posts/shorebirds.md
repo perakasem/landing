@@ -72,13 +72,15 @@ storytelling despite every physical barrier along the way. Moreover, I enjoy spe
 realms, disconnected from the outside world and seeing what few have seen. Sadly, while they scratch the itch, the
 challenges of planning an expedition are matched by their infrequency.
 
-Alas, there is a silver lining—avant-exploration invites discovery, even when we are surrounded by the known. As it turns
+Alas, there is a silver lining—avant-exploration invites discovery, even when we are surrounded by the known[^3]. As it turns
 out, one doesn't need to travel far at all to unearth new stories and bring out new details. In fact, my
 documentary on shorebirds is an exploration of something physically so close to where I lived yet completely unknown
 to my community and most of the world. To my surprise, this very exploration brought me as much satisfaction as
 deep-jungle expeditions and trips to foreign countries.
 
 ![No passerby in this Thai village would ever imagine that this bird flew here from Siberia.](/pond-Shorebirds-siberia.png)
+
+[^3]: Much more on this in a later piece.  
 
 ### Colorization
 

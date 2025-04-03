@@ -220,7 +220,7 @@
                 </div>
                 <div class="flex-grow flex-shrink min-w-0 max-w-16"></div>
                 <div class="flex flex-shrink-0 flex-col w-1/4 top-42 mr-16 self-start sticky text-wrap">
-                    <div class="flex flex-col items-center bg-dark w-full">
+                    <div class="flex flex-col items-center w-full">
                         <div>
                             <h1 class="sans-typo">
                                 {config.title}

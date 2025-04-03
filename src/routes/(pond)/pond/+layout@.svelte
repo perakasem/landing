@@ -5,6 +5,8 @@
     import { afterNavigate } from "$app/navigation";
     import { fade } from "svelte/transition";
     import { page } from '$app/state';
+    import ThemeToggle from "../../../components/ThemeToggle.svelte";
+    import ThemeManager from "../../../components/ThemeManager.svelte";
 
     const mobileBreakpoint = 640;
     let lastScrollY = 0;
@@ -57,6 +59,8 @@
     const children = props.children;
 </script>
 
+<ThemeManager/>
+
 {#if isMobile}
     <div bind:this={element} class="flex flex-col h-dvh">
         <div class="m-8 absolute aspect-square w-12 z-30 transition-opacity duration-200" class:opacity-0={scrolled}>
@@ -102,15 +106,36 @@
         </div>
     </div>
 {:else}
+    <style>
+        /* Add to your global CSS file */
+        html.dark {
+            background-color: #121212 !important;
+            color: white !important;
+        }
+
+        html.dark .dark-test {
+            background-color: red !important;
+        }
+    </style>
+    <div class="fixed bottom-4 left-4 z-50 p-2 bg-gray-200 text-black rounded">
+        Dark class on HTML: {typeof document !== 'undefined' && document.documentElement.classList.contains('dark') ? 'YES' : 'NO'}
+        <div class="dark-test p-4 m-4 bg-white">
+            This should be red in dark mode
+        </div>
+        <div class="bg-blue-500 p-4 m-4">
+            This should be blue if Tailwind is working
+        </div>
+    </div>
     <div class="flex flex-col h-full" bind:this={element}>
         <!-- Top asterisk: visible when at top (<=60) or scrolling up -->
         <div class="absolute m-8 aspect-square w-16 z-20 transition-opacity duration-300 ease-out" class:opacity-0={!showAsterisk}>
             <AsteriskBig />
         </div>
+        <ThemeToggle />
         <!-- Scrollable container -->
         <div bind:this={scrollableContainer} class="h-screen w-screen overflow-y-auto scroll-smooth" onscroll={handleScroll}>
             {#key page.url.pathname}
-                <div class="relative bg-dark min-h-screen transition-opacity mb-80 z-10" in:fade={{ duration: 500 }}>
+                <div class="relative dark:bg-dark bg-dark min-h-screen transition-opacity mb-80 z-10" in:fade={{ duration: 500 }}>
                     {@render children()}
                 </div>
             {/key}
@@ -129,7 +154,7 @@
                         </div>
                         <div class="mono-typo-nav text-right text-wrap">
                             <p class="ml-32">
-                                © 2025 Pera Kasemsripitak. All Rights Reserved. |
+                                &copy; {new Date().getFullYear()} Pera Kasemsripitak. All Rights Reserved. |
                                 <a href="/privacy" class="hover:font-bold">Privacy Policy</a> |
                                 <a href="/terms" class="hover:font-bold">Terms of Use</a> |
                                 <a href="/rss.xml" class="hover:font-bold"

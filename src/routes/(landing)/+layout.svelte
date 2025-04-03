@@ -34,7 +34,7 @@
     </div>
 
     <div class="fixed bottom-0 right-2 rotate-90 origin-top-right {$attributionClass}">
-        <p>&copy; 2025 Pera Kasemsripitak. All Rights Reserved. |
+        <p>&copy; {new Date().getFullYear()} Pera Kasemsripitak. All Rights Reserved. |
             <a href="/privacy" class="hover:font-semibold transition">Privacy Policy</a> |
             <a href="/terms" class="hover:font-semibold transition">Terms of Use</a> |
             <a href="/construction" class="hover:font-semibold transition">Archive</a>
