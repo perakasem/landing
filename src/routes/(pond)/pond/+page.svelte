@@ -1,11 +1,10 @@
 <script lang="ts">
     import {onMount} from "svelte";
-    import { slide } from "svelte/transition"
+    import { slide, fade } from "svelte/transition"
     import * as config from '$lib/pond.config'
-    import {afterNavigate} from "$app/navigation";
 
     export let data;
-    let activeSection: string | null = "rotation";
+    let activeSection: string | null = "about";
 
     const toggleSection = (id: string) => {
         activeSection = activeSection === id ? null : id;
@@ -138,7 +137,7 @@
                         <a href={`/pond/archive`}>
                             <div class="text-pond-hover flex flex-col">
                                 <h2 class="serif-typo-h1-mobile text-wrap">Nothing to See Here</h2>
-                                <p class="sans-typo-title-thin-mobile text-wrap">View All Posts</p>
+                                <p class="sans-typo-title-thin-mobile text-wrap">View All Entries</p>
                             </div>
                         </a>
                     {/if}
@@ -162,9 +161,91 @@
     </div>
 {:else}
     <div class="flex flex-row">
-        <div class="flex flex-col h-full w-2/3">
+        <div class="flex flex-col flex-grow h-full w-1/2">
             <div class="my-42 flex justify-center">
-                <div class="flex flex-col flex-shrink-0 w-3/5 max-w-90 ml-16 pr-8">
+                <div class="flex flex-shrink-0 flex-col w-30 xl:w-1/5 top-42 ml-8 xl:ml-32 self-start sticky text-wrap">
+                    <div class="flex flex-col w-full">
+                        <div>
+                            <div class="flex flex-col flex-wrap mono-typo-nav-large mb-4 items-start gap-2">
+                                <button
+                                        on:click|preventDefault={() => toggleSection("about")}
+                                        class="text-pond-hover uppercase text-left {activeSection === 'about'}"
+                                >
+                                    {config.title}
+                                </button>
+                                {#if activeSection === 'about'}
+                                    <div transition:slide class="flex flex-col sans-typo-detail max-w-70 text-wrap">
+                                        <div class="my-1 pl-4 border-l-1 flex flex-col gap-2">
+                                            <div>
+                                                <p class="break-words">{config.description}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {/if}
+                                <button
+                                        on:click|preventDefault={() => toggleSection("rotation")}
+                                        class="text-pond-hover {activeSection === 'rotation'}"
+                                >
+                                    ROTATION
+                                </button>
+                                {#if activeSection === 'rotation'}
+                                    <div transition:slide class="flex flex-col sans-typo-detail max-w-70 text-wrap">
+                                        <div class="my-1 pl-4 border-l-1 flex flex-col gap-2">
+                                            <a href={config.watchUrl}
+                                               class="text-pond-hover"
+                                               target="_blank"
+                                               rel="noopener noreferrer">
+                                                <p class="">{config.watch}</p>
+                                                <p class="font-semibold">{config.watchSource}</p>
+                                            </a>
+                                            <a href={config.mediaUrl}
+                                               class="text-pond-hover"
+                                               target="_blank"
+                                               rel="noopener noreferrer">
+                                                <p class="">{config.media}</p>
+                                                <p class="font-semibold">{config.mediaSource}</p>
+                                            </a>
+                                            <a href={config.readUrl}
+                                               class="text-pond-hover"
+                                               target="_blank"
+                                               rel="noopener noreferrer">
+                                                <p class="">{config.read}</p>
+                                                <p class="font-semibold">{config.readSource}</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {/if}
+                                <button
+                                        on:click|preventDefault={() => toggleSection("artwork")}
+                                        class="text-pond-hover {activeSection === 'artwork'}"
+                                >
+                                    FEATURED
+                                </button>
+                                {#if activeSection === 'artwork'}
+                                    <div transition:slide class="flex flex-col sans-typo-detail max-w-70 text-wrap">
+                                        <div class="my-1 pl-4 border-l-1  flex flex-col gap-2">
+                                            <div>
+                                                <p class="">{config.artwork}</p>
+                                                <p class="font-semibold">{config.artist}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {/if}
+                                <a href="/pond/archive" class="text-pond-hover hover:underline decoration-wavy mr-4">ARCHIVE</a>
+                                <a href="/pond/dump" class="text-pond-hover hover:underline decoration-wavy r-4">VISUALS</a>
+                                <a href="/rss.xml" class="text-pond-hover hover:underline decoration-wavy mr-4"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                >
+                                    SUBSCRIBE
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex w-10 xl:flex-grow min-w-0"></div>
+                <div class="flex flex-col flex-shrink-0 w-3/5 max-w-90 pl-4 pr-8 xl:mr-24">
                     <div class="flex flex-col">
                         <p class="text-pond-blue sans-typo">
                             Latest
@@ -173,7 +254,7 @@
                             <a href={`/pond/archive`}>
                                 <div class="text-pond-hover flex flex-col">
                                     <h2 class="serif-typo-h1 text-wrap">Nothing to See Here</h2>
-                                    <p class="sans-typo-title-thin text-wrap">View All Posts</p>
+                                    <p class="sans-typo-title-thin text-wrap">View All Entries</p>
                                 </div>
                             </a>
                         {/if}
@@ -218,74 +299,10 @@
                         </ul>
                     </div>
                 </div>
-                <div class="flex-grow flex-shrink min-w-0 max-w-16"></div>
-                <div class="flex flex-shrink-0 flex-col w-1/4 top-42 mr-16 self-start sticky text-wrap">
-                    <div class="flex flex-col items-center w-full">
-                        <div>
-                            <h1 class="sans-typo">
-                                {config.title}
-                            </h1>
-                            <p class="serif-typo-body text-wrap my-4">
-                                {config.description}
-                            </p>
-                            <div class="flex flex-row flex-wrap mono-typo-nav my-8">
-                                <a href="/rss.xml" class="text-pond-hover mr-4"
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                >
-                                    RSS
-                                </a>
-                                <a href="/pond/archive" class="text-pond-hover mr-4">Archive &gt</a>
-                                <a href="/pond/dump" class="text-pond-hover">Dump &gt</a>
-                            </div>
-                            <hr class="h-px bg-light my-8 w-full">
-                            <button
-                                    on:click|preventDefault={() => toggleSection("rotation")}
-                                    class="mono-typo-nav hover:underline decoration-wavy {activeSection === 'rotation'}"
-                            >
-                                In Rotation <span class={arrowStyleFor("rotation")}>{arrowFor("rotation")}</span>
-                            </button>
-                            {#if activeSection === 'rotation'}
-                                <div transition:slide class="flex flex-col mono-typo-nav max-w-70 text-wrap">
-                                    <div class="my-4 pl-4 border-l-2 flex flex-col gap-4">
-                                        <a href={config.watchUrl}
-                                           class="text-pond-hover"
-                                           target="_blank"
-                                           rel="noopener noreferrer">
-                                            <p class="mb-1">{config.watch}</p>
-                                            <p class="font-bold mb-2">{config.watchSource}</p>
-                                        </a>
-                                        <a href={config.mediaUrl}
-                                           class="text-pond-hover"
-                                           target="_blank"
-                                           rel="noopener noreferrer">
-                                            <p class="mb-1">{config.media}</p>
-                                            <p class="font-bold mb-2">{config.mediaSource}</p>
-                                        </a>
-                                        <a href={config.readUrl}
-                                           class="text-pond-hover"
-                                           target="_blank"
-                                           rel="noopener noreferrer">
-                                            <p class="mb-1">{config.read}</p>
-                                            <p class="font-bold mb-2">{config.readSource}</p>
-                                        </a>
-                                    </div>
-
-                                    <h2 class="mono-typo-nav font-bold mt-10 my-6">Featured Artwork &gt</h2>
-                                    <div class="flex flex-col mono-typo-nav text-wrap">
-                                        <div class="mb-2">
-                                            <p class="mb-1">{config.artwork}</p>
-                                            <p class="font-bold mb-2">{config.artist}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            {/if}
-                        </div>
-                    </div>
-                </div>
+                <div class="flex-grow min-w-0"></div>
             </div>
         </div>
-        <div class="sticky self-start top-0 right-0 w-1/3 h-screen z-20">
+        <div transition:fade class="sticky self-start top-0 right-0 w-1/2 h-screen z-20">
             <img src={config.artworkSrc} alt="artwork" class="h-full min-w-full object-cover">
         </div>
     </div>

@@ -128,6 +128,16 @@ body {
             "wdth" 100;
 }
 
+.mono-typo-nav-large {
+    color: #DEDCDB;
+    font-family: "Inconsolata", sans-serif;
+    font-size: 1.4rem;
+    font-style: normal;
+    line-height: normal;
+    font-variation-settings:
+            "wdth" 100;
+}
+
 .mono-typo-nav-mobile {
     color: #DEDCDB;
     font-family: "Inconsolata", sans-serif;

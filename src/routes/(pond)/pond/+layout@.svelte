@@ -8,7 +8,7 @@
     import ThemeToggle from "../../../components/ThemeToggle.svelte";
     import ThemeManager from "../../../components/ThemeManager.svelte";
 
-    const mobileBreakpoint = 640;
+    const mobileBreakpoint = 700;
     let lastScrollY = 0;
     let isMobile = $state(false);
     let showAsterisk = $state(true);
