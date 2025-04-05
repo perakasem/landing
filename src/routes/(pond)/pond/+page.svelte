@@ -1,6 +1,6 @@
 <script lang="ts">
     import {onMount} from "svelte";
-    import { slide, fade } from "svelte/transition"
+    import { slide } from "svelte/transition"
     import * as config from '$lib/pond.config'
 
     export let data;
@@ -186,7 +186,7 @@
                                         on:click|preventDefault={() => toggleSection("rotation")}
                                         class="text-pond-hover {activeSection === 'rotation'}"
                                 >
-                                    ROTATION
+                                    Rotation
                                 </button>
                                 {#if activeSection === 'rotation'}
                                     <div transition:slide class="flex flex-col sans-typo-detail max-w-70 text-wrap">
@@ -219,7 +219,7 @@
                                         on:click|preventDefault={() => toggleSection("artwork")}
                                         class="text-pond-hover {activeSection === 'artwork'}"
                                 >
-                                    FEATURED
+                                    Featured
                                 </button>
                                 {#if activeSection === 'artwork'}
                                     <div transition:slide class="flex flex-col sans-typo-detail max-w-70 text-wrap">
@@ -231,20 +231,20 @@
                                         </div>
                                     </div>
                                 {/if}
-                                <a href="/pond/archive" class="text-pond-hover hover:underline decoration-wavy mr-4">ARCHIVE</a>
-                                <a href="/pond/dump" class="text-pond-hover hover:underline decoration-wavy r-4">VISUALS</a>
+                                <a href="/pond/archive" class="text-pond-hover hover:underline decoration-wavy mr-4">Archive</a>
+                                <a href="/pond/dump" class="text-pond-hover hover:underline decoration-wavy r-4">Dump</a>
                                 <a href="/rss.xml" class="text-pond-hover hover:underline decoration-wavy mr-4"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                 >
-                                    SUBSCRIBE
+                                    Subscribe
                                 </a>
 
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="flex w-10 xl:flex-grow min-w-0"></div>
+                <div class="flex w-10 xl:flex-grow min-w-0 max-w-15"></div>
                 <div class="flex flex-col flex-shrink-0 w-3/5 max-w-90 pl-4 pr-8 xl:mr-24">
                     <div class="flex flex-col">
                         <p class="text-pond-blue sans-typo">
@@ -302,7 +302,7 @@
                 <div class="flex-grow min-w-0"></div>
             </div>
         </div>
-        <div transition:fade class="sticky self-start top-0 right-0 w-1/2 h-screen z-20">
+        <div class="sticky self-start top-0 right-0 w-1/2 h-screen z-20">
             <img src={config.artworkSrc} alt="artwork" class="h-full min-w-full object-cover">
         </div>
     </div>

@@ -10,3 +10,18 @@ export type Post = {
     excerpt: string;
     published: boolean;
 };
+
+export interface GalleryImage {
+    src: string;
+    alt: string;
+}
+
+export type GalleryImageWithIndex = {
+    src: string;
+    alt: string;
+    index: number;
+};
+
+export interface PageData {
+    images: GalleryImage[];
+}

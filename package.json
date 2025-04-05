@@ -38,6 +38,7 @@
 		"@sveltejs/package": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
 		"@tailwindcss/vite": "^4.0.6",
+		"@types/node": "^22.14.0",
 		"@types/tailwindcss": "^3.0.11",
 		"autoprefixer": "^10.4.20",
 		"mdsvex": "^0.12.3",

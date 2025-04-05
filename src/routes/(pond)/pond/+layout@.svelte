@@ -3,10 +3,7 @@
     import AsteriskSmall from "../../../components/AsteriskSmall.svelte";
     import { onMount, onDestroy } from "svelte";
     import { afterNavigate } from "$app/navigation";
-    import { fade } from "svelte/transition";
     import { page } from '$app/state';
-    import ThemeToggle from "../../../components/ThemeToggle.svelte";
-    import ThemeManager from "../../../components/ThemeManager.svelte";
 
     const mobileBreakpoint = 700;
     let lastScrollY = 0;
@@ -59,8 +56,6 @@
     const children = props.children;
 </script>
 
-<ThemeManager/>
-
 {#if isMobile}
     <div bind:this={element} class="flex flex-col h-dvh">
         <div class="m-8 absolute aspect-square w-12 z-30 transition-opacity duration-200" class:opacity-0={scrolled}>
@@ -68,7 +63,7 @@
         </div>
         <div bind:this={scrollableContainer} class="h-screen w-screen overflow-y-auto scroll-smooth" onscroll={handleScrollMobile}>
             {#key page.url.pathname}
-                <div class="relative bg-dark min-h-screen transition-opacity mb-45 z-20" in:fade={{ duration: 500 }}>
+                <div class="relative bg-dark min-h-screen transition-opacity mb-45 z-20">
                     {@render children()}
                 </div>
             {/key}
@@ -114,7 +109,7 @@
         <!-- Scrollable container -->
         <div bind:this={scrollableContainer} class="h-screen w-screen overflow-y-auto scroll-smooth" onscroll={handleScroll}>
             {#key page.url.pathname}
-                <div class="relative dark:bg-dark bg-dark min-h-screen transition-opacity mb-80 z-10" in:fade={{ duration: 500 }}>
+                <div class="relative dark:bg-dark bg-dark min-h-screen transition-opacity mb-80 z-10">
                     {@render children()}
                 </div>
             {/key}

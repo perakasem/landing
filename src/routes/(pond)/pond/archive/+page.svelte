@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount, onDestroy } from "svelte";
     import { convertDateSeparators, parseTags } from "$lib/utils";
-    import {afterNavigate} from "$app/navigation";
+    import { afterNavigate } from "$app/navigation";
 
     export let data: { posts: {
             chapter: string;
@@ -125,6 +125,7 @@
             <div class="flex flex-row mb-4">
                 <a href="/pond" class="serif-typo-title hover:animate-pulse">Archive</a>
             </div>
+
             <!-- Header row with clickable buttons -->
             <div class="flex flex-row archive-entry-sans-mobile font-semibold items-center">
                 <button on:click={() => handleSort("title")} class="w-1/2 text-left header-button" class:sorted={sortBy === 'title'}>

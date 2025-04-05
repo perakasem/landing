@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+:focus:not(:focus-visible) {
+    outline: none !important;
+}
+
 body {
     background: #DEDCDB;
     overflow: hidden;
