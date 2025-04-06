@@ -76,9 +76,9 @@
                             </div>
                             <div class="flex flex-row ml-24 w-full">
                                 <div class="flex flex-col w-1/2 gap-2">
-                                    <a href="/pond">Home</a>
+                                    <a href="/pond">Latest</a>
                                     <a href="/pond/archive">Archive</a>
-                                    <a href="/pond/dump">Dump</a>
+                                    <a href="/">Home</a>
                                 </div>
                                 <div class="flex flex-col w-1/2 gap-2">
                                     <a href="/privacy">Privacy</a>
@@ -123,7 +123,7 @@
                             <div class="flex flex-col mono-typo-nav ml-24">
                                 <a href="/pond" class="mb-2 hover:underline">Current Chapter</a>
                                 <a href="/pond/archive" class="mb-2 hover:underline">Archive</a>
-                                <a href="/pond/dump" class="mb-2 hover:underline">Dump</a>
+                                <a href="/" class="mb-2 hover:underline">Home</a>
                             </div>
                         </div>
                         <div class="mono-typo-nav text-right text-wrap">
