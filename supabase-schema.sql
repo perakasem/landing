@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS posts (
     slug TEXT UNIQUE NOT NULL,
     title TEXT NOT NULL,
     subtitle TEXT,
-    form TEXT NOT NULL CHECK (form IN ('longform', 'shortform')),
+    form TEXT NOT NULL,
     category TEXT NOT NULL,
     date DATE NOT NULL,
     tags JSONB NOT NULL DEFAULT '[]'::jsonb,

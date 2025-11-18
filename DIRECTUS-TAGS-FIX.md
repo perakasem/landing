@@ -1,5 +1,7 @@
 # Fix: Directus Tags Error
 
+> **Note**: If you're experiencing errors with multiple fields (tags, form, category), use the comprehensive fix: [`DIRECTUS-FIELD-ERRORS-FIX.md`](./DIRECTUS-FIELD-ERRORS-FIX.md)
+
 ## The Problem
 
 You're getting this error when trying to save posts in Directus:
