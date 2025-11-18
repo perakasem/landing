@@ -1,9 +1,10 @@
-import * as config from '$lib/pond.config'
+import { getCachedSiteConfig } from '$lib/server/config'
 import type { Post } from '$lib/types'
 
 export async function GET({ fetch }) {
     const response = await fetch('api/posts')
     const posts: Post[] = await response.json()
+	const config = await getCachedSiteConfig()
 
     const headers = { 'Content-Type': 'application/xml' }
 
