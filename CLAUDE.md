@@ -1,7 +1,8 @@
 # CLAUDE.md - AI Assistant Guide
 
-> **Last Updated:** 2025-11-18
+> **Last Updated:** 2025-11-18 (Refactoring Update)
 > **Purpose:** Comprehensive guide for AI assistants working on this SvelteKit portfolio and blog codebase
+> **Recent Changes:** Major refactoring reducing code duplication by ~400 lines
 
 ---
 
@@ -108,12 +109,15 @@ This is a personal portfolio and blog website ("3rd Space/Pond") built with Svel
 │   │   ├── ThemeManager.svelte          # Theme state management
 │   │   ├── TechStacks.svelte            # Tech icon display
 │   │   ├── AsteriskBig.svelte           # Decorative element
-│   │   └── AsteriskSmall.svelte         # Decorative element
+│   │   ├── AsteriskSmall.svelte         # Decorative element
+│   │   ├── BackToTopButton.svelte       # Reusable back-to-top button
+│   │   └── PostPreview.svelte           # Post title/subtitle display
 │   ├── lib/
 │   │   ├── stores/                      # Svelte stores (state)
 │   │   │   ├── themeStore.ts            # Theme persistence
 │   │   │   ├── sideImageStore.ts        # Side panel image state
 │   │   │   ├── attributionStore.ts      # Attribution styling
+│   │   │   ├── createPersistentStore.ts # Store factory pattern
 │   │   │   └── config.ts                # Store configuration
 │   │   ├── server/
 │   │   │   └── posts.ts                 # Server-side post utilities
@@ -353,24 +357,62 @@ export const load: PageServerLoad = async () => {
 - SEO-friendly (SSR)
 - Data available before hydration
 
+**Available Server Helpers:** `src/lib/server/posts.ts`
+
+```typescript
+// Get all published posts (sorted by date, newest first)
+getPosts(): Promise<Post[]>
+
+// Get all posts including drafts (for admin/preview)
+getAllPosts(): Promise<Post[]>
+
+// Get a single post by slug
+getPostBySlug(slug: string): Promise<Post | null>
+
+// Get navigation posts (previous and next)
+getNavigationPosts(slug: string): Promise<{
+	previousPost: Post | null;
+	nextPost: Post | null;
+}>
+```
+
 ### Dynamic Routes
 
-**Pattern:** `[slug]` folders
+**Pattern:** `[slug]` folders (Refactored to use helper functions)
 
 ```typescript
 // routes/pond/[slug]/+page.server.ts
+import { error } from '@sveltejs/kit';
+import { getPostBySlug, getNavigationPosts } from '$lib/server/posts';
+import type { PageServerLoad } from './$types';
+
 export const load: PageServerLoad = async ({ params }) => {
 	const { slug } = params;
-	const posts = await getPosts();
-	const currentPost = posts.find(p => p.slug === slug);
 
-	if (!currentPost) {
-		throw error(404, 'Post not found');
+	// Get the current post
+	const post = await getPostBySlug(slug);
+	if (!post) {
+		throw error(404, `Post not found: ${slug}`);
 	}
 
-	return { post: currentPost };
+	// Get navigation posts (previous and next)
+	const { previousPost, nextPost } = await getNavigationPosts(slug);
+
+	return {
+		meta: post,
+		slug,
+		previousPost,
+		nextPost
+	};
 };
 ```
+
+**Benefits of Refactored Approach:**
+- Single source of truth for post loading logic
+- Eliminates duplicate glob patterns across files
+- Consistent slug extraction and date sorting
+- Better type safety
+- Easier to test and maintain
 
 ### Asset Preloading
 
@@ -560,26 +602,39 @@ Markdown content with **GFM support**.
 
 **Server Utility:** `src/lib/server/posts.ts`
 
+The post loading logic has been refactored to use centralized utility functions:
+
 ```typescript
+import { extractSlugFromPath, sortPostsByDate } from '$lib/utils';
+
 export async function getPosts(): Promise<Post[]> {
-	const modules = import.meta.glob('/src/posts/*.md');
 	const posts: Post[] = [];
+	const paths = import.meta.glob('/src/posts/*.md', { eager: true });
 
-	for (const path in modules) {
-		const module = await modules[path]();
-		const { metadata } = module;
-		const slug = path.split('/').pop()?.replace('.md', '') ?? '';
+	for (const path in paths) {
+		const file = paths[path];
+		const slug = extractSlugFromPath(path); // Centralized slug extraction
 
-		if (metadata.published) {
-			posts.push({ ...metadata, slug });
+		if (file && typeof file === 'object' && 'metadata' in file && slug) {
+			const metadata = file.metadata as Omit<Post, 'slug'>;
+			const post = { ...metadata, slug } satisfies Post;
+			if (post.published) {
+				posts.push(post);
+			}
 		}
 	}
 
-	return posts.sort((a, b) =>
-		new Date(b.date).getTime() - new Date(a.date).getTime()
-	);
+	return sortPostsByDate(posts, 'desc'); // Centralized date sorting
 }
 ```
+
+**Available Helper Functions:**
+
+See [Architecture Patterns > Server-Side Data Loading](#server-side-data-loading) for all available server helpers:
+- `getPosts()` - Get all published posts
+- `getAllPosts()` - Get all posts including drafts
+- `getPostBySlug(slug)` - Get specific post
+- `getNavigationPosts(slug)` - Get prev/next posts
 
 ### Adding a New Post
 
@@ -659,6 +714,70 @@ export default {
 .mono-typo-nav-large       /* Large nav: 20px */
 .archive-entry-mono        /* Archive entries: 20px */
 ```
+
+### Reusable Component Styles
+
+**Location:** `src/app.css`
+
+**Button Styles:**
+
+```css
+.button-secondary          /* Standard button style */
+.button-secondary-compact  /* Compact button with fit-content width */
+.button-secondary-accent   /* Button with pond-blue accent color */
+```
+
+**Usage:**
+```svelte
+<a href="/pond" class="button-secondary-compact">Archive</a>
+<div class="button-secondary-accent">Back to Top</div>
+```
+
+**Post Preview:**
+
+```css
+.post-preview              /* Post title/subtitle container with hover effect */
+```
+
+**Blog Content Styles:**
+
+Global styles for blog post content, applied via class names:
+
+```css
+.content                   /* Desktop blog content styling */
+.content-mobile            /* Mobile blog content styling */
+```
+
+These classes provide complete styling for markdown-rendered content including:
+- Headings (h1-h4) with appropriate sizing and spacing
+- Paragraphs with proper line-height and letter-spacing
+- Lists (ul, ol) with custom styling
+- Blockquotes with left border
+- Links with wavy underline and hover effects
+- Code blocks with syntax highlighting background
+- Tables with borders and striped rows
+- Images and figures with captions
+- Horizontal rules
+- Footnotes
+
+**Usage:**
+```svelte
+<!-- Desktop -->
+<div class="content">
+	<svelte:component this={MarkdownContent} />
+</div>
+
+<!-- Mobile -->
+<div class="content-mobile">
+	<svelte:component this={MarkdownContent} />
+</div>
+```
+
+**Benefits:**
+- Single source of truth for blog styling
+- Reduces component CSS from 250+ lines to ~50 lines
+- Consistent styling across all blog posts
+- Easy to maintain and update globally
 
 ### Color Palette
 
@@ -791,11 +910,107 @@ Edit `src/components/MenuContent.svelte`
 <MyComponent title="Hello" items={['a', 'b', 'c']} />
 ```
 
-### Adding a Store
+### Using Reusable Components
 
-**1. Create file:** `src/lib/stores/myStore.ts`
+**BackToTopButton Component:**
+
+```svelte
+<script lang="ts">
+	import BackToTopButton from '$lib/components/BackToTopButton.svelte';
+
+	let element: HTMLElement;
+</script>
+
+<div bind:this={element}>
+	<!-- Your content here -->
+</div>
+
+<!-- Minimal variant (text only) -->
+<BackToTopButton {element} variant="minimal" />
+
+<!-- Boxed variant (with border) -->
+<BackToTopButton {element} variant="boxed" />
+```
+
+**PostPreview Component:**
+
+```svelte
+<script lang="ts">
+	import PostPreview from '$lib/components/PostPreview.svelte';
+	import type { Post } from '$lib/types';
+
+	let { post, isMobile }: { post: Post; isMobile: boolean } = $props();
+</script>
+
+<a href={`/pond/${post.slug}`}>
+	<PostPreview title={post.title} subtitle={post.subtitle} {isMobile} />
+</a>
+```
+
+### Using Utility Functions
+
+**Date Utilities:** `src/lib/utils.ts`
 
 ```typescript
+import { formatDate, convertDateSeparators, compareDates, sortPostsByDate } from '$lib/utils';
+import type { Post } from '$lib/types';
+
+// Format date for display
+const formattedDate = formatDate('2025-02-23', 'long'); // "February 23, 2025"
+
+// Convert to DD/MM/YYYY format
+const dateString = convertDateSeparators('2025-02-23'); // "23/02/2025"
+
+// Sort posts by date
+const sortedPosts = sortPostsByDate(posts, 'desc'); // Newest first
+const oldestFirst = sortPostsByDate(posts, 'asc'); // Oldest first
+
+// Compare two posts (for custom sorting)
+const comparison = compareDates(postA, postB, 'desc');
+```
+
+**Slug and Tag Utilities:**
+
+```typescript
+import { extractSlugFromPath, formatTagsForDisplay } from '$lib/utils';
+
+// Extract slug from file path
+const slug = extractSlugFromPath('/src/posts/my-post.md'); // "my-post"
+
+// Format tags for display
+const tagsString = formatTagsForDisplay(['tech', 'svelte', 'web']); // "tech, svelte, web"
+```
+
+**Benefits:**
+- Consistent date formatting across the app
+- Single source of truth for sorting logic
+- Type-safe utility functions with JSDoc documentation
+- Eliminates code duplication
+
+### Adding a Store
+
+**Method 1: Using Persistent Store Factory (Recommended)**
+
+For stores that need localStorage persistence, use the factory pattern:
+
+```typescript
+// src/lib/stores/myStore.ts
+import { createPersistentStore } from './createPersistentStore';
+
+export const myStore = createPersistentStore<string>(
+	'myKey',           // localStorage key
+	'default',         // default value
+	(v) => v,          // serialize function (optional)
+	(v) => v           // deserialize function (optional)
+);
+```
+
+**Method 2: Manual Store Creation**
+
+For simple stores without persistence:
+
+```typescript
+// src/lib/stores/myStore.ts
 import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
 
@@ -812,7 +1027,7 @@ myStore.subscribe((value) => {
 });
 ```
 
-**2. Use in component:**
+**Using the Store:**
 
 ```svelte
 <script lang="ts">
@@ -825,6 +1040,12 @@ myStore.subscribe((value) => {
 
 <p>Current value: {$myStore}</p>
 ```
+
+**Benefits of Factory Pattern:**
+- Less boilerplate code
+- Consistent localStorage handling
+- Automatic SSR safety
+- Reusable across multiple stores
 
 ### Updating Dependencies
 
@@ -1006,11 +1227,22 @@ console.log(localStorage.getItem('theme'));
 | File | Purpose | Key Exports |
 |------|---------|-------------|
 | `src/lib/types.ts` | Type definitions | `Post`, `GalleryImage`, `PageData` |
-| `src/lib/server/posts.ts` | Post loading | `getPosts()` |
-| `src/lib/utils.ts` | Utilities | `formatDate()`, helpers |
+| `src/lib/server/posts.ts` | Post loading | `getPosts()`, `getAllPosts()`, `getPostBySlug()`, `getNavigationPosts()` |
+| `src/lib/utils.ts` | Utilities | `formatDate()`, `sortPostsByDate()`, `extractSlugFromPath()`, `compareDates()`, `formatTagsForDisplay()` |
+| `src/lib/stores/createPersistentStore.ts` | Store factory | `createPersistentStore()` |
 | `src/lib/pond.config.ts` | Blog config | Site metadata, URLs |
 | `src/app.html` | HTML shell | Dark mode init, fonts |
-| `src/app.css` | Global styles | Typography, colors, base |
+| `src/app.css` | Global styles | Typography, colors, base, `.content`, `.content-mobile`, `.button-secondary*`, `.post-preview` |
+
+### Reusable Components
+
+| File | Purpose | Props |
+|------|---------|-------|
+| `src/components/BackToTopButton.svelte` | Back to top button | `element: HTMLElement`, `variant?: 'minimal' \| 'boxed'` |
+| `src/components/PostPreview.svelte` | Post title/subtitle display | `title: string`, `subtitle: string`, `isMobile?: boolean` |
+| `src/components/LoadingScreen.svelte` | Asset loading splash | `progress: number` |
+| `src/components/ScrollProgress.svelte` | Reading progress bar | Auto-tracking |
+| `src/components/ThemeToggle.svelte` | Dark/light mode switch | None |
 
 ### Layout Files
 

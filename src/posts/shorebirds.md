@@ -6,9 +6,7 @@ category: "documentary"
 date: "2025-02-23"
 tags: ["documentary", "wildlife", "exploration", "reflections"]
 chapter: "'25"
-excerpt: "I researched, produced, and filmed a documentary on Thailand's 
-migratory shorebirds in 2021. This is why I loved every moment of it.
-"
+excerpt: "I researched, produced, and filmed a documentary on Thailand's migratory shorebirds in 2021. This is why I loved every moment of it."
 published: False
 ---
 

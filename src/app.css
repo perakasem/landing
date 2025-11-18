@@ -339,6 +339,401 @@ body {
     scrollbar-width: none !important;
 }
 
+/* Reusable Button Styles */
+.button-secondary {
+    color: #DEDCDB;
+    font-family: "Inconsolata", sans-serif;
+    font-size: 1.1rem;
+    font-style: normal;
+    line-height: normal;
+    font-variation-settings: "wdth" 100;
+    border: 1px solid currentColor;
+    border-radius: 1rem;
+    padding: 0.25rem 0.75rem;
+    text-align: center;
+}
+
+.button-secondary-compact {
+    color: #DEDCDB;
+    font-family: "Inconsolata", sans-serif;
+    font-size: 1.1rem;
+    font-style: normal;
+    line-height: normal;
+    font-variation-settings: "wdth" 100;
+    border: 1px solid currentColor;
+    border-radius: 1rem;
+    padding: 0.25rem 0.75rem;
+    text-align: center;
+    width: fit-content;
+}
+
+.button-secondary-accent {
+    color: #5468FF !important;
+    font-family: "Inconsolata", sans-serif;
+    font-size: 1.1rem;
+    font-style: normal;
+    line-height: normal;
+    font-variation-settings: "wdth" 100;
+    border: 1px solid currentColor;
+    border-radius: 1rem;
+    padding: 0.25rem 0.75rem;
+    text-align: center;
+}
+
+/* Post Preview Styles */
+.post-preview {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-preview:hover {
+    color: #5468FF !important;
+}
+
+/* Blog Content Styles - Desktop */
+.content p {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+    letter-spacing: 0.01rem;
+    margin-bottom: 1rem;
+}
+
+.content h1 {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 2.5rem;
+    line-height: 3rem;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+}
+
+.content h2 {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+}
+
+.content h3 {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-bottom: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+.content h4 {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+
+.content ul,
+.content ol {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+}
+
+.content li {
+    margin-bottom: 0.5rem;
+}
+
+.content blockquote {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1.1rem;
+    line-height: 1.8rem;
+    font-style: italic;
+    border-left: 4px solid #5468FF;
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.content a {
+    color: #5468FF;
+    text-decoration: none;
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2rem;
+}
+
+.content a:hover {
+    text-decoration-thickness: 2px;
+}
+
+.content code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.95rem;
+    background-color: rgba(84, 104, 255, 0.1);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+}
+
+.content pre {
+    background-color: #2E2E2E;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.content pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+}
+
+.content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1rem;
+}
+
+.content th {
+    background-color: #2E2E2E;
+    color: #DEDCDB;
+    padding: 0.75rem;
+    text-align: left;
+    border: 1px solid #5468FF;
+}
+
+.content td {
+    color: #DEDCDB;
+    padding: 0.75rem;
+    border: 1px solid #5468FF;
+}
+
+.content tr:nth-child(even) {
+    background-color: rgba(84, 104, 255, 0.05);
+}
+
+.content figure {
+    margin: 2rem 0;
+}
+
+.content figcaption {
+    color: #DEDCDB;
+    font-family: "Instrument Sans", sans-serif;
+    font-size: 0.9rem;
+    font-style: italic;
+    text-align: center;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
+
+.content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+}
+
+.content hr {
+    border: none;
+    border-top: 1px solid #5468FF;
+    margin: 2rem 0;
+}
+
+.content .footnotes {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #5468FF;
+    font-size: 0.95rem;
+}
+
+.content .footnotes p {
+    font-size: 0.95rem;
+    line-height: 1.6rem;
+}
+
+/* Blog Content Styles - Mobile */
+.content-mobile p {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.01rem;
+    margin-bottom: 1rem;
+}
+
+.content-mobile h1 {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    margin-bottom: 1.25rem;
+    margin-top: 1.75rem;
+}
+
+.content-mobile h2 {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+}
+
+.content-mobile h3 {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    margin-bottom: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+.content-mobile h4 {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+
+.content-mobile ul,
+.content-mobile ol {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1rem;
+    line-height: 1.6rem;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+.content-mobile li {
+    margin-bottom: 0.5rem;
+}
+
+.content-mobile blockquote {
+    color: #DEDCDB;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 1rem;
+    line-height: 1.6rem;
+    font-style: italic;
+    border-left: 3px solid #5468FF;
+    padding-left: 1rem;
+    margin: 1.25rem 0;
+}
+
+.content-mobile a {
+    color: #5468FF;
+    text-decoration: none;
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2rem;
+}
+
+.content-mobile a:hover {
+    text-decoration-thickness: 2px;
+}
+
+.content-mobile code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.9rem;
+    background-color: rgba(84, 104, 255, 0.1);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+}
+
+.content-mobile pre {
+    background-color: #2E2E2E;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+}
+
+.content-mobile pre code {
+    background-color: transparent;
+    padding: 0;
+    font-size: 0.85rem;
+    line-height: 1.4rem;
+}
+
+.content-mobile table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-family: "Hedvig Letters Serif", serif;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    display: block;
+}
+
+.content-mobile th {
+    background-color: #2E2E2E;
+    color: #DEDCDB;
+    padding: 0.5rem;
+    text-align: left;
+    border: 1px solid #5468FF;
+}
+
+.content-mobile td {
+    color: #DEDCDB;
+    padding: 0.5rem;
+    border: 1px solid #5468FF;
+}
+
+.content-mobile tr:nth-child(even) {
+    background-color: rgba(84, 104, 255, 0.05);
+}
+
+.content-mobile figure {
+    margin: 1.5rem 0;
+}
+
+.content-mobile figcaption {
+    color: #DEDCDB;
+    font-family: "Instrument Sans", sans-serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    text-align: center;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
+
+.content-mobile img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+}
+
+.content-mobile hr {
+    border: none;
+    border-top: 1px solid #5468FF;
+    margin: 1.5rem 0;
+}
+
+.content-mobile .footnotes {
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #5468FF;
+    font-size: 0.9rem;
+}
+
+.content-mobile .footnotes p {
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+}
+
 @media (max-width: 640px) {
     .asterisk-line {
         width: 4rem;
