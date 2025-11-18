@@ -8,10 +8,23 @@ import { createClient } from '@supabase/supabase-js';
 import type { Database } from '$lib/types/database';
 import { dev } from '$app/environment';
 
-const supabaseUrl = process.env.SUPABASE_URL || '';
-const supabaseKey = process.env.SUPABASE_ANON_KEY || '';
+// Lazy-initialize Supabase client to avoid build-time errors
+let supabase: ReturnType<typeof createClient<Database>> | null = null;
 
-const supabase = createClient<Database>(supabaseUrl, supabaseKey);
+function getSupabaseClient() {
+	if (!supabase) {
+		const supabaseUrl = process.env.SUPABASE_URL || '';
+		const supabaseKey = process.env.SUPABASE_ANON_KEY || '';
+
+		if (!supabaseUrl || !supabaseKey) {
+			console.warn('Supabase credentials not found, using default config');
+			return null;
+		}
+
+		supabase = createClient<Database>(supabaseUrl, supabaseKey);
+	}
+	return supabase;
+}
 
 // Default fallback configuration
 const DEFAULT_CONFIG = {
@@ -59,7 +72,14 @@ export interface SiteConfig {
  */
 export async function getSiteConfig(): Promise<SiteConfig> {
 	try {
-		const { data, error } = await supabase
+		const client = getSupabaseClient();
+
+		if (!client) {
+			console.warn('Supabase client not available, using defaults');
+			return DEFAULT_CONFIG;
+		}
+
+		const { data, error } = await client
 			.from('site_config')
 			.select('*')
 			.limit(1)
