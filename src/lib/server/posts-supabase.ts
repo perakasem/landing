@@ -7,6 +7,28 @@ import type { Post } from '$lib/types';
 import { sortPostsByDate } from '$lib/utils';
 
 /**
+ * Helper function to convert single-element JSONB arrays to strings
+ * Database stores: ["longform"], ["documentary"], ["'25"]
+ * App expects: "longform", "documentary", "'25"
+ * @param arr - JSONB array from database
+ * @returns First element as string, or empty string if array is empty/null
+ */
+function arrayToString(arr: string[] | null | undefined): string {
+	return arr && arr.length > 0 ? arr[0] : '';
+}
+
+/**
+ * Helper function to convert string to single-element array for database
+ * App provides: "longform", "documentary", "'25"
+ * Database expects: ["longform"], ["documentary"], ["'25"]
+ * @param value - String value from app
+ * @returns Single-element array for database
+ */
+function stringToArray(value: string): string[] {
+	return [value];
+}
+
+/**
  * Get all published posts from Supabase
  * Posts are sorted by date in descending order (newest first)
  * @returns Array of published posts
@@ -24,16 +46,17 @@ export async function getPosts(): Promise<Post[]> {
 	}
 
 	// Map database rows to Post type
+	// Convert JSONB arrays to strings for single-value fields
 	return (data || []).map((row) => ({
 		id: row.id,
 		slug: row.slug,
 		title: row.title,
 		subtitle: row.subtitle || '',
-		form: row.form,
-		category: row.category,
+		form: arrayToString(row.form), // ["longform"] → "longform"
+		category: arrayToString(row.category), // ["documentary"] → "documentary"
 		date: row.date,
-		tags: row.tags,
-		chapter: row.chapter,
+		tags: row.tags || [], // Keep as array
+		chapter: arrayToString(row.chapter), // ["'25"] → "'25"
 		excerpt: row.excerpt,
 		content: row.content,
 		published: row.published,
@@ -59,11 +82,11 @@ export async function getAllPosts(): Promise<Post[]> {
 		slug: row.slug,
 		title: row.title,
 		subtitle: row.subtitle || '',
-		form: row.form,
-		category: row.category,
+		form: arrayToString(row.form), // ["longform"] → "longform"
+		category: arrayToString(row.category), // ["documentary"] → "documentary"
 		date: row.date,
-		tags: row.tags,
-		chapter: row.chapter,
+		tags: row.tags || [], // Keep as array
+		chapter: arrayToString(row.chapter), // ["'25"] → "'25"
 		excerpt: row.excerpt,
 		content: row.content,
 		published: row.published,
@@ -89,11 +112,11 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 		slug: data.slug,
 		title: data.title,
 		subtitle: data.subtitle || '',
-		form: data.form,
-		category: data.category,
+		form: arrayToString(data.form), // ["longform"] → "longform"
+		category: arrayToString(data.category), // ["documentary"] → "documentary"
 		date: data.date,
-		tags: data.tags,
-		chapter: data.chapter,
+		tags: data.tags || [], // Keep as array
+		chapter: arrayToString(data.chapter), // ["'25"] → "'25"
 		excerpt: data.excerpt,
 		content: data.content,
 		published: data.published,

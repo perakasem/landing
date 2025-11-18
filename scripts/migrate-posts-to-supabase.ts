@@ -35,6 +35,15 @@ if (!SUPABASE_SERVICE_ROLE_KEY) {
 
 const supabase = createClient(SUPABASE_URL, supabaseKey);
 
+/**
+ * Convert string to single-element array for JSONB fields
+ * Database expects: ["longform"], ["documentary"], ["'25"]
+ * Markdown provides: "longform", "documentary", "'25"
+ */
+function stringToArray(value: string): string[] {
+	return [value];
+}
+
 interface MarkdownPost {
 	frontmatter: {
 		title: string;
@@ -118,16 +127,17 @@ async function migratePosts() {
 
 				if (existing) {
 					// Update existing post
+					// Convert single-value strings to arrays for JSONB fields
 					const { error } = await supabase
 						.from('posts')
 						.update({
 							title: post.frontmatter.title,
 							subtitle: post.frontmatter.subtitle,
-							form: post.frontmatter.form,
-							category: post.frontmatter.category,
+							form: stringToArray(post.frontmatter.form), // "longform" → ["longform"]
+							category: stringToArray(post.frontmatter.category), // "documentary" → ["documentary"]
 							date: post.frontmatter.date,
-							tags: post.frontmatter.tags,
-							chapter: post.frontmatter.chapter,
+							tags: post.frontmatter.tags, // Keep as array
+							chapter: stringToArray(post.frontmatter.chapter), // "'25" → ["'25"]
 							excerpt: post.frontmatter.excerpt,
 							content: post.content,
 							published: post.frontmatter.published
@@ -138,15 +148,16 @@ async function migratePosts() {
 					console.log(`  ✅ Updated: ${slug}`);
 				} else {
 					// Insert new post
+					// Convert single-value strings to arrays for JSONB fields
 					const { error } = await supabase.from('posts').insert({
 						slug,
 						title: post.frontmatter.title,
 						subtitle: post.frontmatter.subtitle,
-						form: post.frontmatter.form,
-						category: post.frontmatter.category,
+						form: stringToArray(post.frontmatter.form), // "longform" → ["longform"]
+						category: stringToArray(post.frontmatter.category), // "documentary" → ["documentary"]
 						date: post.frontmatter.date,
-						tags: post.frontmatter.tags,
-						chapter: post.frontmatter.chapter,
+						tags: post.frontmatter.tags, // Keep as array
+						chapter: stringToArray(post.frontmatter.chapter), // "'25" → ["'25"]
 						excerpt: post.frontmatter.excerpt,
 						content: post.content,
 						published: post.frontmatter.published

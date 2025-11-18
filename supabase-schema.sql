@@ -10,10 +10,10 @@ CREATE TABLE IF NOT EXISTS posts (
     slug TEXT UNIQUE NOT NULL,
     title TEXT NOT NULL,
     subtitle TEXT,
-    form TEXT NOT NULL CHECK (form IN ('longform', 'shortform')),
+    form TEXT NOT NULL,
     category TEXT NOT NULL,
     date DATE NOT NULL,
-    tags TEXT[] NOT NULL DEFAULT '{}',
+    tags JSONB NOT NULL DEFAULT '[]'::jsonb,
     chapter TEXT NOT NULL,
     excerpt TEXT NOT NULL,
     content TEXT NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS content_pages (
 CREATE INDEX IF NOT EXISTS idx_posts_slug ON posts(slug);
 CREATE INDEX IF NOT EXISTS idx_posts_published ON posts(published);
 CREATE INDEX IF NOT EXISTS idx_posts_date ON posts(date DESC);
-CREATE INDEX IF NOT EXISTS idx_posts_tags ON posts USING GIN(tags);
+CREATE INDEX IF NOT EXISTS idx_posts_tags ON posts USING GIN(tags jsonb_path_ops);
 CREATE INDEX IF NOT EXISTS idx_content_pages_slug ON content_pages(slug);
 
 -- Create updated_at trigger function

@@ -14,11 +14,11 @@ export interface Database {
 					slug: string;
 					title: string;
 					subtitle: string | null;
-					form: 'longform' | 'shortform';
-					category: string;
+					form: string[]; // JSONB array: ["longform"] or ["shortform"]
+					category: string[]; // JSONB array: ["documentary"], etc.
 					date: string;
-					tags: string[];
-					chapter: string;
+					tags: string[]; // JSONB array: ["tag1", "tag2", ...]
+					chapter: string[]; // JSONB array: ["'25"], etc.
 					excerpt: string;
 					content: string;
 					published: boolean;
@@ -31,11 +31,11 @@ export interface Database {
 					slug: string;
 					title: string;
 					subtitle?: string | null;
-					form: 'longform' | 'shortform';
-					category: string;
+					form: string[]; // JSONB array
+					category: string[]; // JSONB array
 					date: string;
-					tags?: string[];
-					chapter: string;
+					tags?: string[]; // JSONB array
+					chapter: string[]; // JSONB array
 					excerpt: string;
 					content: string;
 					published?: boolean;
@@ -48,11 +48,11 @@ export interface Database {
 					slug?: string;
 					title?: string;
 					subtitle?: string | null;
-					form?: 'longform' | 'shortform';
-					category?: string;
+					form?: string[]; // JSONB array
+					category?: string[]; // JSONB array
 					date?: string;
-					tags?: string[];
-					chapter?: string;
+					tags?: string[]; // JSONB array
+					chapter?: string[]; // JSONB array
 					excerpt?: string;
 					content?: string;
 					published?: boolean;
@@ -156,11 +156,11 @@ export interface Database {
 					slug: string;
 					title: string;
 					subtitle: string | null;
-					form: 'longform' | 'shortform';
-					category: string;
+					form: string[]; // JSONB array
+					category: string[]; // JSONB array
 					date: string;
-					tags: string[];
-					chapter: string;
+					tags: string[]; // JSONB array
+					chapter: string[]; // JSONB array
 					excerpt: string;
 					content: string;
 					featured_image: string | null;
