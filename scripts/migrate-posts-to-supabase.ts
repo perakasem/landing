@@ -18,9 +18,9 @@ import { join } from 'path';
 import { parse } from 'yaml';
 
 // Configuration
-const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || '';
+const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || 'https://mipgedcytuqbdmdppdzm.supabase.co';
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
-const SUPABASE_ANON_KEY = process.env.PUBLIC_SUPABASE_ANON_KEY || '';
+const SUPABASE_ANON_KEY = process.env.PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1pcGdlZGN5dHVxYmRtZHBwZHptIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM0MjgwMDQsImV4cCI6MjA3OTAwNDAwNH0.5mT-LN5DuwhLFh6_9elnhChGNJUBb7DiOWNg485ZwI4';
 const POSTS_DIR = join(process.cwd(), 'src', 'posts');
 
 // Create Supabase client with service role key (bypasses RLS for migrations)
