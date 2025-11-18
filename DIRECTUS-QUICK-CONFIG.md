@@ -39,6 +39,8 @@ Click on each field name in the list to open its configuration:
 
 #### 1. tags ⭐ (Most Important)
 
+**IMPORTANT**: If you get a "malformed array literal" error when saving posts, see [`DIRECTUS-TAGS-FIX.md`](./DIRECTUS-TAGS-FIX.md) - you need to convert the tags column from TEXT[] to JSONB.
+
 - [ ] Click **tags** field
 - [ ] **Interface** dropdown → select **Tags**
 - [ ] Scroll to **Options** section
