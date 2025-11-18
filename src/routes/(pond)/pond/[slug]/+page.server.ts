@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { getPostBySlug, getNavigationPosts } from '$lib/server/posts';
+import { getPostBySlug, getNavigationPosts } from '$lib/server/posts-supabase';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
