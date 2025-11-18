@@ -223,6 +223,15 @@ ORDER BY ordinal_position;
 4. In Directus, go to Settings > Data Model > Refresh schema
 5. Reconfigure dropdown interfaces (see Step 4 above)
 
+### Error: Can't change interface type (stuck as Boolean/Text/etc.)
+**Symptom**: Interface dropdown is greyed out or doesn't show other options
+**Cause**: Directus has cached field metadata in `directus_fields` table
+**Fix**: See complete guide: [`DIRECTUS-STUCK-INTERFACES-FIX.md`](./DIRECTUS-STUCK-INTERFACES-FIX.md)
+1. Run `supabase-reset-directus-metadata.sql` to delete cached metadata
+2. Restart Directus: `docker compose restart`
+3. Wait 30 seconds for Directus to re-detect fields
+4. Configure interfaces - all options should now be available
+
 ### Error: Changes don't save
 **Cause**: Database type mismatch
 **Fix**:
