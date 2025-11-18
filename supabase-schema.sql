@@ -122,12 +122,21 @@ CREATE POLICY "Public can view media"
     ON media FOR SELECT
     USING (true);
 
--- Admin full access (you'll need to set up authentication)
--- These policies assume you have a user with role 'admin'
--- Adjust based on your auth setup
+-- ============================================================================
+-- IMPORTANT: Admin Access & Migrations
+-- ============================================================================
+-- For administrative operations (migrations, bulk updates, etc.):
+-- Use the SUPABASE_SERVICE_ROLE_KEY which bypasses RLS entirely
+-- Never expose service role key to client - server-side only
+--
+-- For Directus CMS access:
+-- You can either:
+-- 1. Use service role key in Directus configuration (simplest)
+-- 2. Set up Supabase Auth and create policies like below
+-- ============================================================================
 
--- For development, you can create policies that allow all operations
--- But REMOVE these in production and use proper authentication
+-- Example admin policies (uncomment and adjust for your auth setup):
+-- These policies assume you have a user with role 'admin' in JWT claims
 
 -- CREATE POLICY "Admin full access to posts"
 --     ON posts

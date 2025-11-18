@@ -2,6 +2,12 @@
  * Migration Script: Markdown Posts to Supabase
  * Run this script to migrate existing markdown posts to Supabase database
  *
+ * Prerequisites:
+ *   - Supabase project set up with schema from supabase-schema.sql
+ *   - Environment variables in .env file:
+ *     - PUBLIC_SUPABASE_URL
+ *     - SUPABASE_SERVICE_ROLE_KEY (required - bypasses RLS for admin operations)
+ *
  * Usage:
  *   npx tsx scripts/migrate-posts-to-supabase.ts
  */
@@ -13,11 +19,21 @@ import { parse } from 'yaml';
 
 // Configuration
 const SUPABASE_URL = process.env.PUBLIC_SUPABASE_URL || '';
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
 const SUPABASE_ANON_KEY = process.env.PUBLIC_SUPABASE_ANON_KEY || '';
 const POSTS_DIR = join(process.cwd(), 'src', 'posts');
 
-// Create Supabase client
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// Create Supabase client with service role key (bypasses RLS for migrations)
+// Service role key has full database access - use for administrative tasks only
+const supabaseKey = SUPABASE_SERVICE_ROLE_KEY || SUPABASE_ANON_KEY;
+
+if (!SUPABASE_SERVICE_ROLE_KEY) {
+	console.warn('⚠️  Warning: SUPABASE_SERVICE_ROLE_KEY not found, using SUPABASE_ANON_KEY');
+	console.warn('   This may fail due to Row Level Security policies.');
+	console.warn('   Get your service role key from Supabase dashboard > Settings > API\n');
+}
+
+const supabase = createClient(SUPABASE_URL, supabaseKey);
 
 interface MarkdownPost {
 	frontmatter: {

@@ -21,9 +21,10 @@ npm install -D tsx yaml @types/node
 2. Create new project
 3. Go to SQL Editor
 4. Run `supabase-schema.sql`
-5. Copy your credentials:
+5. Copy your credentials from Settings > API:
    - Project URL
-   - Anon/Public Key
+   - Anon/Public Key (for client)
+   - Service Role Key (for migrations - ⚠️ keep secret!)
 
 ---
 
@@ -34,6 +35,7 @@ Create `.env`:
 ```env
 PUBLIC_SUPABASE_URL=https://xxx.supabase.co
 PUBLIC_SUPABASE_ANON_KEY=eyJhbGc...
+SUPABASE_SERVICE_ROLE_KEY=eyJhbGc... # For migrations only
 ```
 
 Add to `.gitignore`:
