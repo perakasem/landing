@@ -1,0 +1,32 @@
+version: '3'
+services:
+  directus:
+    image: directus/directus:latest
+    ports:
+      - 8055:8055
+    environment:
+      # Security Keys (generate random strings)
+      KEY: 'replace-with-random-key-min-32-characters'
+      SECRET: 'replace-with-random-secret-min-32-characters'
+
+      # Admin Account
+      ADMIN_EMAIL: 'admin@example.com'
+      ADMIN_PASSWORD: 'your-secure-password'
+
+      # Supabase Database Connection
+      DB_CLIENT: 'pg'
+      DB_HOST: 'db.your-project-ref.supabase.co'  # Replace with your Supabase host
+      DB_PORT: '5432'
+      DB_DATABASE: 'postgres'
+      DB_USER: 'postgres'
+      DB_PASSWORD: 'your-supabase-db-password'     # From Supabase Settings > Database
+      DB_SSL: 'true'
+
+      # Public URL (change in production)
+      PUBLIC_URL: 'http://localhost:8055'
+
+      # CORS (adjust for production)
+      CORS_ENABLED: 'true'
+      CORS_ORIGIN: 'http://localhost:5173,http://localhost:8055'
+
+    restart: unless-stopped
