@@ -1,9 +1,9 @@
 <script lang="ts">
     import {onMount} from "svelte";
     import { slide } from "svelte/transition"
-    import * as config from '$lib/pond.config'
 
     export let data;
+    $: config = data.config;
     let activeSection: string | null = "about";
 
     const toggleSection = (id: string) => {

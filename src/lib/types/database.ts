@@ -64,23 +64,71 @@ export interface Database {
 			site_config: {
 				Row: {
 					id: string;
-					key: string;
-					value: Json;
-					description: string | null;
+					// Site Metadata
+					title: string;
+					description: string;
+					current_chapter: string;
+					base_url: string;
+					// Watch Section
+					watch_url: string | null;
+					watch_title: string | null;
+					watch_source: string | null;
+					// Media Section
+					media_url: string | null;
+					media_title: string | null;
+					media_source: string | null;
+					// Read Section
+					read_url: string | null;
+					read_title: string | null;
+					read_source: string | null;
+					// Artwork Section
+					artwork_src: string | null;
+					artwork_title: string | null;
+					artwork_artist: string | null;
+					// Metadata
+					created_at: string;
 					updated_at: string;
 				};
 				Insert: {
 					id?: string;
-					key: string;
-					value: Json;
-					description?: string | null;
+					title?: string;
+					description?: string;
+					current_chapter?: string;
+					base_url?: string;
+					watch_url?: string | null;
+					watch_title?: string | null;
+					watch_source?: string | null;
+					media_url?: string | null;
+					media_title?: string | null;
+					media_source?: string | null;
+					read_url?: string | null;
+					read_title?: string | null;
+					read_source?: string | null;
+					artwork_src?: string | null;
+					artwork_title?: string | null;
+					artwork_artist?: string | null;
+					created_at?: string;
 					updated_at?: string;
 				};
 				Update: {
 					id?: string;
-					key?: string;
-					value?: Json;
-					description?: string | null;
+					title?: string;
+					description?: string;
+					current_chapter?: string;
+					base_url?: string;
+					watch_url?: string | null;
+					watch_title?: string | null;
+					watch_source?: string | null;
+					media_url?: string | null;
+					media_title?: string | null;
+					media_source?: string | null;
+					read_url?: string | null;
+					read_title?: string | null;
+					read_source?: string | null;
+					artwork_src?: string | null;
+					artwork_title?: string | null;
+					artwork_artist?: string | null;
+					created_at?: string;
 					updated_at?: string;
 				};
 			};
