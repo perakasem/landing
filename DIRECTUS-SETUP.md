@@ -80,62 +80,55 @@ Login with:
 
 Once logged in:
 
-### 1. Configure the Posts Collection
+### 1. Configure the Posts Collection UI 🎨
+
+**IMPORTANT:** To get proper editing experience (tags as chips, markdown editor with preview, proper field sizes), you need to configure the field interfaces.
+
+📖 **See the complete guide**: [`DIRECTUS-FIELD-CONFIG.md`](./DIRECTUS-FIELD-CONFIG.md)
+
+**Quick Configuration:**
 
 Directus should automatically detect your `posts` table from Supabase.
 
-Go to **Settings** > **Data Model** > **posts** and configure:
+1. Go to **Settings** > **Data Model** > **posts**
+2. Configure collection settings:
+   - **Display Template**: `{{title}}`
+   - **Sort Field**: `date` (descending)
+   - **Icon**: `article`
 
-- **Display Template**: `{{title}}`
-- **Archive Field**: Leave empty (we use `published` as boolean)
-- **Sort Field**: `date` (descending)
+3. **Configure each field** (click on field name to edit):
 
-### 2. Configure Field Display
+   **Critical Fields (configure these first):**
 
-Click on the **posts** collection, then configure each field:
+   - **tags**: Change interface to **Tags** (not Input!)
+     - Set preset to "tags"
+     - Enable alphabetize, lowercase
+     - This will show tags as chips instead of text input
 
-**Title**
-- Interface: Input
-- Display: Raw Value
+   - **content**: Change interface to **Markdown** or **Input Code**
+     - Set language to Markdown
+     - Enable line wrapping
+     - Set height to 20+ rows
+     - This gives you proper markdown editing with syntax highlighting
 
-**Subtitle**
-- Interface: Input
-- Display: Raw Value
+   - **published**: Change interface to **Toggle**
+     - Set label: "Published" / "Draft"
+     - Add icons: visibility / visibility_off
 
-**Content**
-- Interface: **WYSIWYG** or **Markdown**
-- Display: Formatted Value
+   - **form**: Change interface to **Dropdown**
+     - Add choices: `longform`, `shortform`
 
-**Form**
-- Interface: Dropdown
-- Choices: `longform`, `shortform`
+   - **date**: Use **DateTime** interface
+     - Set type to Date (not datetime)
 
-**Category**
-- Interface: Input
-- Display: Raw Value
+   - **excerpt**: Use **Textarea** interface
+     - Set rows to 3-4
 
-**Date**
-- Interface: Date
-- Display: Date
+4. **Organize layout**: Drag fields to group related items together
 
-**Tags**
-- Interface: Tags
-- Display: Tags
+For detailed step-by-step configuration with screenshots and advanced options, see **[`DIRECTUS-FIELD-CONFIG.md`](./DIRECTUS-FIELD-CONFIG.md)**
 
-**Published**
-- Interface: Toggle
-- Display: Boolean
-
-**Excerpt**
-- Interface: Textarea
-- Display: Formatted Value
-
-**Slug**
-- Interface: Input
-- Options: Slugify (enable)
-- Display: Raw Value
-
-### 3. Configure Permissions (Optional)
+### 2. Configure Permissions (Optional)
 
 If you want to allow others to use Directus:
 
