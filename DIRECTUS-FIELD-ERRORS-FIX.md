@@ -213,6 +213,16 @@ ORDER BY ordinal_position;
 2. Check field configuration: Settings > Data Model > posts
 3. Ensure field is not set to "Readonly"
 
+### Error: Dropdowns (form, category) remain greyed out
+**Symptom**: Tags are fixed, but dropdown fields still disabled
+**Cause**: CHECK constraints not fully removed OR Directus needs schema refresh
+**Fix**:
+1. Run `supabase-fix-dropdowns.sql` to forcefully remove all CHECK constraints
+2. Restart Directus: `docker compose restart`
+3. Clear cache: `docker compose exec directus npx directus cache clear`
+4. In Directus, go to Settings > Data Model > Refresh schema
+5. Reconfigure dropdown interfaces (see Step 4 above)
+
 ### Error: Changes don't save
 **Cause**: Database type mismatch
 **Fix**:

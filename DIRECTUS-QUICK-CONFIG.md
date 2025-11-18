@@ -4,13 +4,14 @@
 
 **Time**: 5-10 minutes
 
+> **Note**: For proper draft/publish workflow with visual indicators and publish buttons, see [`DIRECTUS-PUBLISH-WORKFLOW.md`](./DIRECTUS-PUBLISH-WORKFLOW.md)
+
 ---
 
 ## 🎯 What You'll Get
 
 - ✅ Tags shown as colorful chips (not text boxes)
 - ✅ Large markdown editor with syntax highlighting
-- ✅ Toggle switch for Published (not checkbox)
 - ✅ Proper field sizes (no excessive scrolling)
 - ✅ Organized layout with sections
 
