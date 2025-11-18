@@ -3,7 +3,28 @@
     import { slide } from "svelte/transition"
 
     export let data;
-    $: config = data.config;
+
+    // Fallback config in case data.config is undefined
+    const DEFAULT_CONFIG = {
+        title: '3rd Space',
+        description: 'A bootleg substack of thoughts and things worth sharing.',
+        currentChapter: "'25",
+        url: 'https://perakasem.co/pond',
+        watchUrl: 'https://youtu.be/Q0_W4SWHeWY?si=02AWC2EJLwpe1Owx',
+        watch: 'The Future of Creativity',
+        watchSource: 'Hank Green',
+        mediaUrl: 'https://youtu.be/E8pHAQc4rxA?si=L_0o_9hUGHUmTZut',
+        media: 'MF DOOM X Tatsuro Yamashita',
+        mediaSource: 'Tanda',
+        readUrl: 'https://situational-awareness.ai/',
+        read: 'Situational Awareness',
+        readSource: 'Leopold Aschenbrenner',
+        artworkSrc: '/blank.jpg',
+        artwork: 'Tomato Water',
+        artist: 'OC'
+    };
+
+    $: config = data.config || DEFAULT_CONFIG;
     let activeSection: string | null = "about";
 
     const toggleSection = (id: string) => {
