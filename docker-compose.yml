@@ -5,22 +5,22 @@ services:
     ports:
       - 8055:8055
     environment:
-      # Security Keys (generate random strings)
-      KEY: 'replace-with-random-key-min-32-characters'
-      SECRET: 'replace-with-random-secret-min-32-characters'
+      # Security Keys
+      KEY: '2gIbmAbZAaAbZWHFiCTG8QGjrYoexwdVJN0EdPepFVo='
+      SECRET: 'bPC7dtaGCVWG9bmuJpju2O+um67ZFcXtzFkJf9BsUE8='
 
       # Admin Account
-      ADMIN_EMAIL: 'admin@example.com'
-      ADMIN_PASSWORD: 'your-secure-password'
+      ADMIN_EMAIL: 'pkasemsripitak@gmail.com'
+      ADMIN_PASSWORD: 'PKadmin!101'
 
       # Supabase Database Connection
       DB_CLIENT: 'pg'
-      DB_HOST: 'db.your-project-ref.supabase.co'  # Replace with your Supabase host
+      DB_HOST: 'aws-1-us-east-2.pooler.supabase.com'
       DB_PORT: '5432'
       DB_DATABASE: 'postgres'
-      DB_USER: 'postgres'
-      DB_PASSWORD: 'your-supabase-db-password'     # From Supabase Settings > Database
-      DB_SSL: 'true'
+      DB_USER: 'postgres.mipgedcytuqbdmdppdzm'
+      DB_PASSWORD: 'hJnXIDMKcOZMSGnT'
+      DB_SSL: '{"rejectUnauthorized":false}'
 
       # Public URL (change in production)
       PUBLIC_URL: 'http://localhost:8055'
