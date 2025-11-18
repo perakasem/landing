@@ -36,24 +36,26 @@ However, Directus **can** use Dropdown for TEXT fields - we just need to configu
 
 ## ✅ Complete Fix (5 minutes)
 
-### Step 1: Configure Directus Fields with Proper Interfaces
+> **Important Update**: Directus does NOT support dropdown interface for TEXT fields. Only JSONB (like tags) and relationship fields support dropdowns. See [`DIRECTUS-DROPDOWN-ALTERNATIVES.md`](./DIRECTUS-DROPDOWN-ALTERNATIVES.md) for dropdown options.
+
+### Step 1: Configure Directus Fields with Valid Interfaces
 
 Run this SQL in **Supabase SQL Editor**:
 
 1. Go to Supabase Dashboard > **SQL Editor**
 2. Click **New Query**
-3. Copy and paste the **entire** contents of **`supabase-configure-directus-fields.sql`**
+3. Copy and paste the **entire** contents of **`supabase-configure-directus-fields-corrected.sql`**
 4. Click **Run**
 
 **What this does:**
 - ✅ Deletes old field configurations
-- ✅ Inserts properly configured fields with correct interfaces:
-  - **form**: Dropdown (longform/shortform)
-  - **category**: Dropdown with custom values allowed
-  - **chapter**: Text input with monospace font
-  - **tags**: Tags interface
-  - **content**: Markdown code editor
-  - **published**: Toggle switch
+- ✅ Inserts properly configured fields with VALID interfaces:
+  - **form**: Input with placeholder ("longform or shortform")
+  - **category**: Input with placeholder ("documentary, fiction, essay...")
+  - **chapter**: Input with monospace font
+  - **tags**: Tags interface (chips - works because JSONB)
+  - **content**: Code editor (markdown)
+  - **published**: Boolean toggle
 - ✅ Sets up collection metadata (icon, display template, sort field)
 
 ### Step 2: Restart Directus
@@ -71,10 +73,10 @@ docker compose up -d
 2. Login with admin credentials
 3. Go to **Settings** > **Data Model** > **posts**
 4. You should see all fields with proper interfaces:
-   - **form**: Dropdown (select-dropdown)
-   - **category**: Dropdown (select-dropdown)
-   - **chapter**: Input (text)
-   - **tags**: Tags
+   - **form**: Input (with placeholder)
+   - **category**: Input (with placeholder)
+   - **chapter**: Input (monospace)
+   - **tags**: Tags (chips)
    - **content**: Code (markdown)
    - **published**: Boolean (toggle)
 
@@ -83,12 +85,15 @@ docker compose up -d
 1. Go to **Posts** collection
 2. Click **Create Item** or edit existing post
 3. Verify:
-   - **form**: Shows dropdown with Long Form / Short Form ✅
-   - **category**: Shows input or dropdown ✅
-   - **published**: Shows toggle/badge (not checkbox) ✅
-   - **tags**: Still working as chips ✅
+   - **form**: Text input with placeholder "longform or shortform" ✅
+   - **category**: Text input with placeholder showing valid categories ✅
+   - **chapter**: Text input with monospace font ✅
+   - **published**: Toggle switch (not checkbox) ✅
+   - **tags**: Working as chips ✅
 4. Try changing values and saving
 5. Should work without errors! 🎉
+
+**Note**: form and category are text inputs (not dropdowns). For true dropdown functionality, see [`DIRECTUS-DROPDOWN-ALTERNATIVES.md`](./DIRECTUS-DROPDOWN-ALTERNATIVES.md).
 
 ---
 
@@ -100,36 +105,41 @@ docker compose up -d
 
 - TEXT columns in database → Directus only shows: Input, Textarea, WYSIWYG, Code
 - BOOLEAN columns → Directus only shows: Boolean, Toggle, Switch
+- JSONB columns → Directus shows: Tags, JSON editor
+- **Relationships (M2O, O2M, M2M)** → Directus shows: Dropdown/Select
 
-**But** Directus internally **can** use Dropdown for TEXT fields - it just doesn't show it in the UI dropdown because of type filtering.
+**Important**: Directus does NOT support dropdown/select interface for regular TEXT fields. Dropdowns only work with:
+1. JSONB fields (for multi-value tags)
+2. Relationship fields (foreign keys)
 
 ### The Solution
 
-**Bypass the UI** and directly insert the correct interface configuration into `directus_fields` table.
+**Use appropriate interfaces for each field type:**
+- TEXT fields → Input (with helpful placeholders)
+- JSONB fields → Tags (for multi-select)
+- Relationship fields → Dropdown (if needed - see DIRECTUS-DROPDOWN-ALTERNATIVES.md)
 
 ### Before (Auto-Detected):
 ```sql
 SELECT field, interface FROM directus_fields WHERE collection = 'posts';
 
-form      | input         ← Stuck as text input
-category  | input         ← Stuck as text input
-chapter   | input         ← Plain text input
-published | boolean       ← Checkbox
+form      | input         ← Text input, no configuration
+category  | input         ← Text input, no configuration
+tags      | input         ← Wrong! Should be tags interface
+published | boolean       ← Checkbox, no icons
 ```
-
-Interface options filtered by database type. Can't change to Dropdown via UI.
 
 ### After (Manually Configured):
 ```sql
 SELECT field, interface FROM directus_fields WHERE collection = 'posts';
 
-form      | select-dropdown   ← Now a dropdown! ✅
-category  | select-dropdown   ← Now a dropdown! ✅
-chapter   | input             ← With monospace font ✅
-published | boolean           ← With toggle display ✅
+form      | input         ← With placeholder "longform or shortform" ✅
+category  | input         ← With placeholder showing valid values ✅
+tags      | tags          ← Chips interface (works because JSONB) ✅
+published | boolean       ← With toggle display and icons ✅
 ```
 
-Interfaces configured exactly as needed, regardless of database type.
+Fields properly configured with best available interfaces for each type.
 
 ---
 
