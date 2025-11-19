@@ -1,56 +1,27 @@
-# 3rd Space / Pond
-
-**Personal portfolio and blog with headless CMS integration**
-
-[![Built with SvelteKit](https://img.shields.io/badge/SvelteKit-2.16-orange?logo=svelte)](https://kit.svelte.dev)
-[![Powered by Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-green?logo=supabase)](https://supabase.com)
-[![CMS: Directus](https://img.shields.io/badge/CMS-Directus-blue?logo=directus)](https://directus.io)
-
----
+# Pera Kasemsripitak
 
 ## Overview
 
-Modern, CMS-driven portfolio and blog built with SvelteKit 2 and Svelte 5. Content is managed through Directus CMS and stored in Supabase PostgreSQL, enabling non-technical content updates without code deployments.
-
-**Live Site:** https://perakasem.co
-
----
-
-## Features
-
-✅ **CMS-Managed Content** - Create and edit posts via Directus admin UI
-✅ **Database-Driven** - PostgreSQL with full type safety
-✅ **Instant Updates** - Changes appear within 5 minutes
-✅ **Server-Side Rendering** - SEO-friendly with Vercel edge deployment
-✅ **Dark Mode** - Persistent theme with localStorage
-✅ **Responsive Design** - Mobile-first approach
-✅ **Custom Typography** - Three typeface system (serif, sans, mono)
-✅ **Markdown Support** - Rich text with GitHub Flavored Markdown
-✅ **Draft Workflow** - Publish/unpublish with single toggle
-
----
-
-## Tech Stack
+**Live Site:** https://perakasem.com
 
 ### Frontend
 
-- **SvelteKit 2** - Full-stack web framework
-- **Svelte 5** - Reactive UI with runes
-- **TypeScript** - End-to-end type safety
-- **Tailwind CSS 4** - Utility-first styling
-- **Vite 6** - Lightning-fast dev server
+- **SvelteKit 2**
+- **Svelte 5**
+- **TypeScript**
+- **Tailwind CSS 4**
+- **Vite 6**
 
 ### Backend
 
-- **Supabase** - PostgreSQL database + auth
-- **Directus** - Headless CMS admin
-- **Vercel** - Edge hosting + serverless functions
+- **Supabase**
+- **Directus**
 
 ### Content
 
-- **mdsvex** - Markdown processing
-- **remark-gfm** - GitHub Flavored Markdown
-- **PostgreSQL** - Structured data storage
+- **mdsvex**
+- **remark-gfm**
+- **PostgreSQL**
 
 ---
 
@@ -59,7 +30,7 @@ Modern, CMS-driven portfolio and blog built with SvelteKit 2 and Svelte 5. Conte
 ```
 ┌─────────────────┐
 │  Directus CMS   │  (Content editing UI)
-│  Render/Railway │
+│      Render     │
 └────────┬────────┘
          │ writes to
          ↓
@@ -145,10 +116,10 @@ npm run test:coverage     # Coverage report
 
 **Test Coverage:**
 
-- ✓ Critical helper functions (arrayToString, formatDate)
-- ✓ Post sorting and filtering logic
-- ✓ Tag formatting
-- ✓ Date conversion utilities
+- Critical helper functions (arrayToString, formatDate)
+- Post sorting and filtering logic
+- Tag formatting
+- Date conversion utilities
 
 ### Integration Tests
 
@@ -174,11 +145,11 @@ npm run health-check
 
 Verifies:
 
-- ✓ Environment variables
-- ✓ Database connectivity
-- ✓ Table structures
-- ✓ Dependencies
-- ✓ Type definitions
+- Environment variables
+- Database connectivity
+- Table structures
+- Dependencies
+- Type definitions
 
 ### CI/CD
 
@@ -287,34 +258,6 @@ category: "documentary"
 
 ---
 
-## Deployment
-
-### Vercel (Frontend)
-
-**Automatic deployment** on push to `main` branch.
-
-**Environment variables required:**
-
-```bash
-PUBLIC_SUPABASE_URL=...
-PUBLIC_SUPABASE_ANON_KEY=...
-```
-
-### Directus (CMS)
-
-Deploy on Render or Railway with:
-
-- Database: Connect to Supabase
-- Environment: See CMS-GUIDE.md
-
-### Supabase (Database)
-
-1. Create project
-2. Run `database/schema.sql` in SQL Editor
-3. Configure RLS policies
-
----
-
 ## Performance
 
 - **Site Config:** 5-minute server cache
@@ -325,44 +268,8 @@ Deploy on Render or Railway with:
 
 ---
 
-## Contributing
-
-This is a personal portfolio project. If you find issues or have suggestions, feel free to open an issue.
-
----
-
-## License
-
-MIT License - See LICENSE file for details
-
----
-
-## Contact
-
-**Pera Kasemsripitak**
-
-- Website: https://perakasem.co
-- Blog: https://perakasem.co/pond
-
----
-
-## Acknowledgments
-
-Built with:
-
-- [SvelteKit](https://kit.svelte.dev) - Framework
-- [Supabase](https://supabase.com) - Database
-- [Directus](https://directus.io) - CMS
-- [Vercel](https://vercel.com) - Hosting
-- [Tailwind CSS](https://tailwindcss.com) - Styling
-
 Typography:
 
 - [Hedvig Letters Serif](https://fonts.google.com/specimen/Hedvig+Letters+Serif)
 - [Instrument Sans](https://fonts.google.com/specimen/Instrument+Sans)
 - [Inconsolata](https://fonts.google.com/specimen/Inconsolata)
-
----
-
-**Last Updated:** 2025-11-19
-**Version:** 2.0.0 - CMS Integration Complete
