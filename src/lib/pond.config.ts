@@ -1,3 +1,23 @@
+/**
+ * LEGACY POND CONFIGURATION
+ * ==========================
+ *
+ * ⚠️ DEPRECATED: This file is no longer used in production
+ *
+ * Site configuration is now managed via Directus CMS and stored in Supabase.
+ * These values serve as fallback defaults if the database is unavailable.
+ *
+ * To edit site configuration:
+ * 1. Login to Directus CMS
+ * 2. Go to Content → Site Config
+ * 3. Edit values directly in the admin UI
+ *
+ * The values below are used as fallbacks in src/lib/server/config.ts
+ *
+ * @see src/lib/server/config.ts - Current database-driven configuration
+ * @see CMS-GUIDE.md - Documentation for managing config via Directus
+ */
+
 import { dev } from '$app/environment'
 
 export const title = '3rd Space'

@@ -1,3 +1,20 @@
+/**
+ * LEGACY FILE-BASED POST LOADING
+ * ================================
+ *
+ * ⚠️ DEPRECATED: This file is no longer used in production
+ *
+ * The app now uses posts-supabase.ts for database-driven content management.
+ * This file is kept for reference and as a fallback option.
+ *
+ * To revert to file-based posts:
+ * 1. Change imports in route files from 'posts-supabase' to 'posts'
+ * 2. Remove Supabase environment variables
+ * 3. Add markdown files to src/posts/
+ *
+ * @see posts-supabase.ts - Current database-driven implementation
+ */
+
 import type { Post } from '$lib/types';
 import { extractSlugFromPath, sortPostsByDate } from '$lib/utils';
 
