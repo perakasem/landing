@@ -246,7 +246,7 @@ landing/
 │   ├── components/          # Reusable UI components
 │   └── app.css              # Global styles
 ├── static/                  # Static assets
-├── database-schema.sql      # Complete DB schema
+├── database/schema.sql      # Complete DB schema
 ├── ARCHITECTURE.md          # Technical documentation
 ├── CMS-GUIDE.md            # CMS documentation
 └── package.json
@@ -310,7 +310,7 @@ Deploy on Render or Railway with:
 ### Supabase (Database)
 
 1. Create project
-2. Run `database-schema.sql` in SQL Editor
+2. Run `database/schema.sql` in SQL Editor
 3. Configure RLS policies
 
 ---

@@ -204,10 +204,14 @@ tags: ["tag1", "tag2", ...]  # Arrays stay arrays
 │   ├── app.css                           # Global styles
 │   └── tailwind.css                      # Tailwind directives
 ├── static/                               # Static assets
-├── scripts/
-│   └── migrate-posts-to-supabase.ts      # Migration script
-├── database-schema.sql                   # ⭐ Complete DB schema
-├── supabase-create-site-config-table.sql # Config table schema
+├── scripts/                              # Utility scripts
+│   ├── migrate-posts-to-supabase.ts      # Migration script
+│   └── health-check.ts                   # Pre-deployment validation
+├── database/                             # ⭐ Database schemas
+│   ├── schema.sql                        # Complete DB schema
+│   ├── create-site-config-table.sql      # Standalone site_config table
+│   ├── reset-directus-metadata.sql       # Directus cache troubleshooting
+│   └── README.md                         # Database documentation
 ├── ARCHITECTURE.md                       # ⭐ Technical reference
 ├── CMS-GUIDE.md                          # ⭐ CMS documentation
 ├── CLAUDE.md                             # This file
@@ -472,7 +476,7 @@ await db.posts().insert({
 
 ### Post Schema
 
-See `database-schema.sql` for complete schema.
+See `database/schema.sql` for complete schema.
 
 **Key fields:**
 
@@ -648,7 +652,7 @@ src/components/MyComponent.svelte
 
 ### Database Schema Changes
 
-1. **Modify schema:** Edit `database-schema.sql`
+1. **Modify schema:** Edit `database/schema.sql`
 2. **Run in Supabase:** SQL Editor → Execute
 3. **Update types:**
    ```bash
@@ -765,9 +769,9 @@ npm run check
 
 | File                                               | Purpose               |
 | -------------------------------------------------- | --------------------- |
-| `database-schema.sql`                              | ⭐ Complete DB schema |
-| `supabase-create-site-config-table.sql`            | Config table schema   |
-| `supabase-reset-directus-site-config-metadata.sql` | Troubleshooting       |
+| `database/schema.sql`                              | ⭐ Complete DB schema |
+| `database/create-site-config-table.sql`            | Config table schema   |
+| `database/reset-directus-metadata.sql` | Troubleshooting       |
 
 ### Documentation
 

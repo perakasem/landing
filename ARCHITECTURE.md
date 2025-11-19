@@ -169,12 +169,15 @@ Supabase Database ←→ Directus CMS
 │   ├── favicon.ico
 │   └── *.jpg, *.png                    # Images
 │
-├── scripts/                            # Migration scripts
-│   └── migrate-posts-to-supabase.ts    # Markdown → DB
+├── scripts/                            # Migration & utility scripts
+│   ├── migrate-posts-to-supabase.ts    # Markdown → DB migration
+│   └── health-check.ts                 # Pre-deployment validation
 │
-├── database-schema.sql                 # Complete DB schema
-├── supabase-create-site-config-table.sql  # Config table
-├── supabase-reset-directus-site-config-metadata.sql  # Troubleshooting
+├── database/                           # Database schemas & scripts
+│   ├── schema.sql                      # Complete DB schema (posts + site_config)
+│   ├── create-site-config-table.sql    # Standalone site_config table
+│   ├── reset-directus-metadata.sql     # Troubleshooting Directus cache
+│   └── README.md                       # Database documentation
 │
 ├── ARCHITECTURE.md                     # This file
 ├── CMS-GUIDE.md                        # CMS setup & usage

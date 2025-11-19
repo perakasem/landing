@@ -67,7 +67,7 @@ Users
    -- In Supabase SQL Editor, run:
    ```
 
-   Copy contents of `supabase-schema.sql`
+   Copy contents of `database/schema.sql`
 
 3. **Deploy Directus**
 
@@ -100,7 +100,7 @@ Users
 
 ### 2. Run Schema Migration
 
-**File:** `supabase-schema.sql`
+**File:** `database/schema.sql`
 
 This creates:
 
@@ -114,13 +114,13 @@ This creates:
 
 1. Go to **Supabase Dashboard** → **SQL Editor**
 2. Click **"+ New Query"**
-3. Paste contents of `supabase-schema.sql`
+3. Paste contents of `database/schema.sql`
 4. Click **"Run"**
 5. Verify: Go to **Table Editor** → You should see `posts`, `site_config`, `media`
 
 ### 3. Create Site Config Row
 
-**File:** `supabase-create-site-config-table.sql`
+**File:** `database/create-site-config-table.sql`
 
 This initializes the `site_config` table with default values.
 
@@ -382,7 +382,7 @@ Once Directus is deployed and connected to Supabase, configure the UI:
 
 #### Field Configuration
 
-See `supabase-create-site-config-table.sql` for complete field list.
+See `database/create-site-config-table.sql` for complete field list.
 
 **Key Fields:**
 
@@ -559,7 +559,7 @@ Should return 1 row.
 
 ### "Reset Directus Metadata" Helper
 
-**File:** `supabase-reset-directus-site-config-metadata.sql`
+**File:** `database/reset-directus-metadata.sql`
 
 Use this if Directus is confused about table schema:
 
