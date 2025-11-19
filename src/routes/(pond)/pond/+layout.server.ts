@@ -6,8 +6,8 @@ export const load: LayoutServerLoad = async () => {
 		const config = await getCachedSiteConfig();
 		return { config };
 	} catch (error) {
-		console.error('Error loading site config in layout:', error);
-		// Return a minimal fallback to prevent page from breaking
+		console.error('Error loading site config in pond layout:', error);
+		// Return fallback to prevent page from breaking
 		return {
 			config: {
 				title: '3rd Space',
