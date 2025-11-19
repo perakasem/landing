@@ -151,18 +151,6 @@ Verifies:
 - Dependencies
 - Type definitions
 
-### CI/CD
-
-GitHub Actions automatically run:
-
-- Type checking
-- Unit tests
-- Integration tests (if credentials available)
-- Build validation
-- Health checks
-
-See `.github/workflows/ci.yml` for details.
-
 ---
 
 ## Content Management

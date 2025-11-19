@@ -1042,23 +1042,6 @@ npm run health-check
 
 **Script:** `scripts/health-check.ts`
 
-### Continuous Integration
-
-**GitHub Actions:** `.github/workflows/ci.yml`
-
-**Jobs:**
-
-1. **Type Check** - TypeScript validation
-2. **Unit Tests** - Run on every PR/push
-3. **Integration Tests** - Run if Supabase credentials available
-4. **Build Test** - Ensure production build succeeds
-5. **Health Check** - Pre-deployment validation
-
-**Triggers:**
-
-- Push to `main` or `develop`
-- Pull requests to `main` or `develop`
-
 ### Testing Best Practices
 
 **Before Committing:**
@@ -1075,12 +1058,6 @@ npm run format   # Format code
 npm run health-check  # System validation
 npm run build        # Production build test
 ```
-
-**In CI/CD:**
-
-- All tests run automatically
-- Deployment blocked if tests fail
-- Integration tests require secrets
 
 ---
 
