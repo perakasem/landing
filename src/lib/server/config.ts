@@ -53,17 +53,24 @@ export interface SiteConfig {
  */
 export async function getSiteConfig(): Promise<SiteConfig> {
 	try {
+		console.log('[CONFIG] Fetching site config from database...');
 		const { data, error } = await db.siteConfig().select('*').limit(1).single();
 
 		if (error) {
-			console.warn('Failed to fetch site config from database, using defaults:', error.message);
+			console.error('[CONFIG] Failed to fetch site config from database:', error);
+			console.log('[CONFIG] Using default config');
 			return DEFAULT_CONFIG;
 		}
 
 		if (!data) {
-			console.warn('No site config found in database, using defaults');
+			console.warn('[CONFIG] No site config found in database, using defaults');
 			return DEFAULT_CONFIG;
 		}
+
+		console.log('[CONFIG] Successfully loaded config from database:', {
+			title: data.title,
+			hasData: !!data
+		});
 
 		// Map database fields to config interface
 		return {
@@ -100,11 +107,14 @@ const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
 export async function getCachedSiteConfig(): Promise<SiteConfig> {
 	const now = Date.now();
+	const cacheAge = cachedConfig ? now - cacheTimestamp : 0;
 
-	if (cachedConfig && now - cacheTimestamp < CACHE_TTL) {
+	if (cachedConfig && cacheAge < CACHE_TTL) {
+		console.log('[CONFIG] Using cached config (age:', Math.round(cacheAge / 1000), 'seconds)');
 		return cachedConfig;
 	}
 
+	console.log('[CONFIG] Cache expired or empty, fetching fresh config');
 	cachedConfig = await getSiteConfig();
 	cacheTimestamp = now;
 	return cachedConfig;
