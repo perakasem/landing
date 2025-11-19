@@ -1,12 +1,12 @@
 ---
-title: "Fishing Cats"
-subtitle: "From the Archives"
-form: "shortform"
-category: "short film"
-date: "2023-10-29"
-tags: ["documentary", "wildlife"]
+title: 'Fishing Cats'
+subtitle: 'From the Archives'
+form: 'shortform'
+category: 'short film'
+date: '2023-10-29'
+tags: ['documentary', 'wildlife']
 chapter: "'25"
-excerpt: "A spotlight on endangered wild cats in Thai wetlands"
+excerpt: 'A spotlight on endangered wild cats in Thai wetlands'
 published: True
 ---
 

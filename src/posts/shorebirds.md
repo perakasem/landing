@@ -1,10 +1,10 @@
 ---
-title: "On Avant-Exploration"
+title: 'On Avant-Exploration'
 subtitle: "Through making Thailand's Migratory Shorebirds"
-form: "longform"
-category: "documentary"
-date: "2025-02-23"
-tags: ["documentary", "wildlife", "exploration", "reflections"]
+form: 'longform'
+category: 'documentary'
+date: '2025-02-23'
+tags: ['documentary', 'wildlife', 'exploration', 'reflections']
 chapter: "'25"
 excerpt: "I researched, produced, and filmed a documentary on Thailand's migratory shorebirds in 2021. This is why I loved every moment of it."
 published: False
@@ -15,7 +15,6 @@ After some thought, it transformed into a piece on exploration through the lens 
 about birds here, so I recommend watching the documentary itself if that speaks to you.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/R5HpYkEQNC4?si=nJ_9oOZKkcg8qAdI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
 
 ### On Exploration
 
@@ -36,9 +35,9 @@ and most importantly, the documentation of their journeys, whether in the form o
 maps. Today, they take the form of satellite imagery, street views, and video documentaries; archives I have endlessly
 watched and studied. But consumption alone doesn't fulfill—and here I'll present an altered quote from Josh Johnson:
 
->   _"The arts can save you, but entertainment will never be your
-salvation. If you really want to see a different country, a different neighborhood, you're probably going to have to
-turn the TV off."_ [^1]
+> _"The arts can save you, but entertainment will never be your
+> salvation. If you really want to see a different country, a different neighborhood, you're probably going to have to
+> turn the TV off."_ [^1]
 
 [^1]: Via [Josh Johnson on Kendrick Lamar's Super Bowl Halftime Show](https://www.youtube.com/watch?v=TgKsG6NZSIo)
 
@@ -53,15 +52,16 @@ something a traveler cannot simply read up on beforehand or a geography nerd can
 Today, these are most often accounts of stories left untold and things overlooked and ignored. After all, what kind of
 explorer would Columbus be without his journal to bring back home?
 
-[^2]:  Here I discuss exploration in the sense of being an "explorer" and truly discovering things for the first 
-time. Avant-exploration is venturing into what is still unknown to the modern world—the undocumented (not the 
-undiscovered or absolute unseen). And of course, this framing is not to claim that one cannot personally 'explore' a 
-place or concept new to themselves. 
+[^2]:
+    Here I discuss exploration in the sense of being an "explorer" and truly discovering things for the first
+    time. Avant-exploration is venturing into what is still unknown to the modern world—the undocumented (not the
+    undiscovered or absolute unseen). And of course, this framing is not to claim that one cannot personally 'explore' a
+    place or concept new to themselves.
 
 #### An Expedition Home
 
 For all my motivation, I admittedly travel much more than I explore. Frankly, avant-exploration—the kind I crave—is
-difficult and far from glamorous or leisurely. Documenting intricate stories is certainly not something anyone (myself include	d) can focus on while in the vacation mindset. Thus, my definition of exploration can appear far-fetched and even exhausting. Yet it is precisely this framing that keeps the spirit of exploration alive, even as tourists overrun the world's farthest corners.
+difficult and far from glamorous or leisurely. Documenting intricate stories is certainly not something anyone (myself include d) can focus on while in the vacation mindset. Thus, my definition of exploration can appear far-fetched and even exhausting. Yet it is precisely this framing that keeps the spirit of exploration alive, even as tourists overrun the world's farthest corners.
 
 Enter expeditions: Trips with a purpose to explore, their agendas shaped by the destination's remoteness or
 inaccessibility. More obscure places simply make for better stories, for fewer people have seen them, fewer records
@@ -78,26 +78,28 @@ deep-jungle expeditions and trips to foreign countries.
 
 ![No passerby in this Thai village would ever imagine that this bird flew here from Siberia.](/pond-Shorebirds-siberia.png)
 
-[^3]: Much more on this in a later piece.  
+[^3]: Much more on this in a later piece.
 
 ### Colorization
 
-If you've ever been anywhere near the coast chances are you have encountered a shorebird. 
-But most don't bat an eye, and even fewer notice care to observe. Yet, vibrant birds and 
-charismatic megafauna garner immense attention from the public eye. So what is it that makes 
-these species deserve more intense conservation efforts, despite equal levels of 
-endangerment between them? 
+If you've ever been anywhere near the coast chances are you have encountered a shorebird.
+But most don't bat an eye, and even fewer notice care to observe. Yet, vibrant birds and
+charismatic megafauna garner immense attention from the public eye. So what is it that makes
+these species deserve more intense conservation efforts, despite equal levels of
+endangerment between them?
 
 - call this racism
 - people tend to want to protect nice things
 
 Strategy: shorebirds happen to have an ambassador
+
 - SBS is one of the most endangered
 - attractive/unique bill shape; smallest of its kind
 
-pivot: This is an interesting story to explore: 
+pivot: This is an interesting story to explore:
+
 - uncharted
-- invisible yet in plain sight 
+- invisible yet in plain sight
 
 - documentary making is seeing things for yourself and uncovering more facts
 - Want to make more in the future
@@ -107,7 +109,7 @@ to embark on a trip to the salt ponds, where I attended seminars and conferences
 with ornithologists, birders, and even the local government to discuss conservation efforts.
 This short week of photography and assimilation piqued my interest, and before long, it became
 the subject of my middle school personal project. Little did I know then that I would end up spending weeks—my whole
-winter holiday—caked in mud, salt, and sun, laying in the very salt flats I had just visited. 
+winter holiday—caked in mud, salt, and sun, laying in the very salt flats I had just visited.
 
 - planning
 - shooting

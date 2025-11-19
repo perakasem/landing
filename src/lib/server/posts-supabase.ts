@@ -47,7 +47,7 @@ export async function getPosts(): Promise<Post[]> {
 
 	// Map database rows to Post type
 	// Convert JSONB arrays to strings for single-value fields
-	return (data || []).map((row) => ({
+	return (data || []).map((row: any) => ({
 		id: row.id,
 		slug: row.slug,
 		title: row.title,
@@ -77,7 +77,7 @@ export async function getAllPosts(): Promise<Post[]> {
 		return [];
 	}
 
-	return (data || []).map((row) => ({
+	return (data || []).map((row: any) => ({
 		id: row.id,
 		slug: row.slug,
 		title: row.title,
@@ -107,20 +107,21 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 		return null;
 	}
 
+	const row: any = data;
 	return {
-		id: data.id,
-		slug: data.slug,
-		title: data.title,
-		subtitle: data.subtitle || '',
-		form: arrayToString(data.form), // ["longform"] → "longform"
-		category: arrayToString(data.category), // ["documentary"] → "documentary"
-		date: data.date,
-		tags: data.tags || [], // Keep as array
-		chapter: arrayToString(data.chapter), // ["'25"] → "'25"
-		excerpt: data.excerpt,
-		content: data.content,
-		published: data.published,
-		featuredImage: data.featured_image || undefined
+		id: row.id,
+		slug: row.slug,
+		title: row.title,
+		subtitle: row.subtitle || '',
+		form: arrayToString(row.form), // ["longform"] → "longform"
+		category: arrayToString(row.category), // ["documentary"] → "documentary"
+		date: row.date,
+		tags: row.tags || [], // Keep as array
+		chapter: arrayToString(row.chapter), // ["'25"] → "'25"
+		excerpt: row.excerpt,
+		content: row.content,
+		published: row.published,
+		featuredImage: row.featured_image || undefined
 	};
 }
 
@@ -161,7 +162,8 @@ export async function getSiteConfig<T = unknown>(key: string): Promise<T | null>
 		return null;
 	}
 
-	return data.value as T;
+	const row: any = data;
+	return row.value as T;
 }
 
 /**

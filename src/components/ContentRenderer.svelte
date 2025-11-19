@@ -67,7 +67,7 @@
 		<!-- Custom component rendering -->
 		{#if block.componentName === 'TechStacks'}
 			{@const TechStacks = await import('./TechStacks.svelte')}
-			<TechStacks.default {...block.props} />
+			<TechStacks.default {...block.props as any} />
 		{/if}
 	{/if}
 {/each}

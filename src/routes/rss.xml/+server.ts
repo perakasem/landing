@@ -1,14 +1,14 @@
-import { getCachedSiteConfig } from '$lib/server/config'
-import type { Post } from '$lib/types'
+import { getCachedSiteConfig } from '$lib/server/config';
+import type { Post } from '$lib/types';
 
 export async function GET({ fetch }) {
-    const response = await fetch('api/posts')
-    const posts: Post[] = await response.json()
-	const config = await getCachedSiteConfig()
+	const response = await fetch('api/posts');
+	const posts: Post[] = await response.json();
+	const config = await getCachedSiteConfig();
 
-    const headers = { 'Content-Type': 'application/xml' }
+	const headers = { 'Content-Type': 'application/xml' };
 
-    const xml = `
+	const xml = `
 		<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
 			<channel>
 				<title>${config.title}</title>
@@ -16,8 +16,8 @@ export async function GET({ fetch }) {
 				<link>${config.url}</link>
 				<atom:link href="${config.url}/rss.xml" rel="self" type="application/rss+xml"/>
 				${posts
-        .map(
-            (post) => `
+					.map(
+						(post) => `
 						<item>
 							<title>${post.title}</title>
 							<description>${post.excerpt}</description>
@@ -26,11 +26,11 @@ export async function GET({ fetch }) {
 							<pubDate>${new Date(post.date).toUTCString()}</pubDate>
 						</item>
 					`
-        )
-        .join('')}
+					)
+					.join('')}
 			</channel>
 		</rss>
-	`.trim()
+	`.trim();
 
-    return new Response(xml, { headers })
+	return new Response(xml, { headers });
 }

@@ -5,8 +5,11 @@
 	 * Adapts styling for mobile vs desktop
 	 */
 
-	let { title, subtitle, isMobile = false }: { title: string; subtitle: string; isMobile?: boolean } =
-		$props();
+	let {
+		title,
+		subtitle,
+		isMobile = false
+	}: { title: string; subtitle: string; isMobile?: boolean } = $props();
 </script>
 
 <div class="post-preview">

@@ -1,87 +1,89 @@
 <script lang="ts">
-    import { slide } from 'svelte/transition';
+	import { slide } from 'svelte/transition';
 
-    type MenuItem = {
-        id: string;
-        label: string;
-        isAbsolute?: boolean;
-        content: {
-            href?: string;
-            label: string;
-            external?: boolean;
-        }[];
-    };
+	type MenuItem = {
+		id: string;
+		label: string;
+		isAbsolute?: boolean;
+		content: {
+			href?: string;
+			label: string;
+			external?: boolean;
+		}[];
+	};
 
-    const menuItems: MenuItem[] = [
-        {
-            id: 'bio',
-            label: 'About',
-            content: [
-                { href: '/bio', label: 'Bio', external: false },
-                { href: '/construction', label: 'Resumé', external: false },
-                { href: '/now', label: 'Now', external: false }
-            ]
-        },
-        {
-            id: 'works',
-            label: 'Works',
-            content: [
-                { href: 'https://perakasem.crd.co', label: 'Flicks', external: true },
-                { href: '/pond', label: '3rd Space', external: false },
-                { href: '/construction', label: 'Portfolio', external: false },
-                { href: '/construction', label: 'Quatre', external: false }
-            ]
-        },
-        {
-            id: 'connect',
-            label: 'Connect',
-            content: [
-                { href: 'https://instagram.com/perakasem', label: 'Instagram', external: true },
-                { href: 'https://github.com/perakasem', label: 'Github', external: true },
-                { href: 'https://linkedin.com/in/perakasem', label: 'LinkedIn', external: true },
-                { href: 'mailto:pkasemsripitak@gmail.com', label: 'Email' }
-            ]
-        }
-    ];
+	const menuItems: MenuItem[] = [
+		{
+			id: 'bio',
+			label: 'About',
+			content: [
+				{ href: '/bio', label: 'Bio', external: false },
+				{ href: '/construction', label: 'Resumé', external: false },
+				{ href: '/now', label: 'Now', external: false }
+			]
+		},
+		{
+			id: 'works',
+			label: 'Works',
+			content: [
+				{ href: 'https://perakasem.crd.co', label: 'Flicks', external: true },
+				{ href: '/pond', label: '3rd Space', external: false },
+				{ href: '/construction', label: 'Portfolio', external: false },
+				{ href: '/construction', label: 'Quatre', external: false }
+			]
+		},
+		{
+			id: 'connect',
+			label: 'Connect',
+			content: [
+				{ href: 'https://instagram.com/perakasem', label: 'Instagram', external: true },
+				{ href: 'https://github.com/perakasem', label: 'Github', external: true },
+				{ href: 'https://linkedin.com/in/perakasem', label: 'LinkedIn', external: true },
+				{ href: 'mailto:pkasemsripitak@gmail.com', label: 'Email' }
+			]
+		}
+	];
 
-    let activeSection: string | null = null;
+	let activeSection: string | null = null;
 
-    const toggleSection = (id: string) => {
-        activeSection = activeSection === id ? null : id;
-    };
+	const toggleSection = (id: string) => {
+		activeSection = activeSection === id ? null : id;
+	};
 </script>
 
 <div>
-    <div>Pera Kasemsripitak</div>
+	<div>Pera Kasemsripitak</div>
 
-    {#each menuItems as item}
-        <div class="relative">
-            <button
-                on:click|preventDefault={() => toggleSection(item.id)}
-                class="block text-left hover:underline cursor-pointer {activeSection === item.id ? 'underline' : ''}"
-            >
-                {item.label}
-            </button>
-            {#if activeSection === item.id}
-                <div transition:slide class="pl-6">
-                    {#each item.content as content}
-                        <div>
-                            {#if content.href}
-                                <a
-                                    href={content.href}
-                                    target={content.external ? "_blank" : undefined}
-                                    rel={content.external ? "noopener noreferrer" : undefined}
-                                    class="self-start"
-                                >
-                                {content.label}
-                                </a>
-                            {:else}
-                                {content.label}
-                            {/if}
-                        </div>
-                    {/each}
-                </div>
-            {/if}
-        </div>
-    {/each}
+	{#each menuItems as item}
+		<div class="relative">
+			<button
+				on:click|preventDefault={() => toggleSection(item.id)}
+				class="block cursor-pointer text-left hover:underline {activeSection === item.id
+					? 'underline'
+					: ''}"
+			>
+				{item.label}
+			</button>
+			{#if activeSection === item.id}
+				<div transition:slide class="pl-6">
+					{#each item.content as content}
+						<div>
+							{#if content.href}
+								<a
+									href={content.href}
+									target={content.external ? '_blank' : undefined}
+									rel={content.external ? 'noopener noreferrer' : undefined}
+									class="self-start"
+								>
+									{content.label}
+								</a>
+							{:else}
+								{content.label}
+							{/if}
+						</div>
+					{/each}
+				</div>
+			{/if}
+		</div>
+	{/each}
 </div>

@@ -2,6 +2,6 @@ import type { Post } from '$lib/types';
 import { getPosts } from '$lib/server/posts-supabase';
 
 export async function load() {
-    const posts: Post[] = await getPosts();
-    return { posts };
+	const posts: Post[] = await getPosts();
+	return { posts };
 }

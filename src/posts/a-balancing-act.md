@@ -1,18 +1,17 @@
 ---
-title: "A Balancing Act"
-subtitle: "Strange Symmetries"
-form: "shortform"
-category: "notes"
-date: "2025-02-28"
-tags: ["thoughts"]
+title: 'A Balancing Act'
+subtitle: 'Strange Symmetries'
+form: 'shortform'
+category: 'notes'
+date: '2025-02-28'
+tags: ['thoughts']
 chapter: "'25"
-excerpt: "Strange Symmetries"
+excerpt: 'Strange Symmetries'
 published: False
 ---
 
 yk what's funny, I had the exact same experience, movement for movement, with a guy i'm watching right now. Tiptoeing with both fingers on the beautifully
 poured latte art bowl, setting it down, then quickly whipping out the phone for a quick shot. HAHAHA.
-
 
 Is this a universal experience?
 

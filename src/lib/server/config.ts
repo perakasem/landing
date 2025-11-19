@@ -67,29 +67,30 @@ export async function getSiteConfig(): Promise<SiteConfig> {
 			return DEFAULT_CONFIG;
 		}
 
+		const row: any = data;
 		console.log('[CONFIG] Successfully loaded config from database:', {
-			title: data.title,
-			hasData: !!data
+			title: row.title,
+			hasData: !!row
 		});
 
 		// Map database fields to config interface
 		return {
-			title: data.title,
-			description: data.description,
-			currentChapter: data.current_chapter,
-			url: dev ? 'http://localhost:5173/pond' : data.base_url,
-			watchUrl: data.watch_url,
-			watch: data.watch_title,
-			watchSource: data.watch_source,
-			mediaUrl: data.media_url,
-			media: data.media_title,
-			mediaSource: data.media_source,
-			readUrl: data.read_url,
-			read: data.read_title,
-			readSource: data.read_source,
-			artworkSrc: data.artwork_src,
-			artwork: data.artwork_title,
-			artist: data.artwork_artist
+			title: row.title,
+			description: row.description,
+			currentChapter: row.current_chapter,
+			url: dev ? 'http://localhost:5173/pond' : row.base_url,
+			watchUrl: row.watch_url,
+			watch: row.watch_title,
+			watchSource: row.watch_source,
+			mediaUrl: row.media_url,
+			media: row.media_title,
+			mediaSource: row.media_source,
+			readUrl: row.read_url,
+			read: row.read_title,
+			readSource: row.read_source,
+			artworkSrc: row.artwork_src,
+			artwork: row.artwork_title,
+			artist: row.artwork_artist
 		};
 	} catch (err) {
 		console.error('Error fetching site config:', err);

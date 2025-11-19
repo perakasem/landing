@@ -1,163 +1,199 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { sideImage } from "$lib/stores/sideImageStore";
-    import { attributionClass } from '$lib/stores/attributionStore';
-    import ScrollProgress from "../../../components/ScrollProgress.svelte";
-    import AsteriskBig from "../../../components/AsteriskBig.svelte";
-    import AsteriskSmall from "../../../components/AsteriskSmall.svelte";
+	import { onMount } from 'svelte';
+	import { sideImage } from '$lib/stores/sideImageStore';
+	import { attributionClass } from '$lib/stores/attributionStore';
+	import ScrollProgress from '../../../components/ScrollProgress.svelte';
+	import AsteriskBig from '../../../components/AsteriskBig.svelte';
+	import AsteriskSmall from '../../../components/AsteriskSmall.svelte';
 
-    const mobileBreakpoint = 640;
-    let isMobile = false;
-    let scrolled = false;
+	const mobileBreakpoint = 640;
+	let isMobile = false;
+	let scrolled = false;
 
-    function updateViewport() {
-        isMobile = window.innerWidth < mobileBreakpoint;
-    }
+	function updateViewport() {
+		isMobile = window.innerWidth < mobileBreakpoint;
+	}
 
-    function handleScroll(event: Event) {
-        const target = event.currentTarget as HTMLElement | null;
-        if (!target) return;
+	function handleScroll(event: Event) {
+		const target = event.currentTarget as HTMLElement | null;
+		if (!target) return;
 
-        scrolled = target.scrollTop > 60;
-    }
+		scrolled = target.scrollTop > 60;
+	}
 
-    // Set a default attribution class
-    attributionClass.set('attribution-typo');
+	// Set a default attribution class
+	attributionClass.set('attribution-typo');
 
-    onMount(() => {
-        sideImage.set('');
-        updateViewport();
-        window.addEventListener('resize', updateViewport);
-        return () => window.removeEventListener('resize', updateViewport);
-    });
+	onMount(() => {
+		sideImage.set('');
+		updateViewport();
+		window.addEventListener('resize', updateViewport);
+		return () => window.removeEventListener('resize', updateViewport);
+	});
 
-    export const load = () => {
-        return {
-            scrollable: true
-        };
-    };
+	export const load = () => {
+		return {
+			scrollable: true
+		};
+	};
 </script>
 
 {#if isMobile}
-    <ScrollProgress />
-    <div class="p-8 flex flex-col h-full overflow-y-auto" on:scroll={handleScroll}>
-        <!-- Home icon with fading opacity when scrolled -->
-        <div class="absolute aspect-square w-12 transition-opacity duration-200" class:opacity-0={scrolled}>
-            <AsteriskSmall/>
-        </div>
-        <!-- Terms of Service content for mobile -->
-        <div class="pt-12 mb-40 mt-20">
-            <h1 class="sans-typo-title-small text-xl mb-1 text-wrap">Terms of Use</h1>
-            <p class="sans-typo-detail text-sm mb-8 text-wrap">Effective on February 13, 2025</p>
-            <ol class="list-decimal pl-4 serif-typo-body-small">
-                <li class="mb-4">
-                    <p class="mb-2"><strong>Acceptance of Terms</strong></p>
-                    <p>
-                        You may only use this website if you accept these Terms of Use. By accessing and using this website, you acknowledge and accept to be bound by these Terms of Use.
-                    </p>
-                </li>
-                <li class="mb-4">
-                    <p class="mb-2"><strong>Purpose of the Site</strong></p>
-                    <p>
-                        I am providing this site solely for informational and portfolio purposes, to showcase my personal work, projects, and creative content. It is not intended to constitute a professional service, contract, or offer of employment.
-                    </p>
-                </li>
-                <li class="mb-4">
-                    <p class="mb-2"><strong>Intellectual Property</strong></p>
-                    <p>
-                        All content on this Site, including text, images, graphics, and design, is owned by or licensed to me (Pera Kasemsripitak), except where explicitly noted otherwise. You may not copy, distribute, or reproduce any content without permission.
-                    </p>
-                </li>
-                <li class="mb-4">
-                    <p class="mb-2"><strong>Use of the Site</strong></p>
-                    <p>
-                        This website is provided solely for informational and portfolio purposes. Its contents are intended to showcase personal work and should not be used in connection with any activities that are unlawful or that may disrupt its proper functioning. Visitors are respectfully requested to adhere to its intended use.                    </p>
-                </li>
-                <li class="mb-4">
-                    <p class="mb-2"><strong>Disclaimer</strong></p>
-                    <p>
-                        This Site is provided "as is" without warranties of any kind, including but not limited to the accuracy or completeness of the content. I am not responsible for any errors, downtime, or damages including any loss of data or profits resulting from the use of this Site.
-                    </p>
-                </li>
-                <li class="mb-4">
-                    <p class="mb-2"><strong>External Links</strong></p>
-                    <p>
-                        This Site may include links to third-party websites. I am not responsible for the content or policies of external sites.
-                    </p>
-                </li>
-                <li class="mb-4">
-                    <p class="mb-2"><strong>Changes to These Terms</strong></p>
-                    <p>
-                        I reserve the right to modify these Terms of Use at any time without prior notice. The latest version will always be available on this page and it is your responsibility to review these terms periodically for any changes.
-                    </p>
-                </li>
-            </ol>
-            <div class="flex justify-between">
-                <a href="/" class="sans-typo-detail hover:underline">Home</a>
-                <a href="/privacy" class="sans-typo-detail hover:underline">Privacy Policy</a>
-            </div>
-        </div>
-    </div>
+	<ScrollProgress />
+	<div class="flex h-full flex-col overflow-y-auto p-8" on:scroll={handleScroll}>
+		<!-- Home icon with fading opacity when scrolled -->
+		<div
+			class="absolute aspect-square w-12 transition-opacity duration-200"
+			class:opacity-0={scrolled}
+		>
+			<AsteriskSmall />
+		</div>
+		<!-- Terms of Service content for mobile -->
+		<div class="mt-20 mb-40 pt-12">
+			<h1 class="sans-typo-title-small mb-1 text-xl text-wrap">Terms of Use</h1>
+			<p class="sans-typo-detail mb-8 text-sm text-wrap">Effective on February 13, 2025</p>
+			<ol class="serif-typo-body-small list-decimal pl-4">
+				<li class="mb-4">
+					<p class="mb-2"><strong>Acceptance of Terms</strong></p>
+					<p>
+						You may only use this website if you accept these Terms of Use. By accessing and using
+						this website, you acknowledge and accept to be bound by these Terms of Use.
+					</p>
+				</li>
+				<li class="mb-4">
+					<p class="mb-2"><strong>Purpose of the Site</strong></p>
+					<p>
+						I am providing this site solely for informational and portfolio purposes, to showcase my
+						personal work, projects, and creative content. It is not intended to constitute a
+						professional service, contract, or offer of employment.
+					</p>
+				</li>
+				<li class="mb-4">
+					<p class="mb-2"><strong>Intellectual Property</strong></p>
+					<p>
+						All content on this Site, including text, images, graphics, and design, is owned by or
+						licensed to me (Pera Kasemsripitak), except where explicitly noted otherwise. You may
+						not copy, distribute, or reproduce any content without permission.
+					</p>
+				</li>
+				<li class="mb-4">
+					<p class="mb-2"><strong>Use of the Site</strong></p>
+					<p>
+						This website is provided solely for informational and portfolio purposes. Its contents
+						are intended to showcase personal work and should not be used in connection with any
+						activities that are unlawful or that may disrupt its proper functioning. Visitors are
+						respectfully requested to adhere to its intended use.
+					</p>
+				</li>
+				<li class="mb-4">
+					<p class="mb-2"><strong>Disclaimer</strong></p>
+					<p>
+						This Site is provided "as is" without warranties of any kind, including but not limited
+						to the accuracy or completeness of the content. I am not responsible for any errors,
+						downtime, or damages including any loss of data or profits resulting from the use of
+						this Site.
+					</p>
+				</li>
+				<li class="mb-4">
+					<p class="mb-2"><strong>External Links</strong></p>
+					<p>
+						This Site may include links to third-party websites. I am not responsible for the
+						content or policies of external sites.
+					</p>
+				</li>
+				<li class="mb-4">
+					<p class="mb-2"><strong>Changes to These Terms</strong></p>
+					<p>
+						I reserve the right to modify these Terms of Use at any time without prior notice. The
+						latest version will always be available on this page and it is your responsibility to
+						review these terms periodically for any changes.
+					</p>
+				</li>
+			</ol>
+			<div class="flex justify-between">
+				<a href="/" class="sans-typo-detail hover:underline">Home</a>
+				<a href="/privacy" class="sans-typo-detail hover:underline">Privacy Policy</a>
+			</div>
+		</div>
+	</div>
 {:else}
-    <ScrollProgress />
-    <div class="p-8 flex flex-col h-full overflow-y-auto" on:scroll={handleScroll}>
-        <!-- Home icon with fading opacity when scrolled -->
-        <div class="absolute aspect-square w-16 transition-opacity duration-200" class:opacity-0={scrolled}>
-            <AsteriskBig/>
-        </div>
-        <!-- Terms of Service content for desktop -->
-        <div class="pt-40 flex flex-col items-center mb-40">
-            <div class="max-w-140 flex flex-col">
-                <h1 class="sans-typo-title">Terms of Use</h1>
-                <p class="sans-typo-detail">Effective on February 13, 2025</p>
-                <ol class="list-decimal p-8 serif-typo-body text-wrap">
-                    <li class="mb-4">
-                        <p class="mb-2"><strong>Acceptance of Terms</strong></p>
-                        <p>
-                            You may only use this website if you accept these Terms of Use. By accessing and using this website, you acknowledge and accept to be bound by these Terms of Use.
-                        </p>
-                    </li>
-                    <li class="mb-4">
-                        <p class="mb-2"><strong>Purpose of the Site</strong></p>
-                        <p>
-                            I am providing this site solely for informational and portfolio purposes, to showcase my personal work, projects, and creative content. It is not intended to constitute a professional service, contract, or offer of employment.
-                        </p>
-                    </li>
-                    <li class="mb-4">
-                        <p class="mb-2"><strong>Intellectual Property</strong></p>
-                        <p>
-                            All content on this Site, including text, images, graphics, and design, is owned by or licensed to me (Pera Kasemsripitak), except where explicitly noted otherwise. You may not copy, distribute, or reproduce any content without permission.
-                        </p>
-                    </li>
-                    <li class="mb-4">
-                        <p class="mb-2"><strong>Use of the Site</strong></p>
-                        <p>
-                            This website is provided solely for informational and portfolio purposes. Its contents are intended to showcase personal work and should not be used in connection with any activities that are unlawful or that may disrupt its proper functioning. Visitors are respectfully requested to adhere to its intended use.                    </p>
-                    </li>
-                    <li class="mb-4">
-                        <p class="mb-2"><strong>Disclaimer</strong></p>
-                        <p>
-                            This Site is provided "as is" without warranties of any kind, including but not limited to the accuracy or completeness of the content. I am not responsible for any errors, downtime, or damages including any loss of data or profits resulting from the use of this Site.
-                        </p>
-                    </li>
-                    <li class="mb-4">
-                        <p class="mb-2"><strong>External Links</strong></p>
-                        <p>
-                            This Site may include links to third-party websites. I am not responsible for the content or policies of external sites.
-                        </p>
-                    </li>
-                    <li class="mb-4">
-                        <p class="mb-2"><strong>Changes to These Terms</strong></p>
-                        <p>
-                            I reserve the right to modify these Terms of Use at any time without prior notice. The latest version will always be available on this page and it is your responsibility to review these terms periodically for any changes.
-                        </p>
-                    </li>
-                </ol>
-                <div class="flex justify-between">
-                    <a href="/" class="sans-typo-detail hover:underline">Home</a>
-                    <a href="/privacy" class="sans-typo-detail hover:underline">Privacy Policy</a>
-                </div>
-            </div>
-        </div>
-    </div>
+	<ScrollProgress />
+	<div class="flex h-full flex-col overflow-y-auto p-8" on:scroll={handleScroll}>
+		<!-- Home icon with fading opacity when scrolled -->
+		<div
+			class="absolute aspect-square w-16 transition-opacity duration-200"
+			class:opacity-0={scrolled}
+		>
+			<AsteriskBig />
+		</div>
+		<!-- Terms of Service content for desktop -->
+		<div class="mb-40 flex flex-col items-center pt-40">
+			<div class="flex max-w-140 flex-col">
+				<h1 class="sans-typo-title">Terms of Use</h1>
+				<p class="sans-typo-detail">Effective on February 13, 2025</p>
+				<ol class="serif-typo-body list-decimal p-8 text-wrap">
+					<li class="mb-4">
+						<p class="mb-2"><strong>Acceptance of Terms</strong></p>
+						<p>
+							You may only use this website if you accept these Terms of Use. By accessing and using
+							this website, you acknowledge and accept to be bound by these Terms of Use.
+						</p>
+					</li>
+					<li class="mb-4">
+						<p class="mb-2"><strong>Purpose of the Site</strong></p>
+						<p>
+							I am providing this site solely for informational and portfolio purposes, to showcase
+							my personal work, projects, and creative content. It is not intended to constitute a
+							professional service, contract, or offer of employment.
+						</p>
+					</li>
+					<li class="mb-4">
+						<p class="mb-2"><strong>Intellectual Property</strong></p>
+						<p>
+							All content on this Site, including text, images, graphics, and design, is owned by or
+							licensed to me (Pera Kasemsripitak), except where explicitly noted otherwise. You may
+							not copy, distribute, or reproduce any content without permission.
+						</p>
+					</li>
+					<li class="mb-4">
+						<p class="mb-2"><strong>Use of the Site</strong></p>
+						<p>
+							This website is provided solely for informational and portfolio purposes. Its contents
+							are intended to showcase personal work and should not be used in connection with any
+							activities that are unlawful or that may disrupt its proper functioning. Visitors are
+							respectfully requested to adhere to its intended use.
+						</p>
+					</li>
+					<li class="mb-4">
+						<p class="mb-2"><strong>Disclaimer</strong></p>
+						<p>
+							This Site is provided "as is" without warranties of any kind, including but not
+							limited to the accuracy or completeness of the content. I am not responsible for any
+							errors, downtime, or damages including any loss of data or profits resulting from the
+							use of this Site.
+						</p>
+					</li>
+					<li class="mb-4">
+						<p class="mb-2"><strong>External Links</strong></p>
+						<p>
+							This Site may include links to third-party websites. I am not responsible for the
+							content or policies of external sites.
+						</p>
+					</li>
+					<li class="mb-4">
+						<p class="mb-2"><strong>Changes to These Terms</strong></p>
+						<p>
+							I reserve the right to modify these Terms of Use at any time without prior notice. The
+							latest version will always be available on this page and it is your responsibility to
+							review these terms periodically for any changes.
+						</p>
+					</li>
+				</ol>
+				<div class="flex justify-between">
+					<a href="/" class="sans-typo-detail hover:underline">Home</a>
+					<a href="/privacy" class="sans-typo-detail hover:underline">Privacy Policy</a>
+				</div>
+			</div>
+		</div>
+	</div>
 {/if}
