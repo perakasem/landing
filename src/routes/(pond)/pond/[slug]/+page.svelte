@@ -59,7 +59,7 @@
 {#if isMobile}
 	<div bind:this={element} class="scroll-container">
 		<ScrollProgress />
-		<article class="text-wrap mx-8 py-42">
+		<article class="mx-8 py-42 text-wrap">
 			<div class="relative flex flex-col gap-2">
 				<a href="/pond" class="button-secondary-compact"> &lt; Home </a>
 				<p class="sans-typo-detail my-4">{formatDate(data.meta.date)}</p>
@@ -73,8 +73,8 @@
 					<p>Loading post content...</p>
 				{/if}
 			</div>
-			<hr class="h-px bg-light mt-16 mb-4 w-full" />
-			<div class="flex flex-row sans-typo-detail gap-2 my-4">
+			<hr class="bg-light mt-16 mb-4 h-px w-full" />
+			<div class="sans-typo-detail my-4 flex flex-row gap-2">
 				<p class="font-semibold">categories:</p>
 				<div class="sans-typo-detail flex flex-wrap gap-x-2">
 					{#each data.meta.tags as tag}
@@ -82,9 +82,9 @@
 					{/each}
 				</div>
 			</div>
-			<div class="flex flex-col gap-4 mono-typo-nav">
+			<div class="mono-typo-nav flex flex-col gap-4">
 				{#if data.previousPost || data.nextPost}
-					<nav class="flex justify-between items-center mt-4">
+					<nav class="mt-4 flex items-center justify-between">
 						{#if data.previousPost}
 							<div class="text-left">
 								<p class="font-bold">&lt Previous</p>
@@ -108,7 +108,7 @@
 					</nav>
 				{/if}
 			</div>
-			<hr class="h-px bg-light my-4 w-full" />
+			<hr class="bg-light my-4 h-px w-full" />
 			<BackToTopButton {element} variant="boxed" />
 		</article>
 	</div>
@@ -156,16 +156,16 @@
 {:else}
 	<div bind:this={element} class="scroll-container px-36">
 		<ScrollProgress />
-		<article class="text-wrap mx-auto max-w-[750px] py-42">
+		<article class="mx-auto max-w-[750px] py-42 text-wrap">
 			<div class="relative flex flex-row justify-between">
 				<p class="sans-typo-detail mb-4">{formatDate(data.meta.date)}</p>
-				<div class="flex flex-wrap mono-typo-nav gap-2 pl-4 justify-end text-right">
+				<div class="mono-typo-nav flex flex-wrap justify-end gap-2 pl-4 text-right">
 					/
-					<a href="/pond" class="hover:underline underline decoration-wavy"> Home </a>
+					<a href="/pond" class="underline decoration-wavy hover:underline"> Home </a>
 					<p>/ {data.meta.title}</p>
 				</div>
 			</div>
-			<h1 class="-ml-8 mb-4">{data.meta.title}</h1>
+			<h1 class="mb-4 -ml-8">{data.meta.title}</h1>
 			<h2>{data.meta.excerpt}</h2>
 			<div class="content">
 				{#if Content}
@@ -174,9 +174,9 @@
 					<p>Loading post content...</p>
 				{/if}
 			</div>
-			<hr class="h-px bg-light mt-16 mb-4 w-full" />
+			<hr class="bg-light mt-16 mb-4 h-px w-full" />
 			<div class="flex flex-row justify-between">
-				<div class="sans-typo-detail flex flex-row gap-2 mb-8">
+				<div class="sans-typo-detail mb-8 flex flex-row gap-2">
 					<p class="font-semibold">categories:</p>
 					<div class="flex flex-wrap gap-x-2">
 						{#each data.meta.tags as tag}
@@ -186,9 +186,9 @@
 				</div>
 				<BackToTopButton {element} variant="minimal" />
 			</div>
-			<div class="flex flex-col gap-2 mono-typo-nav">
+			<div class="mono-typo-nav flex flex-col gap-2">
 				{#if data.previousPost || data.nextPost}
-					<nav class="flex justify-between items-center mt-4">
+					<nav class="mt-4 flex items-center justify-between">
 						{#if data.previousPost}
 							<div class="text-left">
 								<p class="font-bold">Previous</p>

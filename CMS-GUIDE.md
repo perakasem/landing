@@ -56,21 +56,26 @@ Users
 ### 5-Minute Setup
 
 1. **Create Supabase project**
+
    - Sign up at https://supabase.com
    - Create new project
    - Note your project URL and anon key
 
 2. **Run database migration**
+
    ```sql
    -- In Supabase SQL Editor, run:
    ```
+
    Copy contents of `supabase-schema.sql`
 
 3. **Deploy Directus**
+
    - See [Directus Deployment](#directus-deployment)
    - Connect to your Supabase database
 
 4. **Configure Vercel**
+
    ```bash
    # Add environment variables:
    PUBLIC_SUPABASE_URL=your-project-url
@@ -98,6 +103,7 @@ Users
 **File:** `supabase-schema.sql`
 
 This creates:
+
 - `posts` table - Blog post content
 - `site_config` table - Site configuration
 - `media` table - Image references
@@ -135,6 +141,7 @@ Go to **Settings** → **API**:
 ### Option A: Deploy on Render (Recommended)
 
 **Why Render:**
+
 - Free tier: 750 hours/month
 - Easy Docker deployment
 - Automatic HTTPS
@@ -143,12 +150,14 @@ Go to **Settings** → **API**:
 **Steps:**
 
 1. **Create Web Service**
+
    - Go to https://render.com
    - Click **"New +"** → **"Web Service"**
    - Choose **"Deploy an existing image"**
    - Image URL: `directus/directus:latest`
 
 2. **Configure Environment Variables**
+
    ```bash
    # Admin User
    ADMIN_EMAIL=your@email.com
@@ -177,6 +186,7 @@ Go to **Settings** → **API**:
    ```
 
 3. **Deploy**
+
    - Click **"Create Web Service"**
    - Wait 3-5 minutes
    - Access at: `https://your-app.onrender.com`
@@ -189,6 +199,7 @@ Go to **Settings** → **API**:
 ### Option B: Deploy on Railway
 
 **Why Railway:**
+
 - $5/month free credit
 - Faster cold starts than Render
 - Great developer experience
@@ -196,6 +207,7 @@ Go to **Settings** → **API**:
 **Steps:**
 
 1. **Create Project**
+
    - Go to https://railway.app
    - Click **"New Project"**
    - **"Deploy Docker Image"**
@@ -203,6 +215,7 @@ Go to **Settings** → **API**:
 
 2. **Add Environment Variables**
    (Same as Render, but use:)
+
    ```bash
    PUBLIC_URL=${RAILWAY_PUBLIC_DOMAIN}
    ```
@@ -224,95 +237,105 @@ Once Directus is deployed and connected to Supabase, configure the UI:
 #### Core Fields
 
 **`title`** (String)
+
 - Interface: Input
 - Required: Yes
 - Width: Full
 
 **`subtitle`** (String)
+
 - Interface: Input
 - Required: No
 - Width: Full
 
 **`form`** (JSONB)
+
 - Interface: Tags
 - Required: Yes
 - Options:
   ```json
   {
-    "placeholder": "Select form",
-    "allowCustom": false,
-    "presetChoices": [
-      {"text": "Long Form", "value": "longform"},
-      {"text": "Short Form", "value": "shortform"}
-    ]
+  	"placeholder": "Select form",
+  	"allowCustom": false,
+  	"presetChoices": [
+  		{ "text": "Long Form", "value": "longform" },
+  		{ "text": "Short Form", "value": "shortform" }
+  	]
   }
   ```
 
 **`category`** (JSONB)
+
 - Interface: Tags
 - Required: Yes
 - Options:
   ```json
   {
-    "placeholder": "Select category",
-    "allowCustom": false,
-    "presetChoices": [
-      {"text": "Documentary", "value": "documentary"},
-      {"text": "Essay", "value": "essay"},
-      {"text": "Reflection", "value": "reflection"}
-    ]
+  	"placeholder": "Select category",
+  	"allowCustom": false,
+  	"presetChoices": [
+  		{ "text": "Documentary", "value": "documentary" },
+  		{ "text": "Essay", "value": "essay" },
+  		{ "text": "Reflection", "value": "reflection" }
+  	]
   }
   ```
 
 **`chapter`** (JSONB)
+
 - Interface: Tags
 - Required: Yes
 - Options:
   ```json
   {
-    "placeholder": "Select year",
-    "allowCustom": true,
-    "presetChoices": [
-      {"text": "'25", "value": "'25"},
-      {"text": "'24", "value": "'24"}
-    ]
+  	"placeholder": "Select year",
+  	"allowCustom": true,
+  	"presetChoices": [
+  		{ "text": "'25", "value": "'25" },
+  		{ "text": "'24", "value": "'24" }
+  	]
   }
   ```
 
 **`tags`** (JSONB)
+
 - Interface: Tags
 - Required: No
 - Options:
   ```json
   {
-    "placeholder": "Add tags...",
-    "allowCustom": true
+  	"placeholder": "Add tags...",
+  	"allowCustom": true
   }
   ```
 
 **`content`** (Text)
+
 - Interface: Textarea (or Input Code for markdown)
 - Required: Yes
 - Options:
   ```json
   {
-    "language": "markdown",
-    "lineNumber": true
+  	"language": "markdown",
+  	"lineNumber": true
   }
   ```
 
 **`excerpt`** (String)
+
 - Interface: Textarea
 - Required: Yes
 - Rows: 3
 
 **`published`** (Boolean)
+
 - Interface: Boolean
 - Display: Badge
 - Default: false
 - **Note:** Make read-only in forms, use Batch Edit to publish
 
 **`date`** (Date)
+
 - Interface: Date
 - Required: Yes
 - Default: Current date
@@ -320,12 +343,14 @@ Once Directus is deployed and connected to Supabase, configure the UI:
 #### Layout Organization
 
 **Section 1: Content**
+
 - title
 - subtitle
 - content
 - excerpt
 
 **Section 2: Metadata**
+
 - form
 - category
 - chapter
@@ -333,6 +358,7 @@ Once Directus is deployed and connected to Supabase, configure the UI:
 - date
 
 **Section 3: Publishing**
+
 - published
 - created_at (read-only)
 - updated_at (read-only)
@@ -369,6 +395,7 @@ See `supabase-create-site-config-table.sql` for complete field list.
 - `artwork_src`, `artwork_title`, `artwork_artist` - Featured artwork
 
 **All fields:**
+
 - Interface: Input (or Textarea for description)
 - Display: Raw
 - Include placeholders with current values
@@ -382,6 +409,7 @@ See `supabase-create-site-config-table.sql` for complete field list.
 1. **Go to Directus** → **Content** → **Posts**
 2. Click **"Create Item"**
 3. Fill in fields:
+
    - Title (required)
    - Subtitle (optional)
    - Content (markdown)
@@ -398,12 +426,14 @@ See `supabase-create-site-config-table.sql` for complete field list.
 ### Publishing a Post
 
 **Option 1: Batch Edit** (Recommended)
+
 1. Select post(s) by clicking checkbox
 2. Click **"Batch Edit"** at top
 3. Set `published` to `true`
 4. Click **"Save"**
 
 **Option 2: Individual Edit**
+
 1. Open post
 2. Change `published` to `true`
 3. Click **"Save"**
@@ -419,12 +449,15 @@ See `supabase-create-site-config-table.sql` for complete field list.
 ### Unpublishing/Archiving
 
 **Unpublish:**
+
 - Batch Edit → Set `published` to `false`
 
 **Archive:**
+
 - Click **"Archive"** button → Post hidden but not deleted
 
 **Delete:**
+
 - Click **"Delete"** button → Permanently removes post
 
 ---
@@ -436,12 +469,15 @@ See `supabase-create-site-config-table.sql` for complete field list.
 **Check:**
 
 1. **Post is published**
+
    - In Directus, verify `published` = true
 
 2. **Date is not in future**
+
    - Posts with future dates won't show
 
 3. **Chapter filter**
+
    - On `/pond`, only current chapter posts show
    - Check `/pond/archive` to see all posts
 
@@ -478,9 +514,11 @@ Then hard refresh Directus.
 **Check:**
 
 1. **Database credentials correct**
+
    - `DB_HOST`, `DB_PASSWORD`, etc.
 
 2. **Supabase allows connections**
+
    - Check Supabase firewall rules
    - Verify database is running
 
@@ -500,16 +538,19 @@ Then hard refresh Directus.
 ```
 
 **If you see:**
+
 ```
 [CONFIG] Using default config
 ```
 
 Then check:
+
 1. `site_config` table has data
 2. RLS policy allows public SELECT
 3. Environment variables set in Vercel
 
 **Verify data exists:**
+
 ```sql
 SELECT * FROM site_config;
 ```
@@ -559,14 +600,17 @@ src/
 ### Database Schema
 
 **Tables:**
+
 - `posts` - Blog post content and metadata
 - `site_config` - Site-wide configuration (singleton)
 - `media` - Media file references
 
 **Views:**
+
 - `published_posts` - Only published posts (for queries)
 
 **Policies:**
+
 - Public SELECT on all tables
 - Authenticated UPDATE on `site_config`
 - Service role can do anything
@@ -574,12 +618,14 @@ src/
 ### Environment Variables
 
 **Vercel:**
+
 ```bash
 PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
 PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ```
 
 **Directus:**
+
 ```bash
 DB_CLIENT=pg
 DB_HOST=db.xxxxx.supabase.co
@@ -601,6 +647,7 @@ PUBLIC_URL=https://directus.onrender.com
 **App receives:** `"longform"`, `"documentary"`, `"'25"`
 
 **Conversion:**
+
 - `arrayToString()` in `posts-supabase.ts`
 - `stringToArray()` in migration script
 
@@ -609,11 +656,13 @@ PUBLIC_URL=https://directus.onrender.com
 ### Caching Strategy
 
 **Site Config:**
+
 - 5-minute server-side cache
 - Falls back to hardcoded defaults if DB unavailable
 - Cleared on Vercel redeploy
 
 **Posts:**
+
 - No caching (always fresh from DB)
 - Sorted by date on query
 
@@ -657,6 +706,7 @@ PUBLIC_URL=https://directus.onrender.com
 ## Support
 
 ### Documentation
+
 - SvelteKit: https://kit.svelte.dev
 - Supabase: https://supabase.com/docs
 - Directus: https://docs.directus.io
@@ -664,16 +714,19 @@ PUBLIC_URL=https://directus.onrender.com
 ### Common Tasks
 
 **Update dependencies:**
+
 ```bash
 npm update
 ```
 
 **Regenerate types:**
+
 ```bash
 npx supabase gen types typescript --project-id YOUR_PROJECT_ID > src/lib/types/database.ts
 ```
 
 **Run migration:**
+
 ```bash
 cd scripts
 npx ts-node migrate-posts-to-supabase.ts

@@ -19,14 +19,14 @@
 </script>
 
 {#if variant === 'boxed'}
-	<div class="flex h-fit my-8 button-secondary-accent">
+	<div class="button-secondary-accent my-8 flex h-fit">
 		<p class="archive-entry-mono">↑&nbsp;</p>
 		<button onclick={scrollToTop} class="hover:underline"> Back to Top </button>
 	</div>
 {:else}
-	<div class="flex flex-row text-nowrap h-fit">
+	<div class="flex h-fit flex-row text-nowrap">
 		<p class="archive-entry-mono text-pond-blue">↑&nbsp;</p>
-		<button onclick={scrollToTop} class="hover:underline text-pond-blue mono-typo-nav">
+		<button onclick={scrollToTop} class="text-pond-blue mono-typo-nav hover:underline">
 			Back to Top
 		</button>
 	</div>

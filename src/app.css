@@ -1,745 +1,742 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :focus:not(:focus-visible) {
-    outline: none !important;
+	outline: none !important;
 }
 
 body {
-    background: #DEDCDB;
-    overflow: hidden;
-    overscroll-behavior-y: none !important;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+	background: #dedcdb;
+	overflow: hidden;
+	overscroll-behavior-y: none !important;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 }
 
 .bg-dark {
-    background-color: #151515;
+	background-color: #151515;
 }
 
 .bg-light {
-    background-color: #DEDCDB;
+	background-color: #dedcdb;
 }
 
 .bg-pond {
-    background-color: #161680;
+	background-color: #161680;
 }
 
 .bg-gray {
-    background-color: #2E2E2E;
+	background-color: #2e2e2e;
 }
 
 .bg-dark:before {
-    content: "";
-    background-color: transparent;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 200px;
-    opacity: 0.08;
-    top: 0;
-    left: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+	content: '';
+	background-color: transparent;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
+	background-repeat: repeat;
+	background-size: 200px;
+	opacity: 0.08;
+	top: 0;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
 }
 
 .serif-typo {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1.4rem;
-    font-style: normal;
-    line-height: normal;
-    white-space: nowrap;
-    letter-spacing: 0.02rem;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1.4rem;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
+	letter-spacing: 0.02rem;
 }
 
 .serif-typo-body {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1rem;
-    font-style: normal;
-    line-height: normal;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1rem;
+	font-style: normal;
+	line-height: normal;
 }
 
 .serif-typo-paragraph {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1rem;
-    font-style: normal;
-    line-height: 1.5rem;
-    letter-spacing: 0.01rem;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1rem;
+	font-style: normal;
+	line-height: 1.5rem;
+	letter-spacing: 0.01rem;
 }
 
 .serif-typo-body-small {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 0.9rem;
-    font-style: normal;
-    line-height: normal;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 0.9rem;
+	font-style: normal;
+	line-height: normal;
 }
 
 .serif-typo-title {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1.8rem;
-    font-style: normal;
-    line-height: normal;
-    white-space: nowrap;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1.8rem;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
 }
 
 .serif-typo-page-title {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 2.5rem;
-    font-style: normal;
-    line-height: normal;
-    white-space: nowrap;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 2.5rem;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
 }
 
 .serif-typo-h1 {
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 2rem;
-    font-style: normal;
-    line-height: 2.5rem;
-    white-space: nowrap;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 2rem;
+	font-style: normal;
+	line-height: 2.5rem;
+	white-space: nowrap;
 }
 
 .serif-typo-h1-mobile {
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1.4rem;
-    font-style: normal;
-    line-height: normal;
-    white-space: nowrap;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1.4rem;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
 }
 
 .serif-typo-subtitle {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1.8rem;
-    font-style: normal;
-    line-height: normal;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1.8rem;
+	font-style: normal;
+	line-height: normal;
 }
 
 .mono-typo-nav {
-    color: #DEDCDB;
-    font-family: "Inconsolata", sans-serif;
-    font-size: 1.1rem;
-    font-style: normal;
-    line-height: normal;
-    font-variation-settings:
-            "wdth" 100;
+	color: #dedcdb;
+	font-family: 'Inconsolata', sans-serif;
+	font-size: 1.1rem;
+	font-style: normal;
+	line-height: normal;
+	font-variation-settings: 'wdth' 100;
 }
 
 .mono-typo-nav-large {
-    color: #DEDCDB;
-    font-family: "Inconsolata", sans-serif;
-    font-size: 1.4rem;
-    font-style: normal;
-    line-height: normal;
-    font-variation-settings:
-            "wdth" 100;
+	color: #dedcdb;
+	font-family: 'Inconsolata', sans-serif;
+	font-size: 1.4rem;
+	font-style: normal;
+	line-height: normal;
+	font-variation-settings: 'wdth' 100;
 }
 
 .mono-typo-nav-mobile {
-    color: #DEDCDB;
-    font-family: "Inconsolata", sans-serif;
-    font-size: 0.9rem;
-    font-style: normal;
-    line-height: normal;
-    font-variation-settings:
-            "wdth" 100;
+	color: #dedcdb;
+	font-family: 'Inconsolata', sans-serif;
+	font-size: 0.9rem;
+	font-style: normal;
+	line-height: normal;
+	font-variation-settings: 'wdth' 100;
 }
 
 .sans-typo {
-    color: #DEDCDB;
-    font-family: "Instrument Sans", sans-serif;
-    font-size: 1.4rem;
-    font-style: normal;
-    line-height: normal;
-    white-space: nowrap;
+	color: #dedcdb;
+	font-family: 'Instrument Sans', sans-serif;
+	font-size: 1.4rem;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
 }
 
-.text-pond-blue{
-    color: #5468FF !important;
+.text-pond-blue {
+	color: #5468ff !important;
 }
 
 .text-pond-hover:hover {
-    color: #5468FF !important;
+	color: #5468ff !important;
 }
 
-.text-off-white{
-    color: #dedcdb !important;
+.text-off-white {
+	color: #dedcdb !important;
 }
 
 .sans-typo-title {
-    color: #DEDCDB;
-    font-family: "Instrument Sans", sans-serif;
-    font-size: 1.8rem;
-    font-style: normal;
-    line-height: normal;
-    white-space: nowrap;
+	color: #dedcdb;
+	font-family: 'Instrument Sans', sans-serif;
+	font-size: 1.8rem;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
 }
 
 .sans-typo-title-small {
-    color: #DEDCDB;
-    font-family: "Instrument Sans", sans-serif;
-    font-size: 1.6rem;
-    font-style: normal;
-    line-height: normal;
-    white-space: nowrap;
+	color: #dedcdb;
+	font-family: 'Instrument Sans', sans-serif;
+	font-size: 1.6rem;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
 }
 
 .sans-typo-title-thin {
-    font-family: "Instrument Sans", sans-serif;
-    font-size: 1.8rem;
-    font-weight: lighter;
-    font-style: normal;
-    line-height: normal;
-    white-space: nowrap;
+	font-family: 'Instrument Sans', sans-serif;
+	font-size: 1.8rem;
+	font-weight: lighter;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
 }
 .sans-typo-title-thin-mobile {
-    font-family: "Instrument Sans", sans-serif;
-    font-size: 1.2rem;
-    font-weight: lighter;
-    font-style: normal;
-    line-height: normal;
-    white-space: nowrap;
+	font-family: 'Instrument Sans', sans-serif;
+	font-size: 1.2rem;
+	font-weight: lighter;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
 }
 
 .sans-typo-detail {
-    color: #DEDCDB;
-    font-family: "Instrument Sans", sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    line-height: normal;
-    white-space: nowrap;
+	color: #dedcdb;
+	font-family: 'Instrument Sans', sans-serif;
+	font-size: 1rem;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
 }
 
 .archive-entry-sans {
-    font-family: "Instrument Sans", sans-serif;
-    font-size: 1rem;
-    font-style: normal;
-    line-height: normal;
-    white-space: nowrap;
+	font-family: 'Instrument Sans', sans-serif;
+	font-size: 1rem;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
 }
 
 .archive-entry-sans-mobile {
-    font-family: "Instrument Sans", sans-serif;
-    font-size: 0.8rem;
-    font-style: normal;
-    line-height: normal;
-    white-space: nowrap;
+	font-family: 'Instrument Sans', sans-serif;
+	font-size: 0.8rem;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
 }
 
 .archive-entry-mono {
-    font-family: "JetBrains Mono", sans-serif;
-    font-size: 1rem;
-    font-weight: 200;
-    font-style: normal;
-    line-height: normal;
-    white-space: nowrap;
+	font-family: 'JetBrains Mono', sans-serif;
+	font-size: 1rem;
+	font-weight: 200;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
 }
 
 .archive-entry-mono-mobile {
-    font-family: "JetBrains Mono", sans-serif;
-    font-size: 0.8rem;
-    font-weight: 200;
-    font-style: normal;
-    line-height: normal;
-    white-space: nowrap;
+	font-family: 'JetBrains Mono', sans-serif;
+	font-size: 0.8rem;
+	font-weight: 200;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
 }
 
 .attribution-typo {
-    color: #DEDCDB;
-    font-family: "JetBrains Mono", sans-serif;
-    font-size: 0.7rem;
-    font-weight: 200;
-    opacity: 75%;
-    font-style: normal;
-    line-height: normal;
-    white-space: nowrap;
-    text-align: center;
+	color: #dedcdb;
+	font-family: 'JetBrains Mono', sans-serif;
+	font-size: 0.7rem;
+	font-weight: 200;
+	opacity: 75%;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
+	text-align: center;
 }
 
 .attribution-typo-dark {
-    color: #191919;
-    font-family: "JetBrains Mono", sans-serif;
-    font-size: 0.7rem;
-    font-weight: 200;
-    font-style: normal;
-    line-height: normal;
-    white-space: nowrap;
-    text-align: center;
+	color: #191919;
+	font-family: 'JetBrains Mono', sans-serif;
+	font-size: 0.7rem;
+	font-weight: 200;
+	font-style: normal;
+	line-height: normal;
+	white-space: nowrap;
+	text-align: center;
 }
 
 .sans-warning {
-    color: #DEDCDB;
-    font-family: "Instrument Sans", sans-serif;
-    font-size: 1.2rem;
-    font-style: normal;
-    line-height: normal;
-    text-wrap: balance;
-    text-align: center;
+	color: #dedcdb;
+	font-family: 'Instrument Sans', sans-serif;
+	font-size: 1.2rem;
+	font-style: normal;
+	line-height: normal;
+	text-wrap: balance;
+	text-align: center;
 }
 
 .serif-warning {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1.2rem;
-    font-style: normal;
-    line-height: normal;
-    text-wrap: balance;
-    text-align: center;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1.2rem;
+	font-style: normal;
+	line-height: normal;
+	text-wrap: balance;
+	text-align: center;
 }
 
 .sans-title {
-    color: #DEDCDB;
-    font-family: "Instrument Sans", sans-serif;
-    font-size: 25vh;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 85%;
+	color: #dedcdb;
+	font-family: 'Instrument Sans', sans-serif;
+	font-size: 25vh;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 85%;
 }
 
 .unselectable {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .asterisk-line {
-    width: 100%;
-    height: 8%;
-    background-color: #DEDCDB;
+	width: 100%;
+	height: 8%;
+	background-color: #dedcdb;
 }
 
 .bg-light {
-    background-color: #DEDCDB;
+	background-color: #dedcdb;
 }
 
 * {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
 }
 
 * ::-webkit-scrollbar {
-    display: none;
+	display: none;
 }
 
 :global(*::-webkit-scrollbar) {
-    display: none !important;
+	display: none !important;
 }
 
 :global(*) {
-    -ms-overflow-style: none !important;
-    scrollbar-width: none !important;
+	-ms-overflow-style: none !important;
+	scrollbar-width: none !important;
 }
 
 /* Reusable Button Styles */
 .button-secondary {
-    color: #DEDCDB;
-    font-family: "Inconsolata", sans-serif;
-    font-size: 1.1rem;
-    font-style: normal;
-    line-height: normal;
-    font-variation-settings: "wdth" 100;
-    border: 1px solid currentColor;
-    border-radius: 1rem;
-    padding: 0.25rem 0.75rem;
-    text-align: center;
+	color: #dedcdb;
+	font-family: 'Inconsolata', sans-serif;
+	font-size: 1.1rem;
+	font-style: normal;
+	line-height: normal;
+	font-variation-settings: 'wdth' 100;
+	border: 1px solid currentColor;
+	border-radius: 1rem;
+	padding: 0.25rem 0.75rem;
+	text-align: center;
 }
 
 .button-secondary-compact {
-    color: #DEDCDB;
-    font-family: "Inconsolata", sans-serif;
-    font-size: 1.1rem;
-    font-style: normal;
-    line-height: normal;
-    font-variation-settings: "wdth" 100;
-    border: 1px solid currentColor;
-    border-radius: 1rem;
-    padding: 0.25rem 0.75rem;
-    text-align: center;
-    width: fit-content;
+	color: #dedcdb;
+	font-family: 'Inconsolata', sans-serif;
+	font-size: 1.1rem;
+	font-style: normal;
+	line-height: normal;
+	font-variation-settings: 'wdth' 100;
+	border: 1px solid currentColor;
+	border-radius: 1rem;
+	padding: 0.25rem 0.75rem;
+	text-align: center;
+	width: fit-content;
 }
 
 .button-secondary-accent {
-    color: #5468FF !important;
-    font-family: "Inconsolata", sans-serif;
-    font-size: 1.1rem;
-    font-style: normal;
-    line-height: normal;
-    font-variation-settings: "wdth" 100;
-    border: 1px solid currentColor;
-    border-radius: 1rem;
-    padding: 0.25rem 0.75rem;
-    text-align: center;
+	color: #5468ff !important;
+	font-family: 'Inconsolata', sans-serif;
+	font-size: 1.1rem;
+	font-style: normal;
+	line-height: normal;
+	font-variation-settings: 'wdth' 100;
+	border: 1px solid currentColor;
+	border-radius: 1rem;
+	padding: 0.25rem 0.75rem;
+	text-align: center;
 }
 
 /* Post Preview Styles */
 .post-preview {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .post-preview:hover {
-    color: #5468FF !important;
+	color: #5468ff !important;
 }
 
 /* Blog Content Styles - Desktop */
 .content p {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1.1rem;
-    line-height: 1.8rem;
-    letter-spacing: 0.01rem;
-    margin-bottom: 1rem;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1.1rem;
+	line-height: 1.8rem;
+	letter-spacing: 0.01rem;
+	margin-bottom: 1rem;
 }
 
 .content h1 {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 2.5rem;
-    line-height: 3rem;
-    margin-bottom: 1.5rem;
-    margin-top: 2rem;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 2.5rem;
+	line-height: 3rem;
+	margin-bottom: 1.5rem;
+	margin-top: 2rem;
 }
 
 .content h2 {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 2rem;
-    line-height: 2.5rem;
-    margin-bottom: 1rem;
-    margin-top: 1.5rem;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 2rem;
+	line-height: 2.5rem;
+	margin-bottom: 1rem;
+	margin-top: 1.5rem;
 }
 
 .content h3 {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1.5rem;
-    line-height: 2rem;
-    margin-bottom: 0.75rem;
-    margin-top: 1.25rem;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1.5rem;
+	line-height: 2rem;
+	margin-bottom: 0.75rem;
+	margin-top: 1.25rem;
 }
 
 .content h4 {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    margin-bottom: 0.5rem;
-    margin-top: 1rem;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1.25rem;
+	line-height: 1.75rem;
+	margin-bottom: 0.5rem;
+	margin-top: 1rem;
 }
 
 .content ul,
 .content ol {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1.1rem;
-    line-height: 1.8rem;
-    margin-bottom: 1rem;
-    padding-left: 2rem;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1.1rem;
+	line-height: 1.8rem;
+	margin-bottom: 1rem;
+	padding-left: 2rem;
 }
 
 .content li {
-    margin-bottom: 0.5rem;
+	margin-bottom: 0.5rem;
 }
 
 .content blockquote {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1.1rem;
-    line-height: 1.8rem;
-    font-style: italic;
-    border-left: 4px solid #5468FF;
-    padding-left: 1.5rem;
-    margin: 1.5rem 0;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1.1rem;
+	line-height: 1.8rem;
+	font-style: italic;
+	border-left: 4px solid #5468ff;
+	padding-left: 1.5rem;
+	margin: 1.5rem 0;
 }
 
 .content a {
-    color: #5468FF;
-    text-decoration: none;
-    text-decoration-line: underline;
-    text-decoration-style: wavy;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.2rem;
+	color: #5468ff;
+	text-decoration: none;
+	text-decoration-line: underline;
+	text-decoration-style: wavy;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2rem;
 }
 
 .content a:hover {
-    text-decoration-thickness: 2px;
+	text-decoration-thickness: 2px;
 }
 
 .content code {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.95rem;
-    background-color: rgba(84, 104, 255, 0.1);
-    padding: 0.2rem 0.4rem;
-    border-radius: 0.25rem;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 0.95rem;
+	background-color: rgba(84, 104, 255, 0.1);
+	padding: 0.2rem 0.4rem;
+	border-radius: 0.25rem;
 }
 
 .content pre {
-    background-color: #2E2E2E;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    overflow-x: auto;
-    margin: 1rem 0;
+	background-color: #2e2e2e;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	overflow-x: auto;
+	margin: 1rem 0;
 }
 
 .content pre code {
-    background-color: transparent;
-    padding: 0;
-    font-size: 0.9rem;
-    line-height: 1.5rem;
+	background-color: transparent;
+	padding: 0;
+	font-size: 0.9rem;
+	line-height: 1.5rem;
 }
 
 .content table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1rem;
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1.5rem 0;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1rem;
 }
 
 .content th {
-    background-color: #2E2E2E;
-    color: #DEDCDB;
-    padding: 0.75rem;
-    text-align: left;
-    border: 1px solid #5468FF;
+	background-color: #2e2e2e;
+	color: #dedcdb;
+	padding: 0.75rem;
+	text-align: left;
+	border: 1px solid #5468ff;
 }
 
 .content td {
-    color: #DEDCDB;
-    padding: 0.75rem;
-    border: 1px solid #5468FF;
+	color: #dedcdb;
+	padding: 0.75rem;
+	border: 1px solid #5468ff;
 }
 
 .content tr:nth-child(even) {
-    background-color: rgba(84, 104, 255, 0.05);
+	background-color: rgba(84, 104, 255, 0.05);
 }
 
 .content figure {
-    margin: 2rem 0;
+	margin: 2rem 0;
 }
 
 .content figcaption {
-    color: #DEDCDB;
-    font-family: "Instrument Sans", sans-serif;
-    font-size: 0.9rem;
-    font-style: italic;
-    text-align: center;
-    margin-top: 0.5rem;
-    opacity: 0.8;
+	color: #dedcdb;
+	font-family: 'Instrument Sans', sans-serif;
+	font-size: 0.9rem;
+	font-style: italic;
+	text-align: center;
+	margin-top: 0.5rem;
+	opacity: 0.8;
 }
 
 .content img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 0.5rem;
+	max-width: 100%;
+	height: auto;
+	border-radius: 0.5rem;
 }
 
 .content hr {
-    border: none;
-    border-top: 1px solid #5468FF;
-    margin: 2rem 0;
+	border: none;
+	border-top: 1px solid #5468ff;
+	margin: 2rem 0;
 }
 
 .content .footnotes {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid #5468FF;
-    font-size: 0.95rem;
+	margin-top: 3rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid #5468ff;
+	font-size: 0.95rem;
 }
 
 .content .footnotes p {
-    font-size: 0.95rem;
-    line-height: 1.6rem;
+	font-size: 0.95rem;
+	line-height: 1.6rem;
 }
 
 /* Blog Content Styles - Mobile */
 .content-mobile p {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1rem;
-    line-height: 1.6rem;
-    letter-spacing: 0.01rem;
-    margin-bottom: 1rem;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1rem;
+	line-height: 1.6rem;
+	letter-spacing: 0.01rem;
+	margin-bottom: 1rem;
 }
 
 .content-mobile h1 {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 2rem;
-    line-height: 2.5rem;
-    margin-bottom: 1.25rem;
-    margin-top: 1.75rem;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 2rem;
+	line-height: 2.5rem;
+	margin-bottom: 1.25rem;
+	margin-top: 1.75rem;
 }
 
 .content-mobile h2 {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1.75rem;
-    line-height: 2.25rem;
-    margin-bottom: 1rem;
-    margin-top: 1.5rem;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1.75rem;
+	line-height: 2.25rem;
+	margin-bottom: 1rem;
+	margin-top: 1.5rem;
 }
 
 .content-mobile h3 {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1.4rem;
-    line-height: 1.8rem;
-    margin-bottom: 0.75rem;
-    margin-top: 1.25rem;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1.4rem;
+	line-height: 1.8rem;
+	margin-bottom: 0.75rem;
+	margin-top: 1.25rem;
 }
 
 .content-mobile h4 {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1.2rem;
-    line-height: 1.6rem;
-    margin-bottom: 0.5rem;
-    margin-top: 1rem;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1.2rem;
+	line-height: 1.6rem;
+	margin-bottom: 0.5rem;
+	margin-top: 1rem;
 }
 
 .content-mobile ul,
 .content-mobile ol {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1rem;
-    line-height: 1.6rem;
-    margin-bottom: 1rem;
-    padding-left: 1.5rem;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1rem;
+	line-height: 1.6rem;
+	margin-bottom: 1rem;
+	padding-left: 1.5rem;
 }
 
 .content-mobile li {
-    margin-bottom: 0.5rem;
+	margin-bottom: 0.5rem;
 }
 
 .content-mobile blockquote {
-    color: #DEDCDB;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 1rem;
-    line-height: 1.6rem;
-    font-style: italic;
-    border-left: 3px solid #5468FF;
-    padding-left: 1rem;
-    margin: 1.25rem 0;
+	color: #dedcdb;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 1rem;
+	line-height: 1.6rem;
+	font-style: italic;
+	border-left: 3px solid #5468ff;
+	padding-left: 1rem;
+	margin: 1.25rem 0;
 }
 
 .content-mobile a {
-    color: #5468FF;
-    text-decoration: none;
-    text-decoration-line: underline;
-    text-decoration-style: wavy;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.2rem;
+	color: #5468ff;
+	text-decoration: none;
+	text-decoration-line: underline;
+	text-decoration-style: wavy;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2rem;
 }
 
 .content-mobile a:hover {
-    text-decoration-thickness: 2px;
+	text-decoration-thickness: 2px;
 }
 
 .content-mobile code {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.9rem;
-    background-color: rgba(84, 104, 255, 0.1);
-    padding: 0.2rem 0.4rem;
-    border-radius: 0.25rem;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 0.9rem;
+	background-color: rgba(84, 104, 255, 0.1);
+	padding: 0.2rem 0.4rem;
+	border-radius: 0.25rem;
 }
 
 .content-mobile pre {
-    background-color: #2E2E2E;
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-    overflow-x: auto;
-    margin: 1rem 0;
+	background-color: #2e2e2e;
+	padding: 0.75rem;
+	border-radius: 0.5rem;
+	overflow-x: auto;
+	margin: 1rem 0;
 }
 
 .content-mobile pre code {
-    background-color: transparent;
-    padding: 0;
-    font-size: 0.85rem;
-    line-height: 1.4rem;
+	background-color: transparent;
+	padding: 0;
+	font-size: 0.85rem;
+	line-height: 1.4rem;
 }
 
 .content-mobile table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    font-family: "Hedvig Letters Serif", serif;
-    font-size: 0.9rem;
-    overflow-x: auto;
-    display: block;
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1.5rem 0;
+	font-family: 'Hedvig Letters Serif', serif;
+	font-size: 0.9rem;
+	overflow-x: auto;
+	display: block;
 }
 
 .content-mobile th {
-    background-color: #2E2E2E;
-    color: #DEDCDB;
-    padding: 0.5rem;
-    text-align: left;
-    border: 1px solid #5468FF;
+	background-color: #2e2e2e;
+	color: #dedcdb;
+	padding: 0.5rem;
+	text-align: left;
+	border: 1px solid #5468ff;
 }
 
 .content-mobile td {
-    color: #DEDCDB;
-    padding: 0.5rem;
-    border: 1px solid #5468FF;
+	color: #dedcdb;
+	padding: 0.5rem;
+	border: 1px solid #5468ff;
 }
 
 .content-mobile tr:nth-child(even) {
-    background-color: rgba(84, 104, 255, 0.05);
+	background-color: rgba(84, 104, 255, 0.05);
 }
 
 .content-mobile figure {
-    margin: 1.5rem 0;
+	margin: 1.5rem 0;
 }
 
 .content-mobile figcaption {
-    color: #DEDCDB;
-    font-family: "Instrument Sans", sans-serif;
-    font-size: 0.85rem;
-    font-style: italic;
-    text-align: center;
-    margin-top: 0.5rem;
-    opacity: 0.8;
+	color: #dedcdb;
+	font-family: 'Instrument Sans', sans-serif;
+	font-size: 0.85rem;
+	font-style: italic;
+	text-align: center;
+	margin-top: 0.5rem;
+	opacity: 0.8;
 }
 
 .content-mobile img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 0.5rem;
+	max-width: 100%;
+	height: auto;
+	border-radius: 0.5rem;
 }
 
 .content-mobile hr {
-    border: none;
-    border-top: 1px solid #5468FF;
-    margin: 1.5rem 0;
+	border: none;
+	border-top: 1px solid #5468ff;
+	margin: 1.5rem 0;
 }
 
 .content-mobile .footnotes {
-    margin-top: 2.5rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid #5468FF;
-    font-size: 0.9rem;
+	margin-top: 2.5rem;
+	padding-top: 1.25rem;
+	border-top: 1px solid #5468ff;
+	font-size: 0.9rem;
 }
 
 .content-mobile .footnotes p {
-    font-size: 0.9rem;
-    line-height: 1.5rem;
+	font-size: 0.9rem;
+	line-height: 1.5rem;
 }
 
 @media (max-width: 640px) {
-    .asterisk-line {
-        width: 4rem;
-        height: 0.4rem;
-    }
-    .sans-typo {
-        white-space: normal;
-    }
+	.asterisk-line {
+		width: 4rem;
+		height: 0.4rem;
+	}
+	.sans-typo {
+		white-space: normal;
+	}
 }

@@ -18,7 +18,7 @@ function normalizeTheme(value: string): ThemeType {
  */
 function createThemeStore() {
 	// Get initial theme from localStorage or default to 'dark'
-	const storedTheme = browser ? localStorage.getItem('theme') ?? 'dark' : 'dark';
+	const storedTheme = browser ? (localStorage.getItem('theme') ?? 'dark') : 'dark';
 	const initialTheme = normalizeTheme(storedTheme);
 
 	const store = writable<ThemeType>(initialTheme);

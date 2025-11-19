@@ -15,10 +15,12 @@
 **Hosting:** Vercel (frontend) + Render/Railway (Directus)
 
 **URLs:**
+
 - Production: https://perakasem.co
 - Blog: https://perakasem.co/pond
 
 **Key Documentation:**
+
 - `ARCHITECTURE.md` - Complete technical reference
 - `CMS-GUIDE.md` - CMS setup and usage
 - `README.md` - Project overview
@@ -85,20 +87,22 @@ Users
 
 ### Components
 
-| Component | Purpose | Technology | Hosting |
-|-----------|---------|------------|---------|
+| Component     | Purpose            | Technology   | Hosting        |
+| ------------- | ------------------ | ------------ | -------------- |
 | **CMS Admin** | Content editing UI | Directus 10+ | Render/Railway |
-| **Database** | Data storage | PostgreSQL | Supabase |
-| **Frontend** | User-facing site | SvelteKit 2 | Vercel |
+| **Database**  | Data storage       | PostgreSQL   | Supabase       |
+| **Frontend**  | User-facing site   | SvelteKit 2  | Vercel         |
 
 ### Why This Architecture?
 
 **Before:** Markdown files → Git commits → Vercel deploys
+
 - ❌ Technical knowledge required
 - ❌ Slow (deploy for every change)
 - ❌ No draft workflow
 
 **After:** Directus UI → Database → App reads
+
 - ✅ Non-technical friendly
 - ✅ Instant updates (5-min cache)
 - ✅ Draft/publish workflow
@@ -108,6 +112,7 @@ Users
 ### Data Model
 
 **Tables:**
+
 1. **posts** - Blog articles with metadata
 2. **site_config** - Site-wide configuration (singleton)
 
@@ -130,22 +135,26 @@ tags: ["tag1", "tag2", ...]  # Arrays stay arrays
 ## Technology Stack
 
 ### Core Framework
+
 - **SvelteKit 2.16.0** - Full-stack framework with SSR
 - **Svelte 5.0.0** - Reactive UI with runes ($state, $derived, $effect)
 - **TypeScript 5.0.0** - Type safety across stack
 - **Vite 6.0.0** - Build tool and dev server
 
 ### Styling
+
 - **Tailwind CSS 4.0.6** - Utility-first CSS
 - **@tailwindcss/vite** - Vite plugin for JIT compilation
 - **PostCSS + Autoprefixer** - CSS processing
 
 ### Content & Data
+
 - **Supabase Client 2.83.0** - PostgreSQL client
 - **Directus 10+** - Headless CMS
 - **mdsvex 0.12.3** - Markdown processing (legacy)
 
 ### Development Tools
+
 - **Prettier 3.4.2** - Code formatting (tabs, single quotes)
 - **svelte-check** - Type checking
 - **publint** - Package validation
@@ -227,11 +236,13 @@ npm run format       # Format code
 ### Working with CMS Content
 
 **Local Development:**
+
 1. App connects to production Supabase/Directus
 2. Changes in Directus appear immediately on localhost
 3. No need to restart dev server
 
 **Environment Variables Required:**
+
 ```bash
 # .env (or .env.local)
 PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
@@ -255,10 +266,10 @@ npm run preview      # Preview production build locally
 
 ```json
 {
-  "useTabs": true,
-  "singleQuote": true,
-  "trailingComma": "none",
-  "printWidth": 100
+	"useTabs": true,
+	"singleQuote": true,
+	"trailingComma": "none",
+	"printWidth": 100
 }
 ```
 
@@ -314,8 +325,8 @@ import { writable } from 'svelte/store';
 ```typescript
 // +page.server.ts or +layout.server.ts
 export const load: PageServerLoad = async () => {
-    const data = await fetchFromDatabase();
-    return { data };
+	const data = await fetchFromDatabase();
+	return { data };
 };
 ```
 
@@ -328,64 +339,65 @@ export const load: PageServerLoad = async () => {
 import { getCachedSiteConfig } from '$lib/server/config';
 
 export const load: LayoutServerLoad = async () => {
-    const config = await getCachedSiteConfig();  // 5-min cache
-    return { config };
+	const config = await getCachedSiteConfig(); // 5-min cache
+	return { config };
 };
 
 // routes/pond/+page.server.ts
 import { getPosts } from '$lib/server/posts-supabase';
 
 export const load: PageServerLoad = async () => {
-    const posts = await getPosts();  // Always fresh
-    return { posts };
+	const posts = await getPosts(); // Always fresh
+	return { posts };
 };
 ```
 
 **Key Files:**
 
 1. **`src/lib/supabase.ts`** - Shared Supabase client
+
    ```typescript
-   export const supabase = createClient<Database>(
-       PUBLIC_SUPABASE_URL,
-       PUBLIC_SUPABASE_ANON_KEY
-   );
+   export const supabase = createClient<Database>(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY);
 
    export const db = {
-       posts: () => supabase.from('posts'),
-       siteConfig: () => supabase.from('site_config')
+   	posts: () => supabase.from('posts'),
+   	siteConfig: () => supabase.from('site_config')
    };
    ```
 
 2. **`src/lib/server/posts-supabase.ts`** - Post queries
+
    ```typescript
    export async function getPosts(): Promise<Post[]> {
-       const { data, error } = await db.posts()
-           .select('*')
-           .eq('published', true)
-           .order('date', { ascending: false });
+   	const { data, error } = await db
+   		.posts()
+   		.select('*')
+   		.eq('published', true)
+   		.order('date', { ascending: false });
 
-       return (data || []).map(row => ({
-           ...row,
-           form: arrayToString(row.form),      // ["longform"] → "longform"
-           category: arrayToString(row.category),
-           chapter: arrayToString(row.chapter)
-       }));
+   	return (data || []).map((row) => ({
+   		...row,
+   		form: arrayToString(row.form), // ["longform"] → "longform"
+   		category: arrayToString(row.category),
+   		chapter: arrayToString(row.chapter)
+   	}));
    }
    ```
 
 3. **`src/lib/server/config.ts`** - Config loading with cache
+
    ```typescript
    let cachedConfig: SiteConfig | null = null;
    let cacheTimestamp: number = 0;
-   const CACHE_TTL = 5 * 60 * 1000;  // 5 minutes
+   const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
    export async function getCachedSiteConfig() {
-       if (cachedConfig && Date.now() - cacheTimestamp < CACHE_TTL) {
-           return cachedConfig;
-       }
-       cachedConfig = await getSiteConfig();
-       cacheTimestamp = Date.now();
-       return cachedConfig;
+   	if (cachedConfig && Date.now() - cacheTimestamp < CACHE_TTL) {
+   		return cachedConfig;
+   	}
+   	cachedConfig = await getSiteConfig();
+   	cacheTimestamp = Date.now();
+   	return cachedConfig;
    }
    ```
 
@@ -399,9 +411,9 @@ Matches any slug (e.g., `/pond/shorebirds`)
 
 ```typescript
 export const load: PageServerLoad = async ({ params }) => {
-    const { slug } = params;
-    const post = await getPostBySlug(slug);
-    return { post };
+	const { slug } = params;
+	const post = await getPostBySlug(slug);
+	return { post };
 };
 ```
 
@@ -412,6 +424,7 @@ export const load: PageServerLoad = async ({ params }) => {
 ### How Content Works
 
 **Old Way (deprecated):**
+
 ```
 Markdown files (src/posts/*.md)
     ↓
@@ -423,6 +436,7 @@ Website updated
 ```
 
 **New Way (current):**
+
 ```
 Directus CMS
     ↓ (instant)
@@ -435,6 +449,7 @@ Website reads + displays
 ### Creating Content
 
 **Via Directus:**
+
 1. Login to Directus admin
 2. Go to Content → Posts
 3. Click "Create Item"
@@ -442,15 +457,16 @@ Website reads + displays
 5. Publish when ready
 
 **Programmatically:**
+
 ```typescript
 import { db } from '$lib/supabase';
 
 await db.posts().insert({
-    slug: 'my-post',
-    title: 'My Post',
-    content: '# Hello',
-    published: true,
-    // ... other fields
+	slug: 'my-post',
+	title: 'My Post',
+	content: '# Hello',
+	published: true
+	// ... other fields
 });
 ```
 
@@ -459,6 +475,7 @@ await db.posts().insert({
 See `database-schema.sql` for complete schema.
 
 **Key fields:**
+
 - `slug` (TEXT, unique) - URL identifier
 - `title` (TEXT) - Post title
 - `content` (TEXT) - Markdown content
@@ -473,18 +490,18 @@ See `database-schema.sql` for complete schema.
 **From `posts-supabase.ts`:**
 
 ```typescript
-getPosts()                    // All published posts
-getAllPosts()                 // Including drafts
-getPostBySlug(slug)          // Single post
-getNavigationPosts(slug)     // Previous/next posts
+getPosts(); // All published posts
+getAllPosts(); // Including drafts
+getPostBySlug(slug); // Single post
+getNavigationPosts(slug); // Previous/next posts
 ```
 
 **From `config.ts`:**
 
 ```typescript
-getSiteConfig()              // Fetch config (no cache)
-getCachedSiteConfig()        // Fetch config (5-min cache)
-clearConfigCache()           // Clear cache
+getSiteConfig(); // Fetch config (no cache)
+getCachedSiteConfig(); // Fetch config (5-min cache)
+clearConfigCache(); // Clear cache
 ```
 
 ---
@@ -497,19 +514,19 @@ clearConfigCache()           // Clear cache
 
 ```typescript
 export default {
-    darkMode: 'class',  // .dark on <html>
-    content: ['./src/**/*.{html,js,svelte,ts}'],
-    theme: {
-        extend: {
-            colors: {
-                'dark': '#151515',
-                'off-white': '#DEDCDB',
-                'pond-blue': '#5468FF',
-                'pond': '#2E2E2E'
-            }
-        }
-    }
-}
+	darkMode: 'class', // .dark on <html>
+	content: ['./src/**/*.{html,js,svelte,ts}'],
+	theme: {
+		extend: {
+			colors: {
+				dark: '#151515',
+				'off-white': '#DEDCDB',
+				'pond-blue': '#5468FF',
+				pond: '#2E2E2E'
+			}
+		}
+	}
+};
 ```
 
 ### Typography Classes
@@ -518,17 +535,18 @@ export default {
 
 **Convention:** `{typeface}-typo-{variant}`
 
-| Class | Font | Size | Usage |
-|-------|------|------|-------|
-| `.serif-typo-h1` | Hedvig Letters Serif | 96px | Desktop headings |
-| `.serif-typo-h1-mobile` | Hedvig Letters Serif | 64px | Mobile headings |
-| `.serif-typo-paragraph` | Hedvig Letters Serif | 24px | Body text |
-| `.sans-typo-title` | Instrument Sans | 42px, 300 | Titles |
-| `.mono-typo-nav` | Inconsolata | 16px | Navigation |
+| Class                   | Font                 | Size      | Usage            |
+| ----------------------- | -------------------- | --------- | ---------------- |
+| `.serif-typo-h1`        | Hedvig Letters Serif | 96px      | Desktop headings |
+| `.serif-typo-h1-mobile` | Hedvig Letters Serif | 64px      | Mobile headings  |
+| `.serif-typo-paragraph` | Hedvig Letters Serif | 24px      | Body text        |
+| `.sans-typo-title`      | Instrument Sans      | 42px, 300 | Titles           |
+| `.mono-typo-nav`        | Inconsolata          | 16px      | Navigation       |
 
 ### Blog Content Styles
 
 **Global classes for markdown:**
+
 - `.content` - Desktop blog styling
 - `.content-mobile` - Mobile blog styling
 
@@ -548,8 +566,8 @@ Includes all markdown elements (headings, lists, code, tables, etc.)
 ```html
 <!-- app.html -->
 <script>
-    const theme = localStorage.getItem('theme') ?? 'dark';
-    document.documentElement.classList.toggle('dark', theme === 'dark');
+	const theme = localStorage.getItem('theme') ?? 'dark';
+	document.documentElement.classList.toggle('dark', theme === 'dark');
 </script>
 ```
 
@@ -557,7 +575,7 @@ Includes all markdown elements (headings, lists, code, tables, etc.)
 
 ```typescript
 import { themeStore } from '$lib/stores/themeStore';
-themeStore.update(t => t === 'dark' ? 'light' : 'dark');
+themeStore.update((t) => (t === 'dark' ? 'light' : 'dark'));
 ```
 
 ---
@@ -592,11 +610,11 @@ src/routes/(landing)/my-page/+page.svelte
 
 ```svelte
 <script lang="ts">
-    // Page logic
+	// Page logic
 </script>
 
 <div>
-    <h1 class="serif-typo-h1">My Page</h1>
+	<h1 class="serif-typo-h1">My Page</h1>
 </div>
 ```
 
@@ -609,19 +627,22 @@ src/components/MyComponent.svelte
 
 ```svelte
 <script lang="ts">
-    let { title, items }: {
-        title: string;
-        items: string[];
-    } = $props();
+	let {
+		title,
+		items
+	}: {
+		title: string;
+		items: string[];
+	} = $props();
 </script>
 
 <div>
-    <h2>{title}</h2>
-    <ul>
-        {#each items as item}
-            <li>{item}</li>
-        {/each}
-    </ul>
+	<h2>{title}</h2>
+	<ul>
+		{#each items as item}
+			<li>{item}</li>
+		{/each}
+	</ul>
 </div>
 ```
 
@@ -654,12 +675,14 @@ Requires `SUPABASE_SERVICE_ROLE_KEY` environment variable.
 ### Posts Not Showing
 
 **Checklist:**
+
 1. ✅ Post has `published: true`
 2. ✅ Date is not in future
 3. ✅ Chapter matches filter (on /pond)
 4. ✅ Check /pond/archive to see all posts
 
 **Debug:**
+
 ```typescript
 // Add logging
 const posts = await getPosts();
@@ -671,6 +694,7 @@ console.log('Loaded posts:', posts.length);
 **Cause:** 5-minute cache
 
 **Solutions:**
+
 1. Wait 5 minutes
 2. Redeploy Vercel (clears cache)
 3. Clear cache manually:
@@ -684,6 +708,7 @@ console.log('Loaded posts:', posts.length);
 **Cause:** Cached metadata
 
 **Fix:**
+
 ```sql
 -- In Supabase SQL Editor
 DELETE FROM directus_fields WHERE collection = 'posts';
@@ -697,6 +722,7 @@ Then refresh Directus.
 **Cause:** Environment variables not set
 
 **Fix:** Add to Vercel environment variables:
+
 ```
 PUBLIC_SUPABASE_URL=...
 PUBLIC_SUPABASE_ANON_KEY=...
@@ -715,42 +741,42 @@ npm run check
 
 ### Configuration Files
 
-| File | Purpose |
-|------|---------|
-| `svelte.config.js` | SvelteKit + mdsvex config |
-| `vite.config.ts` | Build config |
-| `tailwind.config.ts` | Styling config |
-| `tsconfig.json` | TypeScript config |
-| `.prettierrc` | Code formatting rules |
+| File                 | Purpose                   |
+| -------------------- | ------------------------- |
+| `svelte.config.js`   | SvelteKit + mdsvex config |
+| `vite.config.ts`     | Build config              |
+| `tailwind.config.ts` | Styling config            |
+| `tsconfig.json`      | TypeScript config         |
+| `.prettierrc`        | Code formatting rules     |
 
 ### Core Application Files
 
-| File | Purpose |
-|------|---------|
-| `src/lib/supabase.ts` | ⭐ Shared Supabase client |
-| `src/lib/server/posts-supabase.ts` | ⭐ Post loading from DB |
-| `src/lib/server/config.ts` | ⭐ Config loading from DB |
-| `src/lib/types/database.ts` | ⭐ Generated DB types |
-| `src/lib/types.ts` | App types |
-| `src/lib/utils.ts` | Helper functions |
-| `src/app.css` | Global styles |
+| File                               | Purpose                   |
+| ---------------------------------- | ------------------------- |
+| `src/lib/supabase.ts`              | ⭐ Shared Supabase client |
+| `src/lib/server/posts-supabase.ts` | ⭐ Post loading from DB   |
+| `src/lib/server/config.ts`         | ⭐ Config loading from DB |
+| `src/lib/types/database.ts`        | ⭐ Generated DB types     |
+| `src/lib/types.ts`                 | App types                 |
+| `src/lib/utils.ts`                 | Helper functions          |
+| `src/app.css`                      | Global styles             |
 
 ### Database Files
 
-| File | Purpose |
-|------|---------|
-| `database-schema.sql` | ⭐ Complete DB schema |
-| `supabase-create-site-config-table.sql` | Config table schema |
-| `supabase-reset-directus-site-config-metadata.sql` | Troubleshooting |
+| File                                               | Purpose               |
+| -------------------------------------------------- | --------------------- |
+| `database-schema.sql`                              | ⭐ Complete DB schema |
+| `supabase-create-site-config-table.sql`            | Config table schema   |
+| `supabase-reset-directus-site-config-metadata.sql` | Troubleshooting       |
 
 ### Documentation
 
-| File | Purpose | Audience |
-|------|---------|----------|
-| `CLAUDE.md` | This file | AI assistants |
-| `ARCHITECTURE.md` | Technical deep-dive | Developers |
-| `CMS-GUIDE.md` | Setup & usage | Admins/editors |
-| `README.md` | Project overview | Everyone |
+| File              | Purpose             | Audience       |
+| ----------------- | ------------------- | -------------- |
+| `CLAUDE.md`       | This file           | AI assistants  |
+| `ARCHITECTURE.md` | Technical deep-dive | Developers     |
+| `CMS-GUIDE.md`    | Setup & usage       | Admins/editors |
+| `README.md`       | Project overview    | Everyone       |
 
 ---
 
@@ -806,6 +832,7 @@ git push
 ## When Working on This Project
 
 **Always:**
+
 - ✅ Use `posts-supabase.ts` (not `posts.ts`)
 - ✅ Use `config.ts` from database (not `pond.config.ts`)
 - ✅ Import from `$lib/supabase` for DB queries
@@ -813,12 +840,14 @@ git push
 - ✅ Check `npm run check` passes
 
 **Never:**
+
 - ❌ Hardcode content in components
 - ❌ Create new Supabase clients (use shared one)
 - ❌ Modify database without updating types
 - ❌ Skip type checking
 
 **Remember:**
+
 - Content changes happen in Directus (not code)
 - Database is source of truth
 - Config has 5-minute cache

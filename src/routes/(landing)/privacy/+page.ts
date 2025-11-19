@@ -1,5 +1,5 @@
 export const load = () => {
-    return {
-        scrollable: true
-    };
+	return {
+		scrollable: true
+	};
 };
