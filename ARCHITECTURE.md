@@ -24,6 +24,7 @@
 ### Architecture Pattern
 
 **JAMstack** (JavaScript, APIs, Markup)
+
 - **Frontend:** SvelteKit (SSR + SSG)
 - **Backend:** Serverless functions (SvelteKit API routes)
 - **Database:** Supabase (PostgreSQL)
@@ -57,45 +58,45 @@ Supabase Database ←→ Directus CMS
 
 ### Core Framework
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| **SvelteKit** | 2.16.0 | Full-stack web framework |
-| **Svelte** | 5.0.0 | Reactive UI framework (with runes) |
-| **TypeScript** | 5.0.0 | Type safety |
-| **Vite** | 6.0.0 | Build tool & dev server |
+| Technology     | Version | Purpose                            |
+| -------------- | ------- | ---------------------------------- |
+| **SvelteKit**  | 2.16.0  | Full-stack web framework           |
+| **Svelte**     | 5.0.0   | Reactive UI framework (with runes) |
+| **TypeScript** | 5.0.0   | Type safety                        |
+| **Vite**       | 6.0.0   | Build tool & dev server            |
 
 ### Styling
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| **Tailwind CSS** | 4.0.6 | Utility-first CSS |
-| **@tailwindcss/vite** | 4.0.6 | Vite integration |
-| **PostCSS** | 8.5.2 | CSS processing |
-| **Autoprefixer** | 10.4.20 | Browser compatibility |
+| Technology            | Version | Purpose               |
+| --------------------- | ------- | --------------------- |
+| **Tailwind CSS**      | 4.0.6   | Utility-first CSS     |
+| **@tailwindcss/vite** | 4.0.6   | Vite integration      |
+| **PostCSS**           | 8.5.2   | CSS processing        |
+| **Autoprefixer**      | 10.4.20 | Browser compatibility |
 
 ### Content Processing
 
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| **mdsvex** | 0.12.3 | Markdown → Svelte |
-| **remark-gfm** | 4.0.1 | GitHub Flavored Markdown |
-| **remark-footnotes** | 2.0 | Footnote support |
+| Technology           | Version | Purpose                  |
+| -------------------- | ------- | ------------------------ |
+| **mdsvex**           | 0.12.3  | Markdown → Svelte        |
+| **remark-gfm**       | 4.0.1   | GitHub Flavored Markdown |
+| **remark-footnotes** | 2.0     | Footnote support         |
 
 ### Backend Services
 
-| Service | Purpose | Hosting |
-|---------|---------|---------|
+| Service      | Purpose             | Hosting        |
+| ------------ | ------------------- | -------------- |
 | **Supabase** | PostgreSQL database | Supabase Cloud |
-| **Directus** | CMS admin UI | Render/Railway |
-| **Vercel** | App hosting | Vercel Edge |
+| **Directus** | CMS admin UI        | Render/Railway |
+| **Vercel**   | App hosting         | Vercel Edge    |
 
 ### Development Tools
 
-| Tool | Purpose |
-|------|---------|
-| **Prettier** | Code formatting |
-| **svelte-check** | Type checking |
-| **publint** | Package validation |
+| Tool             | Purpose            |
+| ---------------- | ------------------ |
+| **Prettier**     | Code formatting    |
+| **svelte-check** | Type checking      |
+| **publint**      | Package validation |
 
 ---
 
@@ -227,6 +228,7 @@ src/routes/
 ```
 
 **Key:**
+
 - **(landing)** - Portfolio pages with side image panel
 - **(pond)** - Blog pages with custom full-height layout
 - **@** syntax - Resets layout (breaks out of parent)
@@ -240,16 +242,18 @@ src/routes/
 ```typescript
 // routes/pond/+page.server.ts
 export const load: PageServerLoad = async () => {
-    const posts = await getPosts();
-    return { posts };
+	const posts = await getPosts();
+	return { posts };
 };
 ```
 
 **Runs on:**
+
 - ✅ Server (always)
 - ❌ Browser (never)
 
 **Used for:**
+
 - Database queries
 - API calls
 - Authentication checks
@@ -263,16 +267,18 @@ routes/pond/[slug]/+page.svelte
 ```
 
 **Matches:**
+
 - `/pond/shorebirds`
 - `/pond/fishing-cats`
 - `/pond/any-slug-here`
 
 **Access param:**
+
 ```typescript
 export const load: PageServerLoad = async ({ params }) => {
-    const { slug } = params;
-    const post = await getPostBySlug(slug);
-    return { post };
+	const { slug } = params;
+	const post = await getPostBySlug(slug);
+	return { post };
 };
 ```
 
@@ -281,11 +287,13 @@ export const load: PageServerLoad = async ({ params }) => {
 **File:** `+layout@.svelte`
 
 **The @ syntax:**
+
 - Breaks out of parent layouts
 - Creates completely custom layout
 - Used for blog pages to avoid portfolio layout
 
 **Example:**
+
 ```
 (landing)/+layout.svelte      # 2/3-1/3 layout
     ↓ normally inherits
@@ -293,6 +301,7 @@ export const load: PageServerLoad = async ({ params }) => {
 ```
 
 **Corresponding server file:**
+
 ```
 +layout.server.ts  # Not +layout@.server.ts (@ only for .svelte)
 ```
@@ -387,25 +396,26 @@ Check if cache valid (< 5 min old)
 
 Blog post content and metadata
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `id` | UUID | Primary key |
-| `slug` | TEXT | URL-friendly identifier |
-| `title` | TEXT | Post title |
-| `subtitle` | TEXT | Optional subtitle |
-| `form` | JSONB | ["longform"] or ["shortform"] |
-| `category` | JSONB | ["documentary"], ["essay"], etc. |
-| `date` | DATE | Publication date |
-| `tags` | JSONB | ["tag1", "tag2", ...] |
-| `chapter` | JSONB | ["'25"], ["'24"], etc. |
-| `excerpt` | TEXT | Short description |
-| `content` | TEXT | Full markdown content |
-| `published` | BOOLEAN | Published status |
-| `featured_image` | TEXT | Image URL (optional) |
-| `created_at` | TIMESTAMPTZ | Creation timestamp |
-| `updated_at` | TIMESTAMPTZ | Last update timestamp |
+| Column           | Type        | Description                      |
+| ---------------- | ----------- | -------------------------------- |
+| `id`             | UUID        | Primary key                      |
+| `slug`           | TEXT        | URL-friendly identifier          |
+| `title`          | TEXT        | Post title                       |
+| `subtitle`       | TEXT        | Optional subtitle                |
+| `form`           | JSONB       | ["longform"] or ["shortform"]    |
+| `category`       | JSONB       | ["documentary"], ["essay"], etc. |
+| `date`           | DATE        | Publication date                 |
+| `tags`           | JSONB       | ["tag1", "tag2", ...]            |
+| `chapter`        | JSONB       | ["'25"], ["'24"], etc.           |
+| `excerpt`        | TEXT        | Short description                |
+| `content`        | TEXT        | Full markdown content            |
+| `published`      | BOOLEAN     | Published status                 |
+| `featured_image` | TEXT        | Image URL (optional)             |
+| `created_at`     | TIMESTAMPTZ | Creation timestamp               |
+| `updated_at`     | TIMESTAMPTZ | Last update timestamp            |
 
 **Indexes:**
+
 - Primary: `id`
 - Unique: `slug`
 - Index: `published, date DESC`
@@ -414,38 +424,40 @@ Blog post content and metadata
 
 Site-wide configuration (singleton)
 
-| Column | Type | Description |
-|--------|------|-------------|
-| `id` | UUID | Fixed: `00000000-0000-0000-0000-000000000001` |
-| `title` | TEXT | Site title |
-| `description` | TEXT | Site description |
-| `current_chapter` | TEXT | Active year filter |
-| `base_url` | TEXT | Production URL |
-| `watch_url` | TEXT | Featured video URL |
-| `watch_title` | TEXT | Video title |
-| `watch_source` | TEXT | Creator name |
-| `media_url` | TEXT | Featured music URL |
-| `media_title` | TEXT | Track title |
-| `media_source` | TEXT | Artist name |
-| `read_url` | TEXT | Featured reading URL |
-| `read_title` | TEXT | Article title |
-| `read_source` | TEXT | Author name |
-| `artwork_src` | TEXT | Artwork image path |
-| `artwork_title` | TEXT | Artwork name |
-| `artwork_artist` | TEXT | Artist name |
-| `created_at` | TIMESTAMPTZ | Creation timestamp |
-| `updated_at` | TIMESTAMPTZ | Last update timestamp |
+| Column            | Type        | Description                                   |
+| ----------------- | ----------- | --------------------------------------------- |
+| `id`              | UUID        | Fixed: `00000000-0000-0000-0000-000000000001` |
+| `title`           | TEXT        | Site title                                    |
+| `description`     | TEXT        | Site description                              |
+| `current_chapter` | TEXT        | Active year filter                            |
+| `base_url`        | TEXT        | Production URL                                |
+| `watch_url`       | TEXT        | Featured video URL                            |
+| `watch_title`     | TEXT        | Video title                                   |
+| `watch_source`    | TEXT        | Creator name                                  |
+| `media_url`       | TEXT        | Featured music URL                            |
+| `media_title`     | TEXT        | Track title                                   |
+| `media_source`    | TEXT        | Artist name                                   |
+| `read_url`        | TEXT        | Featured reading URL                          |
+| `read_title`      | TEXT        | Article title                                 |
+| `read_source`     | TEXT        | Author name                                   |
+| `artwork_src`     | TEXT        | Artwork image path                            |
+| `artwork_title`   | TEXT        | Artwork name                                  |
+| `artwork_artist`  | TEXT        | Artist name                                   |
+| `created_at`      | TIMESTAMPTZ | Creation timestamp                            |
+| `updated_at`      | TIMESTAMPTZ | Last update timestamp                         |
 
 **Pattern:** Singleton (only 1 row allowed)
 
 ### JSONB Array Pattern
 
 **Why JSONB?**
+
 - Directus Tags interface requires arrays
 - Flexible for future multi-select fields
 - Proper data type for collections
 
 **Storage:**
+
 ```sql
 form: ["longform"]
 category: ["documentary"]
@@ -453,6 +465,7 @@ tags: ["wildlife", "thailand", "conservation"]
 ```
 
 **App Interface:**
+
 ```typescript
 form: "longform"          // Single string
 category: "documentary"   // Single string
@@ -460,14 +473,15 @@ tags: ["wildlife", ...]   // Array remains array
 ```
 
 **Conversion:**
+
 ```typescript
 // In posts-supabase.ts
 function arrayToString(arr: string[]): string {
-    return arr && arr.length > 0 ? arr[0] : '';
+	return arr && arr.length > 0 ? arr[0] : '';
 }
 
 // Usage:
-form: arrayToString(row.form)  // ["longform"] → "longform"
+form: arrayToString(row.form); // ["longform"] → "longform"
 ```
 
 ### Row Level Security (RLS)
@@ -498,12 +512,14 @@ CREATE POLICY "Allow public read" ON site_config
 #### 1. Server-Loaded Pages
 
 **Pattern:**
+
 ```
 +page.server.ts  # Loads data
 +page.svelte     # Renders with data
 ```
 
 **Example:**
+
 ```typescript
 // +page.server.ts
 export const load = async () => {
@@ -524,19 +540,19 @@ export const load = async () => {
 
 ```svelte
 <script lang="ts">
-    // Props
-    let { title }: { title: string } = $props();
+	// Props
+	let { title }: { title: string } = $props();
 
-    // State
-    let count = $state(0);
+	// State
+	let count = $state(0);
 
-    // Derived
-    let doubled = $derived(count * 2);
+	// Derived
+	let doubled = $derived(count * 2);
 
-    // Effects
-    $effect(() => {
-        console.log('Count:', count);
-    });
+	// Effects
+	$effect(() => {
+		console.log('Count:', count);
+	});
 </script>
 ```
 
@@ -545,19 +561,21 @@ export const load = async () => {
 **Location:** `src/components/`
 
 **Examples:**
+
 - `BackToTopButton.svelte` - Scroll behavior
 - `PostPreview.svelte` - Display formatting
 - `ThemeToggle.svelte` - State + UI
 
 **Usage:**
+
 ```svelte
 <script>
-    import BackToTopButton from '$lib/components/BackToTopButton.svelte';
-    let element: HTMLElement;
+	import BackToTopButton from '$lib/components/BackToTopButton.svelte';
+	let element: HTMLElement;
 </script>
 
 <div bind:this={element}>
-    <!-- content -->
+	<!-- content -->
 </div>
 
 <BackToTopButton {element} variant="minimal" />
@@ -595,22 +613,22 @@ export const load = async () => {
 
 ```typescript
 export default {
-    darkMode: 'class',  // .dark class on <html>
-    content: ['./src/**/*.{html,js,svelte,ts}'],
-    theme: {
-        extend: {
-            colors: {
-                'dark': '#151515',
-                'off-white': '#DEDCDB',
-                'pond-blue': '#5468FF',
-                'pond': '#2E2E2E'
-            },
-            animation: {
-                marquee: 'marquee 20s linear infinite'
-            }
-        }
-    }
-}
+	darkMode: 'class', // .dark class on <html>
+	content: ['./src/**/*.{html,js,svelte,ts}'],
+	theme: {
+		extend: {
+			colors: {
+				dark: '#151515',
+				'off-white': '#DEDCDB',
+				'pond-blue': '#5468FF',
+				pond: '#2E2E2E'
+			},
+			animation: {
+				marquee: 'marquee 20s linear infinite'
+			}
+		}
+	}
+};
 ```
 
 ### Typography Classes
@@ -620,6 +638,7 @@ export default {
 **Convention:** `{typeface}-typo-{variant}`
 
 **Serif (Hedvig Letters Serif):**
+
 - `.serif-typo` - Default
 - `.serif-typo-body` - 18px body text
 - `.serif-typo-paragraph` - 24px paragraphs
@@ -627,21 +646,25 @@ export default {
 - `.serif-typo-h1-mobile` - 64px mobile headings
 
 **Sans (Instrument Sans):**
+
 - `.sans-typo` - Default
 - `.sans-typo-title` - 42px, weight 300
 - `.sans-typo-title-thin` - 42px, weight 200
 
 **Mono (Inconsolata):**
+
 - `.mono-typo-nav` - 16px navigation
 - `.mono-typo-nav-large` - 20px large nav
 
 ### Global Styles
 
 **Blog Content:**
+
 - `.content` - Desktop blog post styling
 - `.content-mobile` - Mobile blog post styling
 
 Includes complete markdown rendering:
+
 - Headings, paragraphs, lists
 - Blockquotes, code blocks
 - Tables, images, figures
@@ -649,6 +672,7 @@ Includes complete markdown rendering:
 - Footnotes
 
 **Reusable UI:**
+
 - `.button-secondary` - Standard button
 - `.button-secondary-compact` - Compact button
 - `.button-secondary-accent` - Accent color button
@@ -661,31 +685,33 @@ Includes complete markdown rendering:
 ```html
 <!-- app.html -->
 <script>
-    const theme = localStorage.getItem('theme') ?? 'dark';
-    document.documentElement.classList.toggle('dark', theme === 'dark');
+	const theme = localStorage.getItem('theme') ?? 'dark';
+	document.documentElement.classList.toggle('dark', theme === 'dark');
 </script>
 ```
 
 **Usage in CSS:**
+
 ```css
 .bg-dark {
-    background: #151515;  /* Dark mode always */
+	background: #151515; /* Dark mode always */
 }
 
 /* Light mode variant */
 .dark:bg-dark {
-    background: #151515;
+	background: #151515;
 }
 ```
 
 **Toggle:**
+
 ```svelte
 <script>
-    import { themeStore } from '$lib/stores/themeStore';
+	import { themeStore } from '$lib/stores/themeStore';
 
-    function toggle() {
-        themeStore.update(t => t === 'dark' ? 'light' : 'dark');
-    }
+	function toggle() {
+		themeStore.update((t) => (t === 'dark' ? 'light' : 'dark'));
+	}
 </script>
 ```
 
@@ -698,44 +724,44 @@ Includes complete markdown rendering:
 **Pattern:** Writable stores in `src/lib/stores/`
 
 **Example:**
+
 ```typescript
 // stores/themeStore.ts
 import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
 
-const stored = browser ? localStorage.getItem('theme') ?? 'dark' : 'dark';
+const stored = browser ? (localStorage.getItem('theme') ?? 'dark') : 'dark';
 export const themeStore = writable<'light' | 'dark'>(stored);
 
 themeStore.subscribe((value) => {
-    if (browser) {
-        localStorage.setItem('theme', value);
-        document.documentElement.classList.toggle('dark', value === 'dark');
-    }
+	if (browser) {
+		localStorage.setItem('theme', value);
+		document.documentElement.classList.toggle('dark', value === 'dark');
+	}
 });
 ```
 
 **Usage:**
+
 ```svelte
 <script>
-    import { themeStore } from '$lib/stores/themeStore';
+	import { themeStore } from '$lib/stores/themeStore';
 </script>
 
 <!-- Reactive: $ prefix -->
 <p>Current theme: {$themeStore}</p>
 
 <!-- Update -->
-<button onclick={() => themeStore.set('light')}>
-    Light Mode
-</button>
+<button onclick={() => themeStore.set('light')}> Light Mode </button>
 ```
 
 ### Available Stores
 
-| Store | Purpose | Persistence |
-|-------|---------|-------------|
-| `themeStore` | Dark/light mode | localStorage |
-| `sideImageStore` | Side panel image URL | localStorage |
-| `attributionStore` | Attribution styling | localStorage |
+| Store              | Purpose              | Persistence  |
+| ------------------ | -------------------- | ------------ |
+| `themeStore`       | Dark/light mode      | localStorage |
+| `sideImageStore`   | Side panel image URL | localStorage |
+| `attributionStore` | Attribution styling  | localStorage |
 
 ### Server State
 
@@ -743,16 +769,17 @@ themeStore.subscribe((value) => {
 
 ```typescript
 export const load = async () => {
-    const config = await getCachedSiteConfig();
-    return { config };
+	const config = await getCachedSiteConfig();
+	return { config };
 };
 ```
 
 **Accessed via:**
+
 ```svelte
 <script>
-    let { data } = $props();
-    let config = data.config;
+	let { data } = $props();
+	let config = data.config;
 </script>
 ```
 
@@ -777,6 +804,7 @@ npm run build
 ```
 
 **Steps:**
+
 1. TypeScript compilation
 2. Svelte component compilation
 3. Vite bundling
@@ -787,6 +815,7 @@ npm run build
 ### Deployment (Vercel)
 
 **Auto-deploy on:**
+
 - Push to `main` branch
 - Pull request created
 
@@ -795,6 +824,7 @@ npm run build
 **Output directory:** `.svelte-kit/output`
 
 **Environment variables:**
+
 ```bash
 PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
 PUBLIC_SUPABASE_ANON_KEY=eyJhbG...
@@ -803,6 +833,7 @@ PUBLIC_SUPABASE_ANON_KEY=eyJhbG...
 ### Edge Functions
 
 SvelteKit runs as Vercel Edge Functions:
+
 - Global CDN distribution
 - Sub-100ms latency
 - Automatic scaling
@@ -821,34 +852,35 @@ const assets = ['/bg3.JPG', '/bg4.JPG'];
 let loadedAssets = 0;
 
 const loadImage = (src: string) => {
-    return new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => {
-            loadedAssets++;
-            resolve();
-        };
-        img.src = src;
-    });
+	return new Promise((resolve) => {
+		const img = new Image();
+		img.onload = () => {
+			loadedAssets++;
+			resolve();
+		};
+		img.src = src;
+	});
 };
 
 onMount(async () => {
-    await Promise.all(assets.map(loadImage));
-    isLoading = false;
+	await Promise.all(assets.map(loadImage));
+	isLoading = false;
 });
 ```
 
 ### Caching Strategy
 
-| Resource | Cache Duration | Strategy |
-|----------|---------------|----------|
-| Site Config | 5 minutes | Server memory |
-| Posts | No cache | Always fresh |
-| Static Assets | 1 year | CDN + browser |
-| API Routes | No cache | Fresh data |
+| Resource      | Cache Duration | Strategy      |
+| ------------- | -------------- | ------------- |
+| Site Config   | 5 minutes      | Server memory |
+| Posts         | No cache       | Always fresh  |
+| Static Assets | 1 year         | CDN + browser |
+| API Routes    | No cache       | Fresh data    |
 
 ### Code Splitting
 
 SvelteKit automatically splits:
+
 - Each route into separate chunks
 - Shared dependencies into common chunks
 - Lazy-loaded components
@@ -867,6 +899,7 @@ SvelteKit automatically splits:
 ### Row Level Security (RLS)
 
 All database queries go through RLS policies:
+
 - Public can only read published posts
 - Directus uses service_role (bypasses RLS)
 - No direct database access from browser
@@ -874,10 +907,12 @@ All database queries go through RLS policies:
 ### Environment Variables
 
 **Public (client-side):**
+
 - `PUBLIC_SUPABASE_URL`
 - `PUBLIC_SUPABASE_ANON_KEY`
 
 **Private (server-side only):**
+
 - (None currently, all queries use anon key)
 
 ### Content Security Policy
@@ -900,6 +935,7 @@ npm run check
 ```
 
 Validates:
+
 - TypeScript types
 - Svelte component props
 - Database query types
@@ -912,6 +948,7 @@ npm run lint    # Check formatting
 ```
 
 **Rules:** (`.prettierrc`)
+
 - Tabs for indentation
 - Single quotes
 - No trailing commas
@@ -924,9 +961,123 @@ npm run build
 ```
 
 Catches:
+
 - Type errors
 - Import errors
 - Build configuration issues
+
+### Unit Tests
+
+**Framework:** Vitest + Testing Library
+
+```bash
+npm run test          # Run all tests
+npm run test:unit     # Run unit tests only
+npm run test:watch    # Watch mode
+npm run test:ui       # Visual test UI
+npm run test:coverage # Coverage report
+```
+
+**Test Files:**
+
+- `src/lib/utils.test.ts` - Utility function tests
+- `src/lib/server/helpers.test.ts` - Critical CMS helper tests
+
+**Critical Tests:**
+
+1. **arrayToString()** - JSONB array conversion (CMS integration)
+2. **formatDate()** - Date formatting and Safari compatibility
+3. **sortPostsByDate()** - Post ordering logic
+4. **formatTagsForDisplay()** - Tag rendering
+
+### Integration Tests
+
+Tests database connectivity and queries.
+
+```bash
+npm run test:integration
+```
+
+**Requirements:**
+
+- Valid `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_ANON_KEY`
+- Database connection available
+
+**Test Coverage:**
+
+- Database connection
+- Posts table schema validation
+- Site config table validation
+- JSONB array field handling
+- RLS policy verification
+- Query performance
+
+**Test File:** `src/lib/server/database.integration.test.ts`
+
+### Pre-Deployment Health Check
+
+Comprehensive system validation before deployment.
+
+```bash
+npm run health-check
+```
+
+**Checks:**
+
+1. ✓ Environment variables configured
+2. ✓ Database connection working
+3. ✓ Posts table structure valid
+4. ✓ Site config table has data
+5. ✓ JSONB fields correctly formatted
+6. ✓ Dependencies installed
+7. ✓ Type definitions present
+
+**Exit Codes:**
+
+- `0` - All checks passed
+- `1` - One or more checks failed
+
+**Script:** `scripts/health-check.ts`
+
+### Continuous Integration
+
+**GitHub Actions:** `.github/workflows/ci.yml`
+
+**Jobs:**
+
+1. **Type Check** - TypeScript validation
+2. **Unit Tests** - Run on every PR/push
+3. **Integration Tests** - Run if Supabase credentials available
+4. **Build Test** - Ensure production build succeeds
+5. **Health Check** - Pre-deployment validation
+
+**Triggers:**
+
+- Push to `main` or `develop`
+- Pull requests to `main` or `develop`
+
+### Testing Best Practices
+
+**Before Committing:**
+
+```bash
+npm run check    # Type check
+npm run test     # Run tests
+npm run format   # Format code
+```
+
+**Before Deploying:**
+
+```bash
+npm run health-check  # System validation
+npm run build        # Production build test
+```
+
+**In CI/CD:**
+
+- All tests run automatically
+- Deployment blocked if tests fail
+- Integration tests require secrets
 
 ---
 
@@ -935,18 +1086,22 @@ Catches:
 ### Common Issues
 
 **Build fails with "supabaseUrl is required"**
+
 - Cause: Environment variables not set during build
 - Fix: Add `PUBLIC_SUPABASE_URL` in Vercel
 
 **Config not loading from database**
+
 - Cause: Layout reset bypassing server load
 - Fix: Add `+layout.server.ts` at reset level
 
 **Directus shows old schema**
+
 - Cause: Cached metadata
 - Fix: Delete from `directus_fields` and `directus_collections`
 
 **Posts not appearing**
+
 - Cause: `published = false` or future date
 - Fix: Check post status and date
 

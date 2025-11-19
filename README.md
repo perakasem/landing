@@ -33,6 +33,7 @@ Modern, CMS-driven portfolio and blog built with SvelteKit 2 and Svelte 5. Conte
 ## Tech Stack
 
 ### Frontend
+
 - **SvelteKit 2** - Full-stack web framework
 - **Svelte 5** - Reactive UI with runes
 - **TypeScript** - End-to-end type safety
@@ -40,11 +41,13 @@ Modern, CMS-driven portfolio and blog built with SvelteKit 2 and Svelte 5. Conte
 - **Vite 6** - Lightning-fast dev server
 
 ### Backend
+
 - **Supabase** - PostgreSQL database + auth
 - **Directus** - Headless CMS admin
 - **Vercel** - Edge hosting + serverless functions
 
 ### Content
+
 - **mdsvex** - Markdown processing
 - **remark-gfm** - GitHub Flavored Markdown
 - **PostgreSQL** - Structured data storage
@@ -127,6 +130,70 @@ npm run format       # Format code with Prettier
 
 ---
 
+## Testing
+
+Comprehensive test suite to ensure code quality and prevent regressions.
+
+### Unit Tests
+
+```bash
+npm run test              # Run all tests
+npm run test:unit         # Unit tests only
+npm run test:watch        # Watch mode
+npm run test:coverage     # Coverage report
+```
+
+**Test Coverage:**
+
+- ✓ Critical helper functions (arrayToString, formatDate)
+- ✓ Post sorting and filtering logic
+- ✓ Tag formatting
+- ✓ Date conversion utilities
+
+### Integration Tests
+
+```bash
+npm run test:integration  # Database connectivity tests
+```
+
+Validates:
+
+- Database connection
+- Table schemas
+- JSONB field handling
+- RLS policies
+- Query performance
+
+### Health Check
+
+Pre-deployment validation:
+
+```bash
+npm run health-check
+```
+
+Verifies:
+
+- ✓ Environment variables
+- ✓ Database connectivity
+- ✓ Table structures
+- ✓ Dependencies
+- ✓ Type definitions
+
+### CI/CD
+
+GitHub Actions automatically run:
+
+- Type checking
+- Unit tests
+- Integration tests (if credentials available)
+- Build validation
+- Health checks
+
+See `.github/workflows/ci.yml` for details.
+
+---
+
 ## Content Management
 
 ### Creating a Post
@@ -153,12 +220,12 @@ npm run format       # Format code with Prettier
 
 ## Documentation
 
-| Document | Purpose | Audience |
-|----------|---------|----------|
-| **README.md** | Project overview | Everyone |
-| **[ARCHITECTURE.md](./ARCHITECTURE.md)** | Technical deep-dive | Developers |
-| **[CMS-GUIDE.md](./CMS-GUIDE.md)** | CMS setup & usage | Content editors |
-| **[CLAUDE.md](./CLAUDE.md)** | AI assistant guide | AI assistants |
+| Document                                 | Purpose             | Audience        |
+| ---------------------------------------- | ------------------- | --------------- |
+| **README.md**                            | Project overview    | Everyone        |
+| **[ARCHITECTURE.md](./ARCHITECTURE.md)** | Technical deep-dive | Developers      |
+| **[CMS-GUIDE.md](./CMS-GUIDE.md)**       | CMS setup & usage   | Content editors |
+| **[CLAUDE.md](./CLAUDE.md)**             | AI assistant guide  | AI assistants   |
 
 ---
 
@@ -192,12 +259,14 @@ landing/
 ### Tables
 
 **posts** - Blog articles
+
 - slug, title, subtitle, content
 - form, category, tags, chapter (JSONB)
 - published, date, excerpt
 - created_at, updated_at
 
 **site_config** - Site-wide configuration (singleton)
+
 - title, description, current_chapter
 - watch, media, read (featured content)
 - artwork details
@@ -225,6 +294,7 @@ category: "documentary"
 **Automatic deployment** on push to `main` branch.
 
 **Environment variables required:**
+
 ```bash
 PUBLIC_SUPABASE_URL=...
 PUBLIC_SUPABASE_ANON_KEY=...
@@ -233,6 +303,7 @@ PUBLIC_SUPABASE_ANON_KEY=...
 ### Directus (CMS)
 
 Deploy on Render or Railway with:
+
 - Database: Connect to Supabase
 - Environment: See CMS-GUIDE.md
 
@@ -278,6 +349,7 @@ MIT License - See LICENSE file for details
 ## Acknowledgments
 
 Built with:
+
 - [SvelteKit](https://kit.svelte.dev) - Framework
 - [Supabase](https://supabase.com) - Database
 - [Directus](https://directus.io) - CMS
@@ -285,6 +357,7 @@ Built with:
 - [Tailwind CSS](https://tailwindcss.com) - Styling
 
 Typography:
+
 - [Hedvig Letters Serif](https://fonts.google.com/specimen/Hedvig+Letters+Serif)
 - [Instrument Sans](https://fonts.google.com/specimen/Instrument+Sans)
 - [Inconsolata](https://fonts.google.com/specimen/Inconsolata)
