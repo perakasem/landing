@@ -40,7 +40,7 @@ REFRESH_TOKEN_COOKIE_SAME_SITE=lax
 
 # CORS (for your SvelteKit app)
 CORS_ENABLED=true
-CORS_ORIGIN=https://perakasem.co,http://localhost:5173
+CORS_ORIGIN=https://perakasem.com,http://localhost:5173
 CORS_METHODS=GET,POST,PATCH,DELETE
 CORS_ALLOWED_HEADERS=Content-Type,Authorization
 

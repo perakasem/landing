@@ -9,7 +9,7 @@
 		title: '3rd Space',
 		description: 'A bootleg substack of thoughts and things worth sharing.',
 		currentChapter: "'25",
-		url: 'https://perakasem.co/pond',
+		url: 'https://perakasem.com/pond',
 		watchUrl: 'https://youtu.be/Q0_W4SWHeWY?si=02AWC2EJLwpe1Owx',
 		watch: 'The Future of Creativity',
 		watchSource: 'Hank Green',

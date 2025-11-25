@@ -49,34 +49,33 @@
 		</div>
 		<div class="mt-20 mb-40 pt-12">
 			<p class="serif-typo-paragraph mb-4 text-wrap">
-				<span class="/">I'm Pera</span>, a Computer Science and Mathematics student at the
+				<span class="/">I'm Pera</span>, a Computer Science and Economics student at the
 				University of Toronto. Originally from Bangkok, I'm passionate about leveraging technology
 				to tackle worldly challenges. When I'm away from the screen, you will find me exploring the
 				arts—<a
 					href="https://perakasem.crd.co"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="underline decoration-wavy hover:text-stone-100">photography</a
+					class="underline decoration-wavy hover:text-stone-100">through lens</a
 				>,
 				<a href="/construction" class="underline decoration-wavy hover:text-stone-100">food</a>,
-				music, and design—or the wonders of nature.
+				music, and design—or exploring what's left of nature.
 			</p>
 			<p class="serif-typo-paragraph mb-4 text-wrap">
-				I'm open to internship opportunities in the tech and startup space, but also in altruistic
-				endeavors and any cool projects. Feel free to <a
+				I'm looking internship opportunities in the tech and startup space, but also open to
+				altruistic or cool projects. Feel free to <a
 					href="mailto:pkasemsripitak@gmail.com"
 					class="underline decoration-wavy hover:text-stone-100">reach out</a
 				>
 				to connect over a
 				<a href="/construction" class="underline decoration-wavy hover:text-stone-100">coffee</a> chat
-				or explore potential collaborations—let's create something together!
+				or explore potential collaborations—let's create together!
 			</p>
 			<hr class="bg-light my-12 h-px" />
 			<h1 class="sans-typo-title-small mb-1 text-wrap">On Intros</h1>
 			<p class="sans-typo-detail mb-4 text-sm text-wrap">Pera Kasemsripitak</p>
 			<p class="serif-typo-body-small py-2 text-wrap">
-				Life. Introductions often fail to do justice to what truly matters. At this stage of my
-				journey, I've learned to treasured what truly moves me. For the past five years,
+				Quick introductions never do anyone justice. For the past five years,
 				<a
 					href="https://perakasem.crd.co"
 					target="_blank"
@@ -113,15 +112,14 @@
 				>
 					life itself
 				</button>
-				—has occupied my every moment, my camera becoming an extension of my eye. My camera has guided
-				me into the deepest of jungles and through society, revealing both beauty and harsh realities
-				that have shaped my values. Behind the scenes, music keeps me going and feeling alive—shoutout
-				to Thelonious Monk. Yet, what has brought people together the most has been my kitchen. What
+				—has occupied my every moment, my camera becoming an extension of my eye.Behind the scenes,
+				music keeps me going and feeling alive—shoutout to Thelonious Monk. Yet, what has brought
+				people together the most has been my kitchen. What
 				started as a gathering between four friends has transformed into increasingly refined dinner
-				parties and supper club sessions. We called it
+				parties and supper clubs. We called it
 				<a href="/construction" class="underline decoration-wavy hover:text-stone-100">Quatre</a>.
 				Now, I'm honing my skills and chasing "type sh*t"—I'll let the project speak for itself. I
-				also design things here and there, be it for my other projects or this website itself. It
+				also build things here and there, be it for my other projects or this website itself. It
 				would take forever to go on about everything, so to wrap it up, I'm always down to sail,
 				hike, or hit the slopes.
 			</p>

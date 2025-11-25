@@ -1,5 +1,5 @@
 -- =====================================================
--- DATABASE SCHEMA FOR PERAKASEM.CO
+-- DATABASE SCHEMA FOR PERAKASEM.COM
 -- =====================================================
 --
 -- This file contains the complete database schema for the
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS site_config (
     title TEXT NOT NULL DEFAULT '3rd Space',
     description TEXT NOT NULL DEFAULT 'A bootleg substack of thoughts and things worth sharing.',
     current_chapter TEXT NOT NULL DEFAULT '''25',
-    base_url TEXT NOT NULL DEFAULT 'https://perakasem.co/pond',
+    base_url TEXT NOT NULL DEFAULT 'https://perakasem.com/pond',
 
     -- Watch Section (Featured Video)
     watch_url TEXT,
@@ -157,7 +157,7 @@ INSERT INTO site_config (
     '3rd Space',
     'A bootleg substack of thoughts and things worth sharing.',
     '''25',
-    'https://perakasem.co/pond',
+    'https://perakasem.com/pond',
     'https://youtu.be/Q0_W4SWHeWY?si=02AWC2EJLwpe1Owx',
     'The Future of Creativity',
     'Hank Green',

@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS site_config (
     title TEXT NOT NULL DEFAULT '3rd Space',
     description TEXT NOT NULL DEFAULT 'A bootleg substack of thoughts and things worth sharing.',
     current_chapter TEXT NOT NULL DEFAULT '''25',
-    base_url TEXT NOT NULL DEFAULT 'https://perakasem.co/pond',
+    base_url TEXT NOT NULL DEFAULT 'https://perakasem.com/pond',
 
     -- Watch Section (Featured Video)
     watch_url TEXT,

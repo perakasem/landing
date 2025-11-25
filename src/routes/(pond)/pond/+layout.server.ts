@@ -13,7 +13,7 @@ export const load: LayoutServerLoad = async () => {
 				title: '3rd Space',
 				description: 'A bootleg substack of thoughts and things worth sharing.',
 				currentChapter: "'25",
-				url: 'https://perakasem.co/pond',
+				url: 'https://perakasem.com/pond',
 				watchUrl: null,
 				watch: null,
 				watchSource: null,

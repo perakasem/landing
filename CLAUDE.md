@@ -16,8 +16,8 @@
 
 **URLs:**
 
-- Production: https://perakasem.co
-- Blog: https://perakasem.co/pond
+- Production: https://perakasem.com
+- Blog: https://perakasem.com/pond
 
 **Key Documentation:**
 
