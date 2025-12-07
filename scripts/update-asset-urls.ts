@@ -2,11 +2,11 @@
  * Update Asset URLs in Posts
  *
  * Changes asset URLs from Directus proxy to Cloudflare R2 custom domain
- * From: cms.perakasem.com/assets/UUID
- * To: assets.perakasem.com/UUID
+ * From: https://cms.perakasem.com/assets/UUID
+ * To: https://assets.perakasem.com/UUID.ext
  *
  * Usage:
- *   npx ts-node scripts/update-asset-urls.ts
+ *   npx ts-node scripts/update-asset-urls.ts [--preview]
  */
 
 import { createClient } from '@supabase/supabase-js';
@@ -24,14 +24,47 @@ if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
 
 const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
-// Configuration
-const OLD_URL_PATTERN = 'cms.perakasem.com/assets/';
-const NEW_URL_PATTERN = 'assets.perakasem.com/';
+// Pattern to match Directus asset URLs
+const DIRECTUS_URL_PATTERN = /https?:\/\/cms\.perakasem\.com\/assets\/([a-f0-9-]+)/g;
+
+interface FileInfo {
+	id: string;
+	filename_disk: string;
+}
+
+async function getFileMap(uuids: string[]): Promise<Record<string, string>> {
+	const { data: files, error } = await supabase
+		.from('directus_files')
+		.select('id, filename_disk')
+		.in('id', uuids);
+
+	if (error) {
+		console.error('❌ Error fetching files:', error);
+		return {};
+	}
+
+	const fileMap: Record<string, string> = {};
+	files?.forEach((file: any) => {
+		fileMap[file.id] = file.filename_disk;
+	});
+
+	return fileMap;
+}
+
+function replaceUrls(content: string, fileMap: Record<string, string>): string {
+	return content.replace(DIRECTUS_URL_PATTERN, (match, uuid) => {
+		if (fileMap[uuid]) {
+			// New format: https://assets.perakasem.com/UUID.ext
+			return `https://assets.perakasem.com/${fileMap[uuid]}`;
+		}
+		// If no match found, keep original (shouldn't happen)
+		return match;
+	});
+}
 
 async function updateAssetUrls() {
 	console.log('🔍 Finding posts with old asset URLs...\n');
 
-	// Fetch all posts
 	const { data: posts, error } = await supabase.from('posts').select('slug, title, content');
 
 	if (error) {
@@ -46,17 +79,34 @@ async function updateAssetUrls() {
 
 	const postsToUpdate: Array<{ slug: string; title: string; newContent: string }> = [];
 
-	// Find posts that need updating
-	posts.forEach((post) => {
-		if (post.content.includes(OLD_URL_PATTERN)) {
-			const newContent = post.content.replaceAll(OLD_URL_PATTERN, NEW_URL_PATTERN);
+	// Find all posts with Directus URLs and extract UUIDs
+	for (const post of posts) {
+		if (!post.content.includes('cms.perakasem.com/assets/')) {
+			continue;
+		}
+
+		// Extract all UUIDs from this post
+		const matches = [...post.content.matchAll(DIRECTUS_URL_PATTERN)];
+		const uuids = matches.map((m) => m[1]);
+
+		if (uuids.length === 0) {
+			continue;
+		}
+
+		// Get file information
+		const fileMap = await getFileMap(uuids);
+
+		// Replace URLs
+		const newContent = replaceUrls(post.content, fileMap);
+
+		if (newContent !== post.content) {
 			postsToUpdate.push({
 				slug: post.slug,
 				title: post.title,
 				newContent
 			});
 		}
-	});
+	}
 
 	if (postsToUpdate.length === 0) {
 		console.log('✅ No posts need updating. All asset URLs are already correct!\n');
@@ -71,12 +121,10 @@ async function updateAssetUrls() {
 	console.log('\n⚠️  This will update the content field in the database.');
 	console.log('    Press Ctrl+C to cancel, or wait 5 seconds to continue...\n');
 
-	// Wait 5 seconds before proceeding
 	await new Promise((resolve) => setTimeout(resolve, 5000));
 
 	console.log('🚀 Updating posts...\n');
 
-	// Update each post
 	for (const post of postsToUpdate) {
 		const { error: updateError } = await supabase
 			.from('posts')
@@ -92,7 +140,6 @@ async function updateAssetUrls() {
 
 	console.log('\n━'.repeat(50));
 	console.log(`✅ Successfully updated ${postsToUpdate.length} post(s)!\n`);
-	console.log('💡 Tip: Check your posts on the website to verify the images load correctly.\n');
 }
 
 async function previewChanges() {
@@ -113,26 +160,32 @@ async function previewChanges() {
 
 	let foundChanges = false;
 
-	posts.forEach((post) => {
-		if (post.content.includes(OLD_URL_PATTERN)) {
-			foundChanges = true;
-			console.log(`📄 Post: ${post.title} (${post.slug})\n`);
-
-			// Find all image URLs
-			const imageMatches = [
-				...post.content.matchAll(/!\[.*?\]\((https?:\/\/[^)]+)\)/g)
-			];
-
-			imageMatches.forEach((match) => {
-				const url = match[1];
-				if (url.includes(OLD_URL_PATTERN)) {
-					const newUrl = url.replace(OLD_URL_PATTERN, NEW_URL_PATTERN);
-					console.log(`   OLD: ${url}`);
-					console.log(`   NEW: ${newUrl}\n`);
-				}
-			});
+	for (const post of posts) {
+		if (!post.content.includes('cms.perakasem.com/assets/')) {
+			continue;
 		}
-	});
+
+		const matches = [...post.content.matchAll(DIRECTUS_URL_PATTERN)];
+		if (matches.length === 0) {
+			continue;
+		}
+
+		foundChanges = true;
+		const uuids = matches.map((m) => m[1]);
+		const fileMap = await getFileMap(uuids);
+
+		console.log(`📄 Post: ${post.title} (${post.slug})\n`);
+
+		matches.forEach((match) => {
+			const uuid = match[1];
+			const oldUrl = match[0];
+			if (fileMap[uuid]) {
+				const newUrl = `https://assets.perakasem.com/${fileMap[uuid]}`;
+				console.log(`   OLD: ${oldUrl}`);
+				console.log(`   NEW: ${newUrl}\n`);
+			}
+		});
+	}
 
 	if (!foundChanges) {
 		console.log('✅ No posts need updating!\n');
