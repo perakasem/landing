@@ -24,6 +24,4 @@ export const supabase = createClient<Database>(supabaseUrl, supabaseKey, {
 export const db = {
 	posts: () => supabase.from('posts'),
 	siteConfig: () => supabase.from('site_config'),
-	media: () => supabase.from('media'),
-	contentPages: () => supabase.from('content_pages')
 };

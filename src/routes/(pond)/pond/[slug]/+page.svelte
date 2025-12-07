@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { onMount, type SvelteComponent } from 'svelte';
+	import { onMount } from 'svelte';
 	import type { Post } from '$lib/types';
 	import { formatDate } from '$lib/utils';
+	import { marked } from 'marked';
 	import ScrollProgress from '../../../../components/ScrollProgress.svelte';
 	import BackToTopButton from '../../../../components/BackToTopButton.svelte';
 
@@ -15,34 +16,11 @@
 	let element: HTMLElement;
 	let isMobile = false;
 	const mobileBreakpoint = 640;
+	const Content = marked.parse(data.meta.content)
 
 	function updateViewport() {
 		isMobile = window.innerWidth < mobileBreakpoint;
 	}
-
-	type MarkdownModule = {
-		metadata: Omit<typeof data.meta, 'slug'>;
-		default: typeof SvelteComponent;
-	};
-
-	let Content: typeof SvelteComponent | null = null;
-
-	// Mapping of posts available via glob.
-	const posts = import.meta.glob('../../../../posts/*.md');
-
-	// Reactive statement: whenever data.slug changes, load new markdown content and scroll to top.
-	$: (async () => {
-		const path = `../../../../posts/${data.slug}.md`;
-		if (posts[path]) {
-			const mod = (await posts[path]()) as MarkdownModule;
-			Content = mod.default;
-		} else {
-			console.error(`Could not find post for slug: ${data.slug}`);
-			Content = null;
-		}
-		// Scroll to the top of the element (or window) when slug changes.
-		element?.scrollIntoView({ behavior: 'smooth' });
-	})();
 
 	onMount(() => {
 		updateViewport();
@@ -68,7 +46,7 @@
 			<h2>{data.meta.excerpt}</h2>
 			<div class="content-mobile">
 				{#if Content}
-					<svelte:component this={Content} key={data.slug} />
+					<p>{@html Content}</p>
 				{:else}
 					<p>Loading post content...</p>
 				{/if}
@@ -133,24 +111,11 @@
 		}
 		/* Unique mobile styles not in global CSS */
 		.content-mobile img {
-			margin-left: auto;
-			margin-right: auto;
-			margin-top: 2rem;
-			margin-bottom: 2rem;
-		}
+        margin: 2rem auto;
+    }
 		.content-mobile iframe {
-			margin-left: auto;
-			margin-right: auto;
-			margin-top: 2rem;
-			margin-bottom: 2rem;
-			max-width: 100%;
-		}
-		.content-mobile .footnote-ref {
-			text-decoration: none;
-			font-size: 0.7rem;
-			font-family: 'JetBrains Mono', serif;
-			color: #5468ff;
-			margin-left: 2px;
+        margin: 2rem auto;
+        max-width: 100%;
 		}
 	</style>
 {:else}
@@ -169,7 +134,7 @@
 			<h2>{data.meta.excerpt}</h2>
 			<div class="content">
 				{#if Content}
-					<svelte:component this={Content} key={data.slug} />
+					<p>{@html Content}</p>
 				{:else}
 					<p>Loading post content...</p>
 				{/if}
@@ -234,31 +199,18 @@
 		}
 		/* Unique desktop styles not in global CSS */
 		.content img {
-			margin-left: auto;
-			margin-right: auto;
-			margin-top: 5rem;
-			margin-bottom: 2rem;
-			max-width: 80%;
+        margin: 5rem auto 2rem;
+        max-width: 80%;
 		}
 		.content iframe {
-			margin-left: auto;
-			margin-right: auto;
-			margin-top: 5rem;
-			margin-bottom: 5rem;
-			max-width: 100%;
+        margin: 5rem auto;
+        max-width: 100%;
 		}
 		.content figcaption {
 			margin-bottom: 5rem;
 		}
 		.content h3 {
 			margin-top: 5rem;
-		}
-		.content .footnote-ref {
-			text-decoration: none;
-			font-size: 0.7rem;
-			font-family: 'JetBrains Mono', serif;
-			color: #5468ff;
-			margin-left: 2px;
 		}
 	</style>
 {/if}

@@ -10,7 +10,7 @@ export type Post = {
 	tags: string[];
 	excerpt: string;
 	published: boolean;
-	content?: string; // Markdown/HTML content (from CMS)
+	content: string; // Markdown/HTML content (from CMS)
 	featuredImage?: string; // Optional featured image URL
 };
 
