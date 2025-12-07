@@ -46,5 +46,12 @@ export async function markdownToHtml(markdown: string): Promise<string> {
 	// Replace asset URLs before processing
 	const cleanedMarkdown = replaceAssetUrls(markdown);
 	const result = await markdownProcessor.process(cleanedMarkdown);
-	return String(result);
+	let html = String(result);
+
+	// Replace footnote backlink emoji with text character
+	// The ↩ character (U+21A9) can render as emoji on some devices
+	// Replace it with the explicit text version using variation selector
+	html = html.replace(/↩/g, '↩\uFE0E');
+
+	return html;
 }

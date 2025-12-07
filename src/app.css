@@ -564,16 +564,8 @@ body {
 	margin-top: 1rem;
 }
 
-/* Force footnote backlink to render as text, not emoji */
 .content .footnotes a[data-footnote-backref] {
-	font-size: 0;
 	text-decoration: none;
-}
-
-.content .footnotes a[data-footnote-backref]::before {
-	content: '↩';
-	font-family: monospace;
-	font-size: 1rem;
 }
 
 .content-mobile .footnotes ol {
@@ -582,16 +574,8 @@ body {
 	margin-top: 1rem;
 }
 
-/* Force footnote backlink to render as text, not emoji on mobile */
 .content-mobile .footnotes a[data-footnote-backref] {
-	font-size: 0;
 	text-decoration: none;
-}
-
-.content-mobile .footnotes a[data-footnote-backref]::before {
-	content: '↩';
-	font-family: monospace;
-	font-size: 1rem;
 }
 
 /* Blog Content Styles - Mobile */
