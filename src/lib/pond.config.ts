@@ -18,12 +18,11 @@
  * @see CMS-GUIDE.md - Documentation for managing config via Directus
  */
 
-import { dev } from '$app/environment';
 
 export const title = '3rd Space';
 export const description = 'A bootleg substack of thoughts and things worth sharing.';
 export const currentChapter = "'25";
-export const url = dev ? 'http://localhost:5173/pond' : 'https://perakasem.com/pond';
+export const url = 'https://perakasem.com/pond';
 
 export const watchUrl = 'https://youtu.be/Q0_W4SWHeWY?si=02AWC2EJLwpe1Owx';
 export const watch = 'The Future of Creativity';

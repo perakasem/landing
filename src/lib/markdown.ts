@@ -4,6 +4,7 @@ import remarkGfm from 'remark-gfm';
 import remarkFootnotes from 'remark-footnotes';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
+// @ts-ignore
 import rehypeFigure from '@microflash/rehype-figure';
 
 /**
