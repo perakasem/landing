@@ -46,11 +46,5 @@ export async function markdownToHtml(markdown: string): Promise<string> {
 	// Replace asset URLs before processing
 	const cleanedMarkdown = replaceAssetUrls(markdown);
 	const result = await markdownProcessor.process(cleanedMarkdown);
-	let html = String(result);
-
-	// Replace footnote backlink with character that won't render as emoji on iOS
-	// iOS ignores variation selectors, so use a simple caret instead
-	html = html.replace(/↩︎?/g, '^');
-
-	return html;
+	return String(result);
 }

@@ -566,6 +566,7 @@ body {
 
 .content .footnotes a[data-footnote-backref] {
 	text-decoration: none;
+	font-family: 'Courier New', Courier, monospace;
 }
 
 .content-mobile .footnotes ol {
@@ -576,6 +577,7 @@ body {
 
 .content-mobile .footnotes a[data-footnote-backref] {
 	text-decoration: none;
+	font-family: 'Courier New', Courier, monospace;
 }
 
 /* Blog Content Styles - Mobile */
