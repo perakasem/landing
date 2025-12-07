@@ -19,7 +19,6 @@
 			content: [
 				{ href: '/bio', label: 'Bio', external: false },
 				{ href: '/construction', label: 'Resumé', external: false },
-				{ href: '/now', label: 'Now', external: false }
 			]
 		},
 		{
@@ -29,7 +28,6 @@
 				{ href: 'https://perakasem.crd.co', label: 'Flicks', external: true },
 				{ href: '/pond', label: '3rd Space', external: false },
 				{ href: '/construction', label: 'Portfolio', external: false },
-				{ href: '/construction', label: 'Quatre', external: false }
 			]
 		},
 		{
