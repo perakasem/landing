@@ -21,15 +21,19 @@ export const markdownProcessor = unified()
 /**
  * Replace Directus asset proxy URLs with R2 CDN URLs
  * @param markdown - Raw markdown with potential Directus URLs
- * @returns Markdown with R2 URLs
+ * @returns Markdown with R2 URLs (extension removed)
  */
 function replaceAssetUrls(markdown: string): string {
-	// Replace cms.perakasem.com/assets/ URLs with assets.perakasem.com/
-	// Note: This is a simple domain replacement. If you need file extensions,
-	// you'll need to query the database for filename_disk instead.
+	// Pattern: https://cms.perakasem.com/assets/UUID.ext
+	// Becomes: https://assets.perakasem.com/UUID
 	return markdown.replace(
-		/https?:\/\/cms\.perakasem\.com\/assets\//g,
-		'https://assets.perakasem.com/'
+		/https?:\/\/cms\.perakasem\.com\/assets\/([^/\s)]+)/g,
+		(match, filename) => {
+			// Remove extension (everything after first dot)
+			// UUID.png → UUID, UUID.jpg → UUID
+			const uuid = filename.split('.')[0];
+			return `https://assets.perakasem.com/${uuid}`;
+		}
 	);
 }
 
