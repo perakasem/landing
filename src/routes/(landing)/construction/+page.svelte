@@ -32,7 +32,7 @@
 		<div class="mt-20 mb-40 pt-12">
 			<h1 class="sans-typo-title-small mb-1 text-xl text-wrap">Under Construction</h1>
 			<p class="serif-typo-body-small p-4 text-wrap">
-				Still cooking this page up. It's gotta be perfect, yfm? Type shiiiii. Come back soon!
+				Still cooking this page up. It's gotta be perfect, yfm? Come back soon!
 			</p>
 			<a href="/" class="sans-typo-detail hover:underline">Home</a>
 		</div>
@@ -46,7 +46,7 @@
 			<div class="flex max-w-140 flex-col">
 				<h1 class="sans-typo-title-small mb-1 text-xl text-wrap">Under Construction</h1>
 				<p class="serif-typo-body p-4 text-wrap">
-					Still cooking this page up. It's gotta be perfect, yfm? Type shiiiii. Come back soon!
+					Still cooking this page up. It's gotta be perfect, yfm? Come back soon!
 				</p>
 				<a href="/" class="sans-typo-detail hover:underline">Home</a>
 			</div>
