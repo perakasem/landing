@@ -1,8 +1,8 @@
 # CLAUDE.md - AI Assistant Guide
 
-> **Last Updated:** 2025-11-19 (CMS Integration Complete)
+> **Last Updated:** 2025-12-07 (Markdown Processing Refactor)
 > **Purpose:** Comprehensive guide for AI assistants working on this SvelteKit portfolio and blog codebase
-> **Recent Changes:** Complete CMS integration with Directus + Supabase, documentation consolidation
+> **Recent Changes:** Replaced mdsvex with unified/remark/rehype markdown processing pipeline
 
 ---
 
@@ -151,7 +151,13 @@ tags: ["tag1", "tag2", ...]  # Arrays stay arrays
 
 - **Supabase Client 2.83.0** - PostgreSQL client
 - **Directus 10+** - Headless CMS
-- **mdsvex 0.12.3** - Markdown processing (legacy)
+- **unified + remark + rehype** - Markdown processing pipeline
+  - **remark-parse 11.0.0** - Parse markdown to AST
+  - **remark-gfm 4.0.1** - GitHub Flavored Markdown support
+  - **remark-rehype 11.1.2** - Convert markdown AST to HTML AST
+  - **rehype-raw 7.0.0** - Parse raw HTML in markdown
+  - **@microflash/rehype-figure 2.1.4** - Automatic figure/figcaption for images
+  - **rehype-stringify 10.0.1** - Serialize HTML AST to string
 
 ### Development Tools
 
@@ -191,6 +197,7 @@ tags: ["tag1", "tag2", ...]  # Arrays stay arrays
 │   │   ├── types/
 │   │   │   └── database.ts               # ⭐ Generated Supabase types
 │   │   ├── supabase.ts                   # ⭐ Shared Supabase client
+│   │   ├── markdown.ts                   # ⭐ Markdown-to-HTML processor
 │   │   ├── types.ts                      # App types (Post, etc.)
 │   │   ├── utils.ts                      # Helper functions
 │   │   └── pond.config.ts                # Legacy config (fallback only)
@@ -420,6 +427,80 @@ export const load: PageServerLoad = async ({ params }) => {
 	return { post };
 };
 ```
+
+### Markdown Processing
+
+**Architecture:** Unified + Remark + Rehype pipeline (client-side rendering)
+
+**Location:** `src/lib/markdown.ts`
+
+**How it works:**
+
+1. **Database stores raw markdown** - Content field contains markdown text
+2. **Server loads markdown** - `+page.server.ts` fetches from DB, passes to client
+3. **Client converts to HTML** - Component calls `markdownToHtml()` on mount
+4. **Svelte renders HTML** - Using `{@html}` directive
+
+**Example usage:**
+
+```svelte
+<script lang="ts">
+	import { markdownToHtml } from '$lib/markdown';
+
+	export let data: { meta: Post };
+
+	let html = '';
+
+	$: (async () => {
+		html = await markdownToHtml(data.meta.content);
+	})();
+</script>
+
+<div class="content">
+	{#if html}
+		{@html html}
+	{:else}
+		<p>Loading post content...</p>
+	{/if}
+</div>
+```
+
+**Processing pipeline:**
+
+```
+Raw Markdown (from DB)
+    ↓ remark-parse
+Markdown AST
+    ↓ remark-gfm (GitHub Flavored Markdown)
+Markdown AST (enhanced)
+    ↓ remark-rehype (allowDangerousHtml: true)
+HTML AST
+    ↓ rehype-raw (parse embedded HTML)
+HTML AST (with raw HTML nodes)
+    ↓ rehype-figure (wrap images in <figure>)
+HTML AST (with figures)
+    ↓ rehype-stringify
+HTML String
+    ↓ {@html}
+Rendered in DOM
+```
+
+**Supported features:**
+
+- ✅ GitHub Flavored Markdown (tables, strikethrough, task lists)
+- ✅ Raw HTML embedding (iframes, custom markup)
+- ✅ Automatic figure/figcaption for images
+- ✅ Code blocks with syntax highlighting (via CSS)
+- ✅ Footnotes (via remark-footnotes)
+
+**Why client-side?**
+
+- Simpler architecture (no SSR markdown compilation)
+- Smaller bundle (markdown processor only loaded when needed)
+- Faster server response (raw text is smaller than HTML)
+- Dynamic content updates without server restart
+
+**Note:** This replaced the previous mdsvex-based system which was tightly coupled to the build process.
 
 ---
 
@@ -745,25 +826,26 @@ npm run check
 
 ### Configuration Files
 
-| File                 | Purpose                   |
-| -------------------- | ------------------------- |
-| `svelte.config.js`   | SvelteKit + mdsvex config |
-| `vite.config.ts`     | Build config              |
-| `tailwind.config.ts` | Styling config            |
-| `tsconfig.json`      | TypeScript config         |
-| `.prettierrc`        | Code formatting rules     |
+| File                 | Purpose               |
+| -------------------- | --------------------- |
+| `svelte.config.js`   | SvelteKit config      |
+| `vite.config.ts`     | Build config          |
+| `tailwind.config.ts` | Styling config        |
+| `tsconfig.json`      | TypeScript config     |
+| `.prettierrc`        | Code formatting rules |
 
 ### Core Application Files
 
-| File                               | Purpose                   |
-| ---------------------------------- | ------------------------- |
-| `src/lib/supabase.ts`              | ⭐ Shared Supabase client |
-| `src/lib/server/posts-supabase.ts` | ⭐ Post loading from DB   |
-| `src/lib/server/config.ts`         | ⭐ Config loading from DB |
-| `src/lib/types/database.ts`        | ⭐ Generated DB types     |
-| `src/lib/types.ts`                 | App types                 |
-| `src/lib/utils.ts`                 | Helper functions          |
-| `src/app.css`                      | Global styles             |
+| File                               | Purpose                      |
+| ---------------------------------- | ---------------------------- |
+| `src/lib/supabase.ts`              | ⭐ Shared Supabase client    |
+| `src/lib/server/posts-supabase.ts` | ⭐ Post loading from DB      |
+| `src/lib/server/config.ts`         | ⭐ Config loading from DB    |
+| `src/lib/markdown.ts`              | ⭐ Markdown-to-HTML pipeline |
+| `src/lib/types/database.ts`        | ⭐ Generated DB types        |
+| `src/lib/types.ts`                 | App types                    |
+| `src/lib/utils.ts`                 | Helper functions             |
+| `src/app.css`                      | Global styles                |
 
 ### Database Files
 
@@ -859,6 +941,6 @@ git push
 
 ---
 
-**Last Updated:** 2025-11-19
-**Version:** 2.0.0 (CMS Integration Complete)
-**Status:** Production-ready with full CMS
+**Last Updated:** 2025-12-07
+**Version:** 2.1.0 (Markdown Processing Refactor)
+**Status:** Production-ready with unified/remark/rehype markdown pipeline
