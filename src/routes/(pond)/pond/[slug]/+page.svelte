@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import type { Post } from '$lib/types';
 	import { formatDate } from '$lib/utils';
-	import { marked } from 'marked';
+	import { markdownToHtml } from '$lib/markdown';
 	import ScrollProgress from '../../../../components/ScrollProgress.svelte';
 	import BackToTopButton from '../../../../components/BackToTopButton.svelte';
 
@@ -16,7 +16,12 @@
 	let element: HTMLElement;
 	let isMobile = false;
 	const mobileBreakpoint = 640;
-	const Content = marked.parse(data.meta.content)
+
+	let html = '';
+
+	$: (async () => {
+		html = await markdownToHtml(data.meta.content);
+	})();
 
 	function updateViewport() {
 		isMobile = window.innerWidth < mobileBreakpoint;
@@ -45,8 +50,8 @@
 			<h1 class="mb-4">{data.meta.title}</h1>
 			<h2>{data.meta.excerpt}</h2>
 			<div class="content-mobile">
-				{#if Content}
-					<p>{@html Content}</p>
+				{#if html}
+					<p>{@html html}</p>
 				{:else}
 					<p>Loading post content...</p>
 				{/if}
@@ -133,8 +138,8 @@
 			<h1 class="mb-4 -ml-8">{data.meta.title}</h1>
 			<h2>{data.meta.excerpt}</h2>
 			<div class="content">
-				{#if Content}
-					<p>{@html Content}</p>
+				{#if html}
+					<p>{@html html}</p>
 				{:else}
 					<p>Loading post content...</p>
 				{/if}

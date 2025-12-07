@@ -6,6 +6,6 @@ export default defineConfig({
 	plugins: [sveltekit(), tailwindcss()],
 	optimizeDeps: {
 		include: ['gsap/ScrollTrigger', 'gsap/ScrollSmoother'],
-		exclude: ['svelte/transition', 'mdsvex'] // add any other packages as needed
+		exclude: ['svelte/transition']
 	}
 });

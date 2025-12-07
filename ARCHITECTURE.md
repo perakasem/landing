@@ -78,7 +78,6 @@ Supabase Database ←→ Directus CMS
 
 | Technology           | Version | Purpose                  |
 | -------------------- | ------- | ------------------------ |
-| **mdsvex**           | 0.12.3  | Markdown → Svelte        |
 | **remark-gfm**       | 4.0.1   | GitHub Flavored Markdown |
 | **remark-footnotes** | 2.0     | Footnote support         |
 

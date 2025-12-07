@@ -19,7 +19,6 @@
 
 ### Content
 
-- **mdsvex**
 - **remark-gfm**
 - **PostgreSQL**
 

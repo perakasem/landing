@@ -10,6 +10,11 @@
 		"sourceMap": true,
 		"strict": true,
 		"module": "preserve",
-		"moduleResolution": "bundler"
-	}
+		"moduleResolution": "bundler",
+	},
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.svelte",
+		"src/**/*.d.ts"
+	]
 }

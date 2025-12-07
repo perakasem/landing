@@ -52,7 +52,6 @@
 		"@vitest/ui": "^4.0.10",
 		"autoprefixer": "^10.4.20",
 		"jsdom": "^27.2.0",
-		"mdsvex": "^0.12.3",
 		"postcss": "^8.5.2",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.3",
@@ -69,12 +68,16 @@
 		"vitest": "^4.0.10"
 	},
 	"dependencies": {
+		"@microflash/rehype-figure": "^2.1.4",
 		"@microflash/remark-figure-caption": "^2.0.2",
 		"@supabase/supabase-js": "^2.83.0",
 		"@tailwindcss/cli": "^4.0.6",
 		"@tailwindcss/postcss": "^4.0.6",
-		"marked": "^17.0.1",
+		"rehype-stringify": "^10.0.1",
 		"remark-gfm": "^4.0.1",
-		"tech-stack-icons": "^2.1.0"
+		"remark-parse": "^11.0.0",
+		"remark-rehype": "^11.1.2",
+		"tech-stack-icons": "^2.1.0",
+		"unified": "^11.0.5"
 	}
 }
