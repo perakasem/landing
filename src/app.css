@@ -566,17 +566,14 @@ body {
 
 /* Force footnote backlink to render as text, not emoji */
 .content .footnotes a[data-footnote-backref] {
+	font-size: 0;
 	text-decoration: none;
 }
 
-/* Replace emoji with text character */
 .content .footnotes a[data-footnote-backref]::before {
 	content: '↩';
 	font-family: monospace;
-}
-
-.content .footnotes a[data-footnote-backref] {
-	font-size: 0; /* Hide original emoji */
+	font-size: 1rem;
 }
 
 .content-mobile .footnotes ol {
@@ -587,18 +584,14 @@ body {
 
 /* Force footnote backlink to render as text, not emoji on mobile */
 .content-mobile .footnotes a[data-footnote-backref] {
+	font-size: 0;
 	text-decoration: none;
 }
 
-/* Replace emoji with text character on mobile */
 .content-mobile .footnotes a[data-footnote-backref]::before {
 	content: '↩';
 	font-family: monospace;
-	font-size: 1rem; /* Reset font size */
-}
-
-.content-mobile .footnotes a[data-footnote-backref] {
-	font-size: 0; /* Hide original emoji */
+	font-size: 1rem;
 }
 
 /* Blog Content Styles - Mobile */
