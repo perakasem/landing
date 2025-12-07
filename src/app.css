@@ -571,8 +571,7 @@ body {
 }
 
 .content-mobile .footnotes a[data-footnote-backref] {
-	font-variant-emoji: text;
-	font-family: inherit;
+	font-family: 'Courier New', Courier, monospace;
 	text-decoration: none;
 }
 
