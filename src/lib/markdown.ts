@@ -48,10 +48,9 @@ export async function markdownToHtml(markdown: string): Promise<string> {
 	const result = await markdownProcessor.process(cleanedMarkdown);
 	let html = String(result);
 
-	// Replace footnote backlink emoji with text character
-	// The ↩ character (U+21A9) can render as emoji on some devices
-	// Replace it with the explicit text version using variation selector
-	html = html.replace(/↩/g, '↩\uFE0E');
+	// Replace footnote backlink with character that won't render as emoji on iOS
+	// iOS ignores variation selectors, so use a simple caret instead
+	html = html.replace(/↩︎?/g, '^');
 
 	return html;
 }
