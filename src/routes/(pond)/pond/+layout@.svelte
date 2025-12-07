@@ -139,9 +139,10 @@
 						</div>
 						<div class="mono-typo-nav text-right text-wrap">
 							<p class="ml-32">
-								&copy; {new Date().getFullYear()} Pera Kasemsripitak. All Rights Reserved. |
+								&copy; {new Date().getFullYear()} Pera Kasemsripitak. |
 								<a href="/privacy" class="hover:font-bold">Privacy Policy</a> |
 								<a href="/terms" class="hover:font-bold">Terms of Use</a> |
+								<a href="https://cms.perakasem.com" target="_blank" class="hover:font-bold">Admin</a> |
 								<a
 									href="/rss.xml"
 									class="hover:font-bold"
