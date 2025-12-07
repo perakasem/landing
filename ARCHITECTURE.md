@@ -412,7 +412,7 @@ Blog post content and metadata
 | `excerpt`        | TEXT        | Short description                |
 | `content`        | TEXT        | Full markdown content            |
 | `published`      | BOOLEAN     | Published status                 |
-| `featured_image` | TEXT        | Image URL (optional)             |
+| `featured_image` | UUID        | Image UUID (optional)            |
 | `created_at`     | TIMESTAMPTZ | Creation timestamp               |
 | `updated_at`     | TIMESTAMPTZ | Last update timestamp            |
 
