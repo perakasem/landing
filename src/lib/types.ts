@@ -13,18 +13,3 @@ export type Post = {
 	content: string; // Markdown/HTML content (from CMS)
 	featuredImage?: string; // Optional featured image URL
 };
-
-export interface GalleryImage {
-	src: string;
-	alt: string;
-}
-
-export type GalleryImageWithIndex = {
-	src: string;
-	alt: string;
-	index: number;
-};
-
-export interface PageData {
-	images: GalleryImage[];
-}
