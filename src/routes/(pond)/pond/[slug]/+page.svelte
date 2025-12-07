@@ -51,7 +51,7 @@
 			<h2>{data.meta.excerpt}</h2>
 			<div class="content-mobile">
 				{#if html}
-					<p>{@html html}</p>
+					{@html html}
 				{:else}
 					<p>Loading post content...</p>
 				{/if}
@@ -139,7 +139,7 @@
 			<h2>{data.meta.excerpt}</h2>
 			<div class="content">
 				{#if html}
-					<p>{@html html}</p>
+					{@html html}
 				{:else}
 					<p>Loading post content...</p>
 				{/if}

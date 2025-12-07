@@ -558,6 +558,18 @@ body {
 	line-height: 1.6rem;
 }
 
+.content .footnotes ol {
+	list-style-type: decimal;
+	padding-left: 2rem;
+	margin-top: 1rem;
+}
+
+.content-mobile .footnotes ol {
+	list-style-type: decimal;
+	padding-left: 2rem;
+	margin-top: 1rem;
+}
+
 /* Blog Content Styles - Mobile */
 .content-mobile p {
 	color: #dedcdb;
