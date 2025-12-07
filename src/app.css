@@ -564,10 +564,24 @@ body {
 	margin-top: 1rem;
 }
 
+/* Force footnote backlink to render as text, not emoji */
+.content .footnotes a[data-footnote-backref] {
+	font-variant-emoji: text;
+	font-family: inherit;
+	text-decoration: none;
+}
+
 .content-mobile .footnotes ol {
 	list-style-type: decimal;
 	padding-left: 2rem;
 	margin-top: 1rem;
+}
+
+/* Force footnote backlink to render as text, not emoji on mobile */
+.content-mobile .footnotes a[data-footnote-backref] {
+	font-variant-emoji: text;
+	font-family: inherit;
+	text-decoration: none;
 }
 
 /* Blog Content Styles - Mobile */
