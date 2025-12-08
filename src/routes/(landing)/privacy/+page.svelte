@@ -52,11 +52,24 @@
 			<ol class="serif-typo-body-small list-decimal pl-4">
 				<li class="mb-4">
 					<p class="mb-2"><strong>Information Collection</strong></p>
-					<p>This Site does not collect, store, or process any personal data.</p>
+					<p>This Site does not collect personal information such as names or contact details.
+						However, for security, performance, and analytics purposes, certain technical data
+						(such as IP address, browser type, device information, pages visited, and referrer data)
+						may be processed automatically by hosting and analytics providers.</p>
 				</li>
 				<li class="mb-4">
 					<p class="mb-2"><strong>Cookies & Tracking</strong></p>
-					<p>This Site does not use cookies, analytics, or tracking technologies.</p>
+					<p>This Site does not use cookies for advertising or user profiling.
+						Privacy-focused, cookie-free analytics are used to understand aggregate site traffic and
+						performance.</p>
+				</li>
+				<li class="mb-4">
+					<p class="mb-2"><strong>Service Providers</strong></p>
+					<p>Hosting and analytics partners may process anonymized or pseudonymized technical data as part
+						of operating the Site. These include Vercel Analytics and Cloudflare Web Analytics and HTTP
+						traffic logs. For details on how these providers handle data, please refer to their respective
+						privacy policies.
+					</p>
 				</li>
 				<li class="mb-4">
 					<p class="mb-2"><strong>External Links</strong></p>
@@ -75,7 +88,7 @@
 				<li class="mb-4">
 					<p class="mb-2"><strong>Contact</strong></p>
 					<p>
-						For any inquiries, please reach out to me
+						For any inquiries, please reach out
 						<a href="mailto:pkasemsriptak+site@gmail.com" class="underline">via email</a>.
 					</p>
 				</li>
@@ -102,17 +115,23 @@
 				<ol class="serif-typo-body list-decimal p-8 text-wrap">
 					<li class="mb-4">
 						<p class="mb-2"><strong>Information Collection</strong></p>
-						<p>This Site does not collect, store, or process any personal data.</p>
+						<p>This Site does not collect personal information such as names or contact details.
+							However, for security, performance, and analytics purposes, certain technical data
+							(such as IP address, browser type, device information, pages visited, and referrer data)
+							may be processed automatically by hosting and analytics providers.</p>
 					</li>
 					<li class="mb-4">
 						<p class="mb-2"><strong>Cookies & Tracking</strong></p>
-						<p>This Site does not use cookies, analytics, or tracking technologies.</p>
+						<p>This Site does not use cookies for advertising or user profiling.
+							Privacy-focused, cookie-free analytics are used to understand aggregate site traffic and
+							performance.</p>
 					</li>
 					<li class="mb-4">
-						<p class="mb-2"><strong>External Links</strong></p>
-						<p>
-							If you follow links to third-party websites, their privacy policies apply, and I am
-							not responsible for their content or practices.
+						<p class="mb-2"><strong>Service Providers</strong></p>
+						<p>Hosting and analytics partners may process anonymized or pseudonymized technical data as part
+							of operating the Site. These include Vercel Analytics and Cloudflare Web Analytics and HTTP
+							traffic logs. For details on how these providers handle data, please refer to their respective
+							privacy policies.
 						</p>
 					</li>
 					<li class="mb-4">
@@ -125,7 +144,7 @@
 					<li class="mb-4">
 						<p class="mb-2"><strong>Contact</strong></p>
 						<p>
-							For any inquiries, please reach out to me
+							For any inquiries, please reach out
 							<a href="mailto:pkasemsriptak+site@gmail.com" class="underline">via email</a>.
 						</p>
 					</li>
